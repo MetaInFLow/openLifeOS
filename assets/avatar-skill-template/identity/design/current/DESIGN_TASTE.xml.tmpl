@@ -1,0 +1,81 @@
+<design_taste_output schema="taste-generator.design_taste.v1">
+  <metadata>
+    <owner>{{OWNER_NAME}}</owner>
+    <language>{{LANGUAGE}}</language>
+    <generated_at>{{CREATED_AT}}</generated_at>
+    <evidence_sufficiency>insufficient</evidence_sufficiency>
+    <review_status>scaffold-owner-input-needed</review_status>
+    <confidence>low</confidence>
+    <required_modules>metadata,source_inventory,selection_context,reference_examples,design_variables,theme_atmosphere,color_system,typography_system,spacing_system,layout_system,shape_system,depth_elevation,component_system,navigation_system,motion_interaction,media_imagery,content_evidence,accessibility_system,anti_preferences,responsive_behavior,do_dont_rules,iteration_guide,known_gaps,agent_prompt_guide</required_modules>
+  </metadata>
+  <source_inventory>
+    <source authority="scaffold">
+      <source_ref>openLifeOS initialization</source_ref>
+      <source_type>scaffold</source_type>
+      <used_for>global design taste source XML and DESIGN.md projection</used_for>
+    </source>
+  </source_inventory>
+  <selection_context>
+    <scenario>personal-website</scenario>
+    <selected_count>0</selected_count>
+    <like_count>0</like_count>
+    <maybe_count>0</maybe_count>
+    <avoid_count>0</avoid_count>
+  </selection_context>
+  <reference_examples/>
+  <design_variables>
+    <variable key="font_direction" value="unknown" label="Font / 字体方向"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="type_scale" value="unknown" label="Type Scale / 字号层级"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="color_mode" value="unknown" label="Color Mode / 色彩模式"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="accent_policy" value="unknown" label="Accent Policy / 强调色规则"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="text_color_policy" value="unknown" label="Text Color / 字体颜色"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="surface_density" value="unknown" label="Density / 信息密度"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="spacing_rhythm" value="unknown" label="Spacing / 间距节奏"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="grid_container" value="unknown" label="Grid / 栅格容器"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="shape_radius" value="unknown" label="Shapes / 圆角形状"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="motion_level" value="unknown" label="Motion / 动效"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="media_treatment" value="unknown" label="Media / 图片视频"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="navigation_style" value="unknown" label="Navigation / 导航"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="accessibility_floor" value="unknown" label="Accessibility / 可用性底线"><selected_label>Missing owner choice</selected_label></variable>
+    <variable key="evidence_style" value="unknown" label="Evidence / 证据呈现"><selected_label>Missing owner choice</selected_label></variable>
+  </design_variables>
+  <theme_atmosphere><principle>Missing owner-approved references.</principle></theme_atmosphere>
+  <color_system>
+    <text_color_policy>unknown</text_color_policy>
+    <usage_rule>Missing owner-approved color and text color preferences.</usage_rule>
+  </color_system>
+  <typography_system><rule>Missing owner-approved typography preferences.</rule></typography_system>
+  <spacing_system><rule>Missing owner-approved spacing preferences.</rule></spacing_system>
+  <layout_system><principle>Missing owner-approved layout preferences.</principle></layout_system>
+  <shape_system><rule>Missing owner-approved shape and radius preferences.</rule></shape_system>
+  <depth_elevation><principle>Missing owner-approved depth preferences.</principle></depth_elevation>
+  <component_system><principle>Missing owner-approved component preferences.</principle></component_system>
+  <navigation_system><rule>Missing owner-approved navigation preferences.</rule></navigation_system>
+  <motion_interaction><rule>Missing owner-approved motion preferences.</rule></motion_interaction>
+  <media_imagery><rule>Missing owner-approved media and imagery preferences.</rule></media_imagery>
+  <content_evidence><rule>Missing owner-approved evidence presentation preferences.</rule></content_evidence>
+  <accessibility_system><rule>Maintain readable contrast, focus states, touch-safe targets, and non-overlapping text.</rule></accessibility_system>
+  <anti_preferences><avoid>Missing explicit anti-preferences.</avoid></anti_preferences>
+  <responsive_behavior>
+    <rule>Preserve hierarchy and readable line length before decorative composition.</rule>
+    <rule>Collapse dense grids into readable mobile flows.</rule>
+  </responsive_behavior>
+  <do_dont_rules>
+    <do>Collect owner-approved positive references before making stable design claims.</do>
+    <dont>Do not infer permanent taste from one-off project requirements.</dont>
+  </do_dont_rules>
+  <iteration_guide>
+    <rule>Treat this XML as the canonical source for global taste.</rule>
+    <rule>Run Taste Generator before upgrading evidence_sufficiency.</rule>
+    <rule>Regenerate DESIGN.md from XML after owner-approved changes.</rule>
+  </iteration_guide>
+  <known_gaps>
+    <gap>Need at least 5 owner-approved positive references or one dense first-party corpus.</gap>
+    <gap>Need at least 3 explicit anti-preferences.</gap>
+    <gap>Need output surfaces where this design taste should apply.</gap>
+  </known_gaps>
+  <agent_prompt_guide>
+    <instruction>When producing design work for {{DISPLAY_NAME}}, read DESIGN_TASTE.xml first, then use DESIGN.md as the human-readable projection.</instruction>
+    <source_of_truth>DESIGN_TASTE.xml</source_of_truth>
+  </agent_prompt_guide>
+</design_taste_output>

@@ -1,0 +1,14 @@
+required_fields:
+  - id
+  - source.object_type
+  - source.path
+  - target
+  - transform.mode
+  - guards
+  - coverage.expected_status
+
+coverage_status_values:
+  - supported
+  - partial
+  - unsupported
+  - intentionally_excluded

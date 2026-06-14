@@ -1,0 +1,7 @@
+interface:
+  display_name: "openLifeOS"
+  short_description: "构建长期人格与认知成长系统"
+  default_prompt: "使用 $openlifeos 生成一个默认中文的长期智能核心 repo，并按问心、Skill 蒸馏、PSP/Soul、IPO 逆向复盘、Hermes、wiki 同步和 doctor 验证的顺序带我配置。"
+
+policy:
+  allow_implicit_invocation: true

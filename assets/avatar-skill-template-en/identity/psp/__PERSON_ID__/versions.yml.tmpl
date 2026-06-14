@@ -1,0 +1,36 @@
+schema: openlifeos.artifact-versions.v1
+artifact_type: psp-xml
+person_id: "{{PERSON_ID}}"
+owner: "{{OWNER_NAME}}"
+output_language: "{{LANGUAGE}}"
+active_artifact: psp-{{ARTIFACT_TIMESTAMP}}
+current_entrypoint: current/PSP_REPORT.xml
+activation_policy:
+  language_policy: "PSP artifacts must declare and use {{LANGUAGE}} from language_contract onward."
+  write_path: "versions/PSP_REPORT.<timestamp>.xml"
+  current_entrypoint_policy: "Keep current/PSP_REPORT.xml as the active canonical source-of-truth; derived Markdown/HTML is optional."
+  activation_requires:
+    - approved evidence summary
+    - psp.report.v1 XML modules
+    - validation or missing-information section
+    - changelog entry
+    - identity/current.yml update
+versions:
+  - artifact_id: psp-{{ARTIFACT_TIMESTAMP}}
+    path: versions/PSP_REPORT.{{ARTIFACT_TIMESTAMP}}.xml
+    current_entrypoint: current/PSP_REPORT.xml
+    status: active
+    created_at: "{{CREATED_AT}}"
+    evidence_sufficiency: insufficient
+    based_on:
+      - ../../public-profile/profile.yml
+    changes:
+      - "Created intake-only PSP XML routing model with output language {{LANGUAGE}}."
+  - artifact_id: evidence-maturity-{{ARTIFACT_TIMESTAMP}}
+    path: versions/EVIDENCE_MATURITY.{{ARTIFACT_TIMESTAMP}}.xml
+    current_entrypoint: current/EVIDENCE_MATURITY.xml
+    status: active
+    created_at: "{{CREATED_AT}}"
+    evidence_sufficiency: insufficient
+    changes:
+      - "Created XML evidence maturity structure with output language {{LANGUAGE}}."

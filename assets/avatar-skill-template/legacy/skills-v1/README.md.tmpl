@@ -1,0 +1,28 @@
+# Skills 能力层
+
+这一层只放真正的 Skill 包。
+
+根层场景地图：`SKILLS-CATALOG.html`。它回答可插拔 meta skill 分别在什么场景下使用；不要在里面写“当前有几个 skill”这类会随新增/删除变化的数量声明。
+
+规则：`capabilities/` 可以有容器目录，但每条分支最终必须落到一个 `SKILL.md`。不是 Skill 的推荐列表、总结、数据绑定、source metadata、候选说明和 runtime 投影不要放在这里。
+
+## Base Skills
+
+- `self-evolution/wenxin/SKILL.md`：问心 Skill。
+- `self-evolution/psp/SKILL.md`：PSP Skill。
+- `self-evolution/ipo-reverse/SKILL.md`：IPO Reverse Skill。
+
+## 非 Skill 产物位置
+
+- 推荐 Skill 列表：`identity/wenxin/skill-recommendations.yml`。
+- Skill 总结和能力说明：`identity/wenxin/skill-summaries/`。
+- Skill 读取 identity/memories/wiki/source 的边界和依赖声明：`identity/cognition/skill-bindings/`。
+- factory bridge / source update metadata：`integrations/skill-sources/`。
+- 候选 runtime Skill 说明：`docs/skill-system/`。
+
+## Placement Policy
+
+- 新能力只有形成可执行或可路由的 `SKILL.md` 后才进入 `capabilities/<skill-id>/`。
+- 新 Meta Skill 进入 `capabilities/<skill-id>/` 时，必须同时提供 `SKILLS-CATALOG.html`，说明它在什么场景下使用、输入/输出、边界和与其他 meta skill 的组合关系。
+- 事实、偏好、长期上下文不写进 Skill；通过 `identity/memories/`、配置的 memory wiki 或 `identity/cognition/skill-bindings/` 查询。
+- 推荐、总结和证据门控先留在 Wenxin 层，经过 IPO Reverse、owner alignment 和 privacy review 后再提升为真实 Skill。

@@ -1,0 +1,25 @@
+id: skill-roadmap-to-backlog
+source:
+  object_type: skill_roadmap
+  path: skills/recommendations/skill-roadmap.yml
+
+target:
+  openclaw:
+    path: learning_queue/skill-roadmap.yml
+  hermes:
+    path: learning_queue/skill-roadmap.yml
+
+transform:
+  mode: backlog_projection
+  include:
+    - skill_candidates
+    - evidence_needs
+    - promotion_gate
+  exclude:
+    - private_evidence_bodies
+
+guards:
+  forbid_secrets: true
+
+coverage:
+  expected_status: intentionally_excluded

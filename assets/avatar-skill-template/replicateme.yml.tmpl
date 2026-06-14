@@ -1,0 +1,56 @@
+repo_path: .
+repo_name: {{REPO_NAME}}
+identity_mode: {{IDENTITY_MODE}}
+owner_name: {{OWNER_NAME}}
+display_name: {{DISPLAY_NAME}}
+psp_display_name: {{PSP_DISPLAY_NAME}}
+person_id: {{PERSON_ID}}
+language: {{LANGUAGE}}
+process_log_language: {{PROCESS_LOG_LANGUAGE}}
+visibility: {{VISIBILITY}}
+lifeos_lifecycle: {{LIFEOS_LIFECYCLE}}
+upload_version: {{UPLOAD_VERSION}}
+delivery_version: {{DELIVERY_VERSION}}
+current_lifeos_version: {{CURRENT_LIFEOS_VERSION}}
+public_summary: {{INITIAL_PUBLIC_SUMMARY}}
+public_material_policy: private-by-default
+raw_material_policy: never-commit
+github_owner: {{GITHUB_OWNER}}
+github_configure: true
+github_account_type: unknown
+github_auth_method: gh-oauth
+github_permissions: metadata:read, contents:write
+github_require_gh: true
+github_auth_required: false
+github_create_avatar_repo: false
+github_create_memory_repo: false
+github_token_policy: do-not-store; use gh auth or environment variables
+memory_repo_name: {{MEMORY_REPO_NAME}}
+memory_repo_visibility: private
+memory_repo_path: {{MEMORY_REPO_PATH}}
+memory_source_policy: github-private-wiki
+memory_access_policy: private-by-default
+memory_public_mirror: index-only
+memory_collaboration_policy: private-pr-or-owner-approved-extract
+memory_raw_material_policy: never-copy-raw-private-bodies
+memory_allowed_public_exports: approved-facts, redacted-summaries, abstracted-patterns
+wiki_authoritative_source: github
+wiki_sync_modes: github
+wiki_rsync_enabled: false
+wiki_rsync_target: ""
+feishu_configure: false
+feishu_tenant_name: ""
+feishu_app_id: ""
+feishu_app_type: none
+feishu_auth_method: skip
+feishu_permissions: ""
+feishu_source_usage: ""
+feishu_token_policy: not-configured
+hermes_configure: true
+hermes_update_cadence: on-new-evidence
+hermes_source_usage: github-events, feishu-export, wiki-diff, manual-approved-material
+hermes_targets: identity/wenxin, identity/psp, identity/wenxin/skill-recommendations, identity/memories/index, AGENT.md
+hermes_token_policy: env-only-or-platform-secret
+wenxin_goals: self-understanding, public-positioning, field-map, gap-analysis, future-paths, skill-candidates
+recommended_skill_domains: {{RECOMMENDED_SKILL_DOMAINS}}
+skill_recommendations_source: identity/wenxin/

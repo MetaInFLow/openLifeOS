@@ -1,0 +1,318 @@
+# Self-Evolution Output Standards
+
+Generated: {{TODAY}}
+Owner: {{DISPLAY_NAME}}
+
+This file defines the minimum standard outputs for Avatar Description, InnerAtlas/Wenxin, PSP XML, Design, Taste Generator, and IPO Reverse. SOUL is paused.
+
+The rule is simple:
+
+- If the provided evidence is sufficient to fill the key fields, the artifact may pass.
+- If the evidence is insufficient, the artifact must explicitly fail the sufficiency gate and list the missing information or targeted follow-up questions.
+- A file that only contains generic summary text must not pass.
+
+## Shared Gate
+
+Every InnerAtlas/Wenxin, PSP XML, Design, Taste Generator, and IPO Reverse artifact must include a gate or equivalent XML status/confidence/evidence fields. InnerAtlas, PSP, and Design use XML as source-of-truth.
+
+```yaml
+standard_output_gate:
+  artifact_type: wenxin | psp | design | ipo-reverse
+  evidence_sufficiency: sufficient | insufficient
+  evidence_sources:
+    - source_id:
+      source_type:
+      authority: primary | secondary | user-approved | inferred
+      used_for:
+  missing_information:
+    - field:
+      why_needed:
+      suggested_prompt:
+  confidence:
+    overall: high | medium | low
+    notes:
+```
+
+If `evidence_sufficiency=insufficient`, the artifact must stop before making stable identity/person/process claims and must provide missing-information prompts.
+
+## Active Artifact Rule
+
+Avatar Description, InnerAtlas/Wenxin, PSP XML, and Design are cumulative artifacts, not one-off overwritten reports.
+
+- Global latest registry: `artifacts/current.yml`.
+- Global active identity registry: `identity/current.yml`.
+- Avatar Description current entrypoint: `identity/avatar-description/current.yml`.
+- InnerAtlas/Wenxin current entrypoint: `identity/inneratlas/current/INNERATLAS_REPORT.xml`.
+- InnerAtlas/Wenxin versioned artifacts: `identity/inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml`.
+- PSP current entrypoint: `identity/psp/<person_id>/current/PSP_REPORT.xml`.
+- PSP versioned artifacts: `identity/psp/<person_id>/versions/PSP_REPORT.<timestamp>.xml`.
+- PSP evidence maturity current entrypoint: `identity/psp/<person_id>/current/EVIDENCE_MATURITY.xml`.
+- PSP evidence maturity versioned artifacts: `identity/psp/<person_id>/versions/EVIDENCE_MATURITY.<timestamp>.xml`.
+- SOUL is paused and must not be generated as a LifeOS source artifact.
+- Design human-readable current entrypoint: `DESIGN.md`.
+- Design canonical XML current entrypoint: `identity/design/current/DESIGN_TASTE.xml`.
+- Design versioned artifacts: `identity/design/DESIGN-<timestamp>.md` and `identity/design/DESIGN_TASTE-<timestamp>.xml`.
+
+Update sequence:
+
+1. Read `artifacts/current.yml`, `identity/current.yml` if identity-related, and the relevant `versions.yml`.
+2. Generate the new timestamped artifact from the current active artifact plus approved new evidence.
+3. Update the current source-of-truth entrypoint. For InnerAtlas, human-readable reports are derived artifacts only.
+4. Update `versions.yml`, `changelog.md`, local PSP `current.yml` when applicable, global `identity/current.yml` when identity-related, and `artifacts/current.yml`.
+5. Refresh `identity/avatar-description/current.yml` from the active artifacts. Use a conservative synthesis pass by default: update `source_refs`, `derived_from`, field-level `claim_evidence`, `updated_at`, and changelog; do not rewrite claim text unless an explicit approved-claims manifest exists.
+6. Regenerate runtime projections so `profile.manifest.yml` records the active source artifacts used.
+
+## Avatar Description Standard Output
+
+Path: `identity/avatar-description/current.yml`
+
+Avatar Description is the product-facing current digital avatar description. It is the first structured read model for Studio UI, runtime handbooks, and dashboards. It must not become a private fact source, raw evidence store, or long-form person model.
+
+Passes only if it can fill these key fields or explicitly declares insufficiency:
+
+- `schema: openlifeos.avatar-description.v1`
+- `display_name`
+- `one_line`
+- `current_role`
+- `operating_mode`
+- `strengths`
+- `boundaries`
+- `evidence_level`
+- `maturity_notice`
+- `source_refs`
+- `claim_evidence`
+- `derived_from`
+
+Minimum evidence for `sufficient`:
+
+- InnerAtlas/Wenxin and PSP XML have enough evidence for the fields summarized here; `SOUL.md` is not a LifeOS source artifact.
+- Every stable claim is traceable through `claim_evidence`; document-level `source_refs` are not enough for sufficient evidence.
+- `boundaries` explicitly states what the avatar cannot support yet.
+- `maturity_notice` distinguishes product-facing summary from full evidence completeness.
+
+Synthesis rule:
+
+- `identity/avatar-description/current.yml` is allowed to be a maintained read model, not a long-form evidence file.
+- Automated synthesis may refresh refs and evidence mappings from `artifacts/current.yml`.
+- Automated synthesis must preserve `one_line`, `current_role`, `operating_mode`, `strengths`, and `boundaries` unless a reviewer-approved claim manifest supplies the replacement value, evidence refs, and approval metadata.
+- If evidence improves but no approved claim manifest exists, mark the artifact as refreshed and leave claim text unchanged.
+
+Approved claim manifest shape:
+
+```yaml
+schema: openlifeos.avatar-description-synthesis.v1
+approval:
+  reviewer: "owner-or-reviewer-id"
+  approved_at: "2026-06-02T12:30:00+08:00"
+  approval_ref: "review://avatar-description/<review-id>"
+approved_claims:
+  one_line:
+    value: "Approved replacement summary."
+    evidence:
+      - identity/inneratlas/current/INNERATLAS_REPORT.xml
+```
+
+Missing approval metadata or missing/disallowed evidence refs must fail synthesis instead of silently rewriting claim text.
+
+## InnerAtlas / Wenxin Standard Output
+
+Path: `identity/inneratlas/current/INNERATLAS_REPORT.xml`
+
+Passes only if it can fill these key sections or explicitly declares insufficiency:
+
+- XML root: `inneratlas_report schema="inneratlas-report" artifact_name="INNERATLAS_REPORT.xml"`.
+- `metadata/report_status` and `metadata/completion_percent`; only `report_status=complete` and `completion_percent=100` may pass.
+- InnerAtlas doctor must also expose `content_maturity`; `completion_percent=100` means fixed fields are filled, not that the report is research/avatar-grade.
+- `source_discovery` and `missing_information`.
+- `identity_layer`: 外号、一句话定位、对外主线、对内主线、稀缺性判断和证据。
+- `explicit_analysis`: MBTI 处理方式/四维/变化轨迹/置信度、Big Five、能力水位、领域覆盖图、完成度百分比、Gap 分析、Skill 候选、不能判断/缺失信息。
+- `radar`: 5-7 个动态维度、参照人物、水位、证据、整体形状。
+- `barriers`: 来源、稀缺性、证据、AI 时代耐受性。
+- `milestones`: 关键经历和意义。
+- `pitch`: ta 是谁、ta 凭什么、ta 能给什么。
+- `soft_texture`: 4-7 条行为模式句。
+- `presentation_plan`: 每个部分的推荐呈现形式。
+- `iteration_log`: append-only 更新历史。
+
+Minimum evidence for `sufficient`:
+
+- At least 3 independent evidence items, or one dense first-party/self-authored corpus, from current-run material or explicitly approved source scopes only.
+- New-avatar runs must not use local openLifeOS `output/meta/`, other avatar repos, historical `identity/wenxin/` / `identity/inneratlas/` reports, or prior Wenxin conclusions unless a specific historical artifact is explicitly provided as current-run material.
+- Evidence covers identity/history, capability, representative outputs or decisions, and future direction.
+- Candidate Skill recommendations are backed by concrete work examples or repeated decision patterns.
+- Each Skill candidate must satisfy one eligibility gate:
+  - `top_5_percent_capability_hypothesis`: evidence suggests this person may be in the global top 5% or a clear high-percentile group for this capability.
+  - `repeated_workflow`: evidence shows the person repeatedly performs this work and stable inputs, process, outputs, and acceptance criteria can be extracted.
+- Do not recommend Skills merely because the LifeOS has a self-evolution tool installed, the domain sounds useful, a one-off project exists, or the candidate is aspirational.
+
+## PSP XML Standard Output
+
+Path: `identity/psp/<person_id>/current/PSP_REPORT.xml` and `identity/psp/<person_id>/versions/PSP_REPORT.<timestamp>.xml`
+
+Passes only if it can fill these key sections or explicitly declares insufficiency:
+
+- XML root: `psp_report schema="psp.report.v1"`.
+- PSP doctor must expose both `structure_completion` and `content_maturity`; XML structure completion alone does not make the person model research/avatar-grade.
+- `metadata`
+- `evidence_maturity`
+- `source_inventory`
+- `evidence_boundary`
+- `ontology_map` with worldview, lifeview, values_and_bottom_lines, role_and_mission, methodology_and_fact_view, decision_and_tradeoff_view, human_and_talent_view, business_and_customer_view, expression_and_organization_view.
+- `kernel`
+- `cognition`
+- `decision_model` including pre-answer checks and forced downgrade rules.
+- `interaction_model` including questioning style.
+- `business_domain_model` or the person's equivalent core domain model.
+- `language_fingerprint`
+- `best_state`
+- `delegation_boundary`
+- `runtime_instructions`
+- `validation_plan`
+- `confirmation_checklist`
+- `acceptance_criteria`
+- `confidence_by_section`
+- `missing_information`
+- `iteration_log`
+
+Minimum evidence for `sufficient`:
+
+- Enough behavior or decision samples to infer recurring judgment patterns.
+- Enough source diversity to distinguish facts from third-party interpretation.
+- At least 3 validation examples or counterexamples for how the model should and should not answer.
+- Owner/reviewer confirmation for high-impact claims, original wording, internal-only phrases, and delegation boundaries.
+
+## SOUL is paused
+
+`SOUL.md` and `identity/psp/<person_id>/SOUL-<timestamp>.md` are not generated by current openLifeOS initialization. PSP XML carries the person model, behavior boundaries, best-state profile, delegation boundary, and runtime instructions. Runtime-specific projections may still create framework-required files, but those projections must not become LifeOS source artifacts.
+
+## Design Standard Output
+
+Path: `identity/design/current/DESIGN_TASTE.xml`, `identity/design/DESIGN_TASTE-<timestamp>.xml`, `DESIGN.md`, and `identity/design/DESIGN-<timestamp>.md`
+
+Design is the global aesthetics and expression-preference layer. `DESIGN_TASTE.xml` is the canonical machine-readable source; `DESIGN.md` is the human-readable projection generated from XML. Design is not a project UI config and must not generalize from one-off project requirements without owner approval.
+
+Passes only if it can fill these key sections or explicitly declares insufficiency:
+
+Canonical XML modules:
+
+- `metadata`
+- `source_inventory`
+- `selection_context`
+- `reference_examples`
+- `design_variables`
+- `theme_atmosphere`
+- `color_system`
+- `typography_system`
+- `spacing_system`
+- `layout_system`
+- `shape_system`
+- `depth_elevation`
+- `component_system`
+- `navigation_system`
+- `motion_interaction`
+- `media_imagery`
+- `content_evidence`
+- `accessibility_system`
+- `anti_preferences`
+- `responsive_behavior`
+- `do_dont_rules`
+- `iteration_guide`
+- `known_gaps`
+- `agent_prompt_guide`
+
+Required `design_variables`:
+
+- `font_direction`
+- `type_scale`
+- `color_mode`
+- `accent_policy`
+- `text_color_policy`
+- `surface_density`
+- `spacing_rhythm`
+- `grid_container`
+- `shape_radius`
+- `motion_level`
+- `media_treatment`
+- `navigation_style`
+- `accessibility_floor`
+- `evidence_style`
+
+Markdown projection sections:
+
+- `standard_output_gate`
+- `source_inventory`
+- `design_variables`
+- `expression_preferences`
+- `visual_preferences`
+- `Visual Theme & Atmosphere`
+- `Color Palette & Roles`
+- `Typography Rules`
+- `Component Stylings`
+- `Layout Principles`
+- `Spacing System`
+- `Shape & Radius Rules`
+- `Depth & Elevation`
+- `Motion & Interaction`
+- `Navigation & IA`
+- `Media & Imagery`
+- `Content & Evidence Presentation`
+- `Accessibility & Touch Targets`
+- `narrative_rhythm`
+- `product_and_interface_taste`
+- `anti_preferences`
+- `reference_examples`
+- `Do's and Don'ts`
+- `Responsive Behavior`
+- `confidence_by_section`
+- `missing_information`
+- `Agent Prompt Guide`
+
+Taste Generator requirement:
+
+- Use `evolution/organ-systems/taste-generator/SKILL.md` when stable design preferences are missing or weak.
+- Generate an iframe scenario selector page from a pool of design/taste options, including positive references and anti-preferences. For personal identity collection, use full-page iframe previews for a concrete scenario such as personal website instead of abstract text-only style cards.
+- Capture owner choices as `like`, `maybe`, or `avoid`, plus notes and fixed variables for font, type scale, color, accent, text color, density, spacing, grid, radius, motion, media, navigation, accessibility, and evidence presentation.
+- Summarize the choices into `DESIGN_TASTE.xml`, then generate `DESIGN.md` and the timestamped `identity/design/DESIGN-<timestamp>.md` from XML.
+- Mark inferred or weakly supported choices as low confidence instead of treating them as permanent taste.
+
+Minimum evidence for `sufficient`:
+
+- At least 5 owner-approved positive references or one dense first-party design/expression corpus.
+- At least 3 negative references or explicit anti-preferences.
+- Evidence covers more than one output surface, or the artifact states its scope limitation.
+
+## IPO Reverse Standard Output
+
+Path: `identity/ipo-reverse/<artifact_id>.md` or `runtime/memory/working-lessons/<artifact_id>-ipo.md`
+
+Passes only if it can fill these key sections or explicitly declares insufficiency:
+
+- `standard_output_gate`
+- `finished_output_reference`
+- `artifact_evidence_map`
+- `hidden_cognitive_tasks`
+- `methodology_selection`
+- `middle_layer_artifacts`
+- `process_chain`
+- `final_IPO`
+- `forward_reconstruction_check`
+- `counterfactual_or_step_deletion_check`
+- `assumptions_and_evidence_ledger`
+- `downstream_usage`
+- `missing_information`
+
+Minimum evidence for `sufficient`:
+
+- A finished output exists and is available for inspection.
+- The output contains enough structure, decisions, or traces to infer process.
+- High-impact unknowns are either answered or explicitly marked as assumptions with targeted prompts.
+
+## Final Response Requirement
+
+When generating or updating any of these artifacts, the agent's final response must state:
+
+- Which standard artifacts were attempted.
+- Which passed the standard output gate.
+- Which failed due to insufficient evidence.
+- Which latest registry entries were updated in `artifacts/current.yml`.
+- The top missing information needed to pass.

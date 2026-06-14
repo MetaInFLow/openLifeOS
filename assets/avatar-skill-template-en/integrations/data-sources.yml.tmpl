@@ -1,0 +1,50 @@
+version: 1
+owner: {{OWNER_NAME}}
+visibility: {{VISIBILITY}}
+purpose: Declare data sources before agents use them for memory, knowledge, or skill updates.
+sources:
+  memory_wiki:
+    enabled: true
+    config: identity/memories/wiki-repo.yml
+    authority: configured
+    token_policy: no-token-in-repo
+    allowed_targets:
+      - runtime/memory/working-lessons/
+      - identity/memories/long-term/
+      - capabilities/memory/distilled-knowledge/
+  github:
+    enabled: false
+    config: integrations/github.yml
+    authority: repository-state
+    token_policy: env-only-or-gh-auth
+    allowed_targets:
+      - identity/wenxin/skill-recommendations.yml
+      - runtime/memory/working-lessons/
+  feishu:
+    enabled: false
+    config: integrations/feishu.yml
+    authority: external-app
+    token_policy: env-only
+    allowed_targets:
+      - runtime/memory/working-lessons/
+      - identity/inneratlas/current/INNERATLAS_REPORT.xml
+      - identity/wenxin/skill-recommendations.yml
+  hermes:
+    enabled: false
+    config: integrations/hermes.yml
+    authority: imported-evidence
+    token_policy: env-only-or-platform-secret
+    allowed_targets:
+      - runtime/memory/working-lessons/
+      - identity/wenxin/skill-recommendations.yml
+      - identity/psp/
+public_export_gate:
+  requires_owner_approval: true
+  allowed:
+    - approved facts
+    - redacted summaries
+    - abstracted patterns
+  forbidden:
+    - secrets
+    - raw private bodies
+    - unapproved personal records

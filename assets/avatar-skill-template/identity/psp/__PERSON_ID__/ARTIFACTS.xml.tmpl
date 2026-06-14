@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psp_artifacts schema="psp.artifacts.v1" person_id="{{PERSON_ID}}" generated_at="{{CREATED_AT}}" language="{{LANGUAGE}}">
+  <language_contract output_language="{{LANGUAGE}}">所有 PSP 报告正文、缺失信息提示、确认问题、派生读物、runtime prompt、验证报告和最终披露都必须使用该语言；原始引用、路径、XML 标签、schema、产品名和协议固定术语可以保留原文。</language_contract>
+  <canonical_report current="current/PSP_REPORT.xml" version="versions/PSP_REPORT.{{ARTIFACT_TIMESTAMP}}.xml"/>
+  <evidence_maturity current="current/EVIDENCE_MATURITY.xml" version="versions/EVIDENCE_MATURITY.{{ARTIFACT_TIMESTAMP}}.xml"/>
+  <derived_artifacts root="derived/" source_of_truth="false"/>
+  <soul_policy produced="false">SOUL.md 暂停；PSP_REPORT.xml 承载人物模型和 runtime 约束。</soul_policy>
+</psp_artifacts>

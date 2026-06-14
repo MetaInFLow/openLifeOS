@@ -1,0 +1,24 @@
+# Memory Start Here
+
+This file routes agents to {{DISPLAY_NAME}}'s long-term context sources.
+
+## Areas
+
+- `identity-intake`: `object_type=area-index`, `visibility={{VISIBILITY}}`, `authority=owner-approved-material`, `public_mirror=approved-derived`, `collaboration_mode=owner-approved-extract`, `lifecycle_state=captured`.
+- `work-evidence`: `object_type=source-artifact`, `visibility={{VISIBILITY}}`, `authority=owner-approved-material`, `public_mirror=none`, `collaboration_mode=owner-approved-extract`, `lifecycle_state=captured`.
+- `project-retrospectives`: `object_type=lesson-event`, `visibility={{VISIBILITY}}`, `authority=owner-approved-material`, `public_mirror=approved-derived`, `collaboration_mode=owner-reviewed-update`, `lifecycle_state=triaged`.
+- `skill-candidates`: `object_type=skill-upgrade-candidate`, `visibility={{VISIBILITY}}`, `authority=identity/wenxin and IPO Reverse outputs`, `public_mirror=approved-derived`, `collaboration_mode=owner-reviewed-update`, `lifecycle_state=triaged`.
+- `aesthetic-preferences`: `object_type=distilled-pattern`, `visibility={{VISIBILITY}}`, `authority=owner-approved-material`, `public_mirror=approved-derived`, `collaboration_mode=owner-approved-extract`, `lifecycle_state=captured`.
+
+## Access Rules
+
+- Do not copy private wiki content into this repo.
+- Public memory is a derived surface; private or local-only bodies can only move upward as approved facts, redacted summaries, or abstracted non-reversible conclusions.
+- If an area is private, state the access boundary and ask the owner for approved extracts.
+- Read `identity/memories/wiki-repo.yml` before assuming whether GitHub or server wiki is authoritative.
+- If server wiki is authoritative, treat GitHub as a mirror/collaboration surface and prefer server state for facts.
+- Use the memory wiki `query` section to find the configured entrypoint and area index. If the wiki is unavailable, fall back to memory tiers and ask the owner for an approved extract.
+- Use the memory wiki `intake` section before writing new material. Raw bodies stay external; this repo receives approved summaries, source IDs, provenance, and distilled conclusions.
+- Prefer latest memory source over older PSP facts for time-sensitive work context.
+- Treat unprocessed thought intake as provisional, not stable fact.
+- This first stage has no personal evidence body. It only defines where future owner-approved evidence will enter the system.

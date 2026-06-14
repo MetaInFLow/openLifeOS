@@ -1,0 +1,29 @@
+github_owner: {{GITHUB_OWNER}}
+repository: {{MEMORY_REPO_NAME}}
+visibility: private
+local_path: {{MEMORY_REPO_PATH}}
+create_with_gh: false
+authoritative_source: github
+sync_modes: github
+source_policy: private-by-default
+public_mirror: index-only
+allowed_public_exports: approved-facts, redacted-summaries, abstracted-patterns
+private_collaboration: private-pr-or-owner-approved-extract
+raw_material_policy: never-copy-raw-private-bodies
+rsync_enabled: false
+rsync_target: ""
+status: scaffold
+rule: Link or summarize the wiki; the public layer keeps only index/approved-derived content and never copies private bodies. If authoritative_source is server-rsync, the server is the single source of truth and GitHub is only a collaboration or publishing mirror.
+intake:
+  mode: owner-approved-extract
+  raw_body_policy: external-only
+  write_targets:
+    - runtime/memory/working-lessons/
+    - identity/memories/long-term/
+    - capabilities/memory/distilled-knowledge/
+  rule: New material enters the memory wiki or a local/private source first; the public LifeOS layer only accepts approved summaries, indexes, source_ids, and provenance.
+query:
+  default_entrypoint: "{{MEMORY_REPO_PATH}}/START-HERE.md"
+  area_index: "{{MEMORY_REPO_PATH}}/areas/index.md"
+  fallback_when_unavailable: use memory tiers and ask owner for approved extract
+  rule: Read this file before querying to confirm authoritative_source, visibility, public_mirror, and raw_material_policy.

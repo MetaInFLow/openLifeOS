@@ -1,0 +1,43 @@
+<inneratlas_report schema="inneratlas-report" version="1.2" artifact_name="INNERATLAS_REPORT.xml" version_id="{{ARTIFACT_TIMESTAMP}}" language="{{LANGUAGE}}">
+  <metadata>
+    <generated_at>{{CREATED_AT}}</generated_at>
+    <last_updated>{{CREATED_AT}}</last_updated>
+    <artifact_root>identity/inneratlas</artifact_root>
+    <current_path>current/INNERATLAS_REPORT.xml</current_path>
+    <version_path>versions/INNERATLAS_REPORT.{{ARTIFACT_TIMESTAMP}}.xml</version_path>
+    <subject_display_name>{{DISPLAY_NAME}}</subject_display_name>
+    <assessment_mode>complete</assessment_mode>
+    <workflow_state>source_scope_needed</workflow_state>
+    <report_status>draft</report_status>
+    <completion_percent>0</completion_percent>
+  </metadata>
+
+  <source_discovery presentation="source_inventory">
+    <scanned_at>{{CREATED_AT}}</scanned_at>
+    <scan_status>not_run</scan_status>
+    <discovery_policy>Discovery only. Do not ingest local, private, remote, or account-bound material without explicit user approval. For a new avatar, exclude this openLifeOS factory output/meta, other avatar repos, historical identity/wenxin or identity/inneratlas reports, and prior Wenxin conclusions unless the user explicitly provides a specific artifact as current-run material.</discovery_policy>
+    <cli_candidates></cli_candidates>
+  </source_discovery>
+
+  <missing_information presentation="doctor_queue">
+    <status>has_missing_required_fields</status>
+    <missing field="source_material_scope" status="unknown" required_for_100="true" answer_type="approval_scope_table">
+      <why_needed>New-avatar InnerAtlas must start from current-run material, not inherited openLifeOS output/meta artifacts or historical Wenxin reports.</why_needed>
+      <question_context>
+        <item id="direct_materials" label="Files, text, PDFs, chat records, or project documents directly provided in this run"></item>
+        <item id="gh" label="gh: explicitly approved GitHub repositories, issues, or pull request scopes"></item>
+        <item id="git" label="git: explicitly approved local repositories and commit-history scopes"></item>
+        <item id="rg_mdfind" label="rg/mdfind: explicitly approved local directories, excluding openLifeOS/output/meta and historical Wenxin/InnerAtlas reports by default"></item>
+        <item id="lark_feishu" label="Lark/Feishu: explicitly approved chats, minutes, docs, or wiki scopes"></item>
+      </question_context>
+      <next_question>Please define which material entrances and scopes may be used for this new {{DISPLAY_NAME}} avatar. For each item, choose allowed, denied, allowed_with_limits, or not_available, and write the exact scope or limitation. Local openLifeOS output/meta, other avatar repos, historical identity/wenxin or identity/inneratlas reports are excluded by default unless you explicitly name one historical artifact as current-run material.</next_question>
+    </missing>
+  </missing_information>
+
+  <iteration_log presentation="append_only">
+    <entry date="{{CREATED_AT}}">
+      <trigger>Initialized fresh InnerAtlas source artifact for a new avatar.</trigger>
+      <changes>Created draft INNERATLAS_REPORT.xml with no inherited Wenxin conclusions. Waiting for source material scope approval.</changes>
+    </entry>
+  </iteration_log>
+</inneratlas_report>

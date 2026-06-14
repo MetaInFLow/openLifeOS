@@ -1,0 +1,28 @@
+schema: openlifeos.wenxin-skill-recommendations.v1
+language: zh-CN
+generated_from: identity/inneratlas/current/INNERATLAS_REPORT.xml
+status: source-scope-needed
+rule: 这是 Wenxin 产物，不是 skills 实现层。推荐 Skill 必须来自 owner-approved evidence，并满足两类条件之一：1）此人某项能力 highly possible 达到全球前 5% 或同领域高分位；2）此人经常重复做某类事情，且能抽象出稳定输入、流程、输出和验收标准。系统工具、自我进化工具、泛泛领域兴趣和一次性项目不得直接算推荐 Skill。
+eligibility_gate:
+  allowed_types:
+    - top_5_percent_capability_hypothesis
+    - repeated_workflow
+recommendations:
+  - machine_name: professional-core-skill
+    alias: null
+    user_named: false
+    skill_type: distilled-meta-skill
+    eligibility_type: repeated_workflow
+    evidence_strength: missing
+    implemented: false
+    summarized: false
+    summary_artifact: null
+    implementation_artifact: null
+    usage_scenarios:
+      - 当 owner-approved evidence 显示存在稳定重复的核心工作流时，用于沉淀该人的核心职业操作系统。
+    evidence_needed:
+      - 支撑该能力的 2-5 个关键项目或场景。
+      - 这个人做判断时的原则、取舍和反例。
+      - 可复用工作流、输入输出、验收标准。
+    promotion_gate: IPO Reverse + owner alignment
+watchlist: []

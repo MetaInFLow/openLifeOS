@@ -1,0 +1,10 @@
+required_fields:
+  - translation_id
+  - target_runtime
+  - coverage
+
+coverage_sections:
+  - supported
+  - partial
+  - unsupported
+  - intentionally_excluded

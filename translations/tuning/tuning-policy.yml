@@ -1,0 +1,36 @@
+mode: proposal_only
+default_review_mode: proposal-only
+
+principles:
+  - deterministic_script_output_is_baseline
+  - skill_guided_tuning_must_emit_review_proposal_only
+  - manual_confirmation_required_before_apply
+  - runtime_profile_is_projection_not_source_of_truth
+  - runtime_feedback_returns_as_lesson_evidence
+
+forbidden_mutations:
+  - canonical_lifeos_identity
+  - canonical_lifeos_memory
+  - canonical_lifeos_skills
+  - canonical_lifeos_security
+  - canonical_lifeos_integrations
+  - profile_manifest_source_paths
+  - profile_manifest_validation_results
+  - coverage_report_status
+  - secret_scan_results
+  - private_body_scan_results
+
+allowed_proposal_targets:
+  openclaw:
+    - SOUL.md
+    - AGENTS.md
+    - USER.md
+    - TOOLS.md
+  hermes:
+    - SOUL.md
+    - PROFILE.md
+    - config.yaml
+    - memories/seed.md
+
+review_artifact: translation.review.md
+apply_policy: explicit_user_confirmation_only

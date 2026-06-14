@@ -1,0 +1,30 @@
+# Delivery Architecture
+
+Current delivery: `{{REPO_NAME}}`
+
+Global lifecycle flag: `LIFEOS_STATUS.yml`
+
+## Lifecycle
+
+- Current mode: `{{LIFEOS_LIFECYCLE}}`
+- Upload version: `{{UPLOAD_VERSION}}`
+- Delivery version: `{{DELIVERY_VERSION}}`
+
+`development` means meta skills may be connected as submodules or editable working sources so the owner can iterate and upload versions.
+
+`delivery` means meta skills should be resolved from latest approved release archives so consumers receive stable source snapshots.
+
+## Architecture Targets
+
+| Target | Status | Path | Role |
+| --- | --- | --- | --- |
+| `lifeos` | canonical | `/` | Identity, memory, skills, cognition contracts, integrations, security, and evidence gates. |
+| `openclaw` | generated projection | `profiles/openclaw/{{SKILL_ID}}/` | OpenClaw agent workspace projection generated from LifeOS artifacts. |
+| `hermes` | generated projection | `profiles/hermes/{{SKILL_ID}}/` | Hermes profile projection generated from LifeOS artifacts. |
+
+## Delivery Rules
+
+- Runtime profiles are generated projections, not canonical identity or memory.
+- Delivery builds must record source mode in `LIFEOS_STATUS.yml`.
+- Development builds may use submodules for meta skill authoring.
+- Delivery builds should use release/archive vendored copies for meta skill consumption.

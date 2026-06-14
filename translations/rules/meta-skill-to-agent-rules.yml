@@ -1,0 +1,27 @@
+id: meta-skill-to-agent-rules
+source:
+  object_type: distilled_meta_skill
+  path: skills/meta/
+
+target:
+  openclaw:
+    path: AGENTS.md
+  hermes:
+    path: PROFILE.md
+
+transform:
+  mode: behavior_rule_projection
+  include:
+    - routing_rules
+    - judgment_principles
+    - validation_gates
+  exclude:
+    - raw_task_logs
+    - private_evidence_bodies
+
+guards:
+  forbid_secrets: true
+  forbid_raw_private_body: true
+
+coverage:
+  expected_status: partial

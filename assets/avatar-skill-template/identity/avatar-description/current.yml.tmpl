@@ -1,0 +1,35 @@
+schema: openlifeos.avatar-description.v1
+display_name: "{{DISPLAY_NAME}}"
+one_line: "Current avatar description is not evidence-complete yet."
+current_role: "Current role is not structured yet."
+evidence_level: insufficient
+maturity_notice: "This product-facing description is a structured summary derived from multiple active openLifeOS artifacts, not a single markdown file. Evidence is insufficient until Wenxin, PSP XML, and Design have stronger source coverage. SOUL generation is paused."
+operating_mode:
+  - "Use source refs and evidence boundaries before making claims."
+  - "Prefer evidence-limited summaries over raw artifact dumps."
+strengths:
+  - "Can expose a compact current-avatar entrypoint for Studio, runtime handbooks, and reviewers."
+  - "Can route deeper questions to Wenxin, PSP XML, Design, and evidence maturity artifacts without making any single file the whole avatar."
+boundaries:
+  - "Do not infer private facts, language fingerprint, or high-confidence personality claims without approved evidence."
+  - "Do not treat this initial scaffold as mature identity content until owner-approved evidence has been synthesized."
+source_refs:
+  - identity/avatar-description/current.yml
+claim_evidence:
+  one_line:
+    - identity/inneratlas/current/INNERATLAS_REPORT.xml
+  current_role:
+    - identity/inneratlas/current/INNERATLAS_REPORT.xml
+  operating_mode:
+    - identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml
+  strengths:
+    - identity/inneratlas/current/INNERATLAS_REPORT.xml
+    - identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml
+  boundaries:
+    - identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml
+    - identity/psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml
+derived_from:
+  - identity/inneratlas/current/INNERATLAS_REPORT.xml
+  - identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml
+  - DESIGN.md
+updated_at: "{{CREATED_AT}}"

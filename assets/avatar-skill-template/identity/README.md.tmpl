@@ -1,0 +1,25 @@
+# Identity 身份层
+
+这一层回答：“{{DISPLAY_NAME}} 到底是谁？”
+
+这里放四类材料：
+
+- `public-profile/`：只放可公开、用户确认的客观身份配置。
+- `avatar-description/`：产品和 UI 默认读取的当前数字分身结构化描述。
+- `inneratlas/`：InnerAtlas（问心）XML source-of-truth，主要回答 identity：我是谁、站在哪、差多少、往哪走，并支持能力地图、对外定位和可蒸馏 Skill 候选。
+- `wenxin/`：兼容 ledger、公开派生摘要、Skill recommendations 和 Skill summaries。
+- `psp/`：PSP/person model 类 Skill 的 XML 源产物，用来描述本体九维、价值排序、判断模型、运行轴、授权边界、行为边界和置信度；`SOUL.md` 当前暂停作为 LifeOS 源产物生成。
+
+账号密码、Token、API Key、私密证件、合同、聊天记录、原始会议转写不属于这一层，也不进入公开仓库。
+
+## Current Active Registry
+
+- `current.yml` 是 Identity 层的机器可读 active 指针。
+- `../artifacts/current.yml` 是所有核心过程产物的统一 latest registry。
+- `avatar-description/current.yml` 是产品/UI/Runtime Handbook 默认读取的当前分身描述。
+- `inneratlas/current/INNERATLAS_REPORT.xml` 是 InnerAtlas source-of-truth；`psp/{{PERSON_ID}}/current/PSP_REPORT.xml` 是 PSP source-of-truth。
+- `psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml` 是 PSP 证据成熟度 source-of-truth。
+- `inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml`、`psp/{{PERSON_ID}}/versions/PSP_REPORT.<timestamp>.xml` 和 `psp/{{PERSON_ID}}/versions/EVIDENCE_MATURITY.<timestamp>.xml` 是版本化产物。
+- `versions.yml` 记录 artifact lineage；`changelog.md` 记录为什么激活新版本。
+
+更新规则：先基于当前 active artifact 生成新时间戳产物，再更新 current entrypoint、versions ledger、changelog、`identity/current.yml` 和 `artifacts/current.yml`。如果更新会改变用户看到的“当前数字分身是什么样”，还必须刷新 `avatar-description/current.yml`。不要直接覆盖 current 文件而不留下版本记录。

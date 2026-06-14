@@ -1,0 +1,29 @@
+# InnerAtlas（问心）兼容层
+
+InnerAtlas 是全局英文名，「问心」是中文名。新的 source-of-truth 产物写入 `identity/inneratlas/current/INNERATLAS_REPORT.xml`；本目录只保留兼容 ledger、changelog、公开派生摘要和候选 Skill 推荐。
+
+InnerAtlas 要回答的问题：
+
+- 我是谁：不是 title 或公司标签，而是由具体行为和判断形成的主线。
+- 我现在站在哪：所在领域、能力水位、元认知密度和当前阶段。
+- 我离领域完整版差多少：能力地图、覆盖度、gap 和证据强弱。
+- 我该往哪走：未来路径、风险、验证方式和下一步采样问题。
+- 我有什么值得被蒸馏成 Skill：强项能力、支撑项目、工作流、反例和验收标准。
+
+Expected outputs:
+
+- `../inneratlas/current/INNERATLAS_REPORT.xml`：当前 active XML source-of-truth。
+- `../inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml`：同名产物的版本化 XML。
+- `versions.yml`：InnerAtlas active 版本 ledger。
+- `changelog.md`：InnerAtlas active 变更记录。
+- `public-positioning.md`：对外可公开定位、bio、README 叙事或 BP-style 摘要。
+- `skill-recommendations.yml`：建议蒸馏的个人 Skill 候选及证据需求。
+
+Rules:
+
+- Use only public or approved source material for committed outputs.
+- Mark uncertainty explicitly.
+- Do not turn private weaknesses, customer details, or raw transcripts into public claims.
+- Internal self-understanding may be candid, but committed repo content must still respect the security boundary.
+- New InnerAtlas outputs must build on the current active XML, write `../inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml`, then update `../inneratlas/current/INNERATLAS_REPORT.xml`, `versions.yml`, `changelog.md`, `../current.yml`, and `../../artifacts/current.yml`.
+- 新建 avatar 默认不得读取本地 openLifeOS factory 的 `output/meta/`、其他 avatar repo、历史 `identity/wenxin/` / `identity/inneratlas/` 报告或旧问心结论。

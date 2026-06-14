@@ -1,0 +1,28 @@
+id: distilled-knowledge-to-knowledge-seed
+source:
+  object_type: distilled_knowledge
+  path: memory/distilled-knowledge/
+
+target:
+  openclaw:
+    path: USER.md
+  hermes:
+    path: memories/knowledge.md
+
+transform:
+  mode: claim_summary
+  include:
+    - claims
+    - evidence_pointers
+    - freshness
+    - contradictions
+  exclude:
+    - raw_source_body
+
+guards:
+  require_provenance: true
+  forbid_secrets: true
+  forbid_raw_private_body: true
+
+coverage:
+  expected_status: partial

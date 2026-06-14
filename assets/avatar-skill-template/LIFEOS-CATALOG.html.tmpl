@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{REPO_NAME}} · LifeOS Catalog</title>
+<style>
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", Arial, sans-serif; background: #f7f8fa; color: #101828; line-height: 1.55; }
+header { background: #17324d; color: #fff; padding: 40px 32px 32px; }
+main, .inner { max-width: 1180px; margin: 0 auto; }
+h1 { margin: 8px 0; font-size: 34px; letter-spacing: 0; }
+.sub { color: rgba(255,255,255,.84); max-width: 850px; }
+nav { position: sticky; top: 0; z-index: 2; background: rgba(255,255,255,.96); border-bottom: 1px solid #e4e7ec; padding: 10px 32px; }
+nav .inner { display: flex; gap: 8px; overflow-x: auto; }
+nav a { color: #344054; text-decoration: none; font-weight: 700; font-size: 13px; padding: 6px 10px; border-radius: 6px; white-space: nowrap; }
+nav a:hover { background: #e7f2f8; color: #0b4a6f; }
+main { padding: 28px 32px 40px; }
+section { margin-bottom: 34px; }
+h2 { margin: 0 0 6px; font-size: 23px; }
+.lead { margin: 0 0 16px; color: #667085; font-size: 14px; }
+.panel { background: #fff; border: 1px solid #d9e1ea; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 6px 18px rgba(15,23,42,.06); }
+.snapshot { display: grid; grid-template-columns: minmax(180px, 1.15fr) minmax(160px, .9fr) minmax(180px, 1fr) minmax(220px, 1.25fr); }
+.row { display: contents; }
+.cell { border-top: 1px solid #edf1f5; padding: 12px 14px; font-size: 13.5px; }
+.head .cell { border-top: 0; background: #eef4f8; color: #344054; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .02em; }
+.field { font-weight: 800; color: #182230; }
+.value { color: #101828; }
+.source { color: #475467; }
+.status { color: #667085; }
+.status.ready { color: #067647; font-weight: 700; }
+.status.pending { color: #b54708; font-weight: 700; }
+.grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.card { background: #fff; border: 1px solid #e4e7ec; border-radius: 8px; padding: 17px 18px; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 4px 14px rgba(15,23,42,.05); }
+.card h3 { margin: 0 0 7px; font-size: 16px; }
+.card p { margin: 0; color: #344054; font-size: 13.5px; }
+code { font-family: "SF Mono", Menlo, Consolas, monospace; background: #eef2f7; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+@media (max-width: 760px) {
+  .snapshot { display: block; }
+  .row { display: block; border-top: 1px solid #edf1f5; padding: 10px 0; }
+  .row.head { display: none; }
+  .row:first-child { border-top: 0; }
+  .cell { display: block; border-top: 0; padding: 3px 14px; }
+  .field::before { content: "字段："; color: #667085; font-weight: 600; }
+  .value::before { content: "当前值："; color: #667085; font-weight: 600; }
+  .status::before { content: "状态："; color: #667085; font-weight: 600; }
+  .source::before { content: "来源："; color: #667085; font-weight: 600; }
+}
+</style>
+</head>
+<body>
+<header><div class="inner"><div>LifeOS Catalog</div><h1>{{REPO_NAME}}</h1><p class="sub">这是给用户看的 avatar 总览。它先回答“我能知道这个数字人的哪些信息”，再给出每项信息的状态和来源文件；机器真源仍是 <code>artifacts/current.yml</code>、<code>identity/current.yml</code> 和 <code>LIFEOS_STATUS.yml</code>。</p></div></header>
+<nav><div class="inner"><a href="#avatar">Avatar</a><a href="#reports">Reports</a><a href="#runtime">Runtime</a><a href="#os">OS</a></div></nav>
+<main>
+<section id="avatar">
+  <h2>Avatar Snapshot</h2>
+  <p class="lead">打开这个页面，用户应该先知道“目前能确认什么、什么还没评测、应该去哪里补”。</p>
+  <div class="panel snapshot">
+    <div class="row head"><div class="cell">字段</div><div class="cell">当前值</div><div class="cell">状态</div><div class="cell">来源 / 生成者</div></div>
+    <div class="row"><div class="cell field">姓名 / 显示名</div><div class="cell value">{{DISPLAY_NAME}}</div><div class="cell status ready">已设置</div><div class="cell source"><code>replicateme.yml</code> / <code>identity/avatar-description/current.yml</code></div></div>
+    <div class="row"><div class="cell field">数字人年龄</div><div class="cell value">{{LIFEOS_AGE_LABEL}}</div><div class="cell status ready">从创建时间计算</div><div class="cell source"><code>LIFEOS_STATUS.yml</code> 的 <code>created_at</code> / <code>birth_date</code></div></div>
+    <div class="row"><div class="cell field">生命周期阶段</div><div class="cell value">Kernel Scaffold</div><div class="cell status pending">只有骨架，未完成认知生成</div><div class="cell source"><code>doctor_avatar_repo.py</code> 读取 runtime / evidence / capabilities</div></div>
+    <div class="row"><div class="cell field">内容成熟度</div><div class="cell value">scaffold</div><div class="cell status pending">资料不足</div><div class="cell source"><code>docs/evidence-sufficiency.md</code></div></div>
+    <div class="row"><div class="cell field">一句话定位</div><div class="cell value">未生成</div><div class="cell status pending">等待 InnerAtlas</div><div class="cell source"><code>identity/inneratlas/current/INNERATLAS_REPORT.xml</code> → <code>identity/avatar-description/current.yml</code></div></div>
+    <div class="row"><div class="cell field">MBTI / 认知倾向</div><div class="cell value">未评测</div><div class="cell status pending">from InnerAtlas，不作为唯一人格标签</div><div class="cell source"><code>identity/inneratlas/current/INNERATLAS_REPORT.xml</code> 的 explicit_analysis 输出</div></div>
+    <div class="row"><div class="cell field">履历 / 时间线</div><div class="cell value">空</div><div class="cell status pending">等待 InnerAtlas 处理授权材料</div><div class="cell source"><code>metabolism/inbox/</code> → <code>identity/inneratlas/current/INNERATLAS_REPORT.xml</code></div></div>
+    <div class="row"><div class="cell field">能力地图</div><div class="cell value">未评测</div><div class="cell status pending">from 问心</div><div class="cell source"><code>identity/wenxin/skill-recommendations.yml</code> / <code>capabilities/</code></div></div>
+    <div class="row"><div class="cell field">判断模型 / 行为边界</div><div class="cell value">未建模</div><div class="cell status pending">from PSP XML</div><div class="cell source"><code>identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml</code></div></div>
+    <div class="row"><div class="cell field">语言指纹</div><div class="cell value">未建模</div><div class="cell status pending">from PSP，需要足够语料</div><div class="cell source"><code>identity/psp/{{PERSON_ID}}/analysis/</code></div></div>
+    <div class="row"><div class="cell field">作品 / 产出</div><div class="cell value">空</div><div class="cell status pending">等待 runtime 或手动录入</div><div class="cell source"><code>work/</code></div></div>
+    <div class="row"><div class="cell field">稳定能力</div><div class="cell value">空</div><div class="cell status pending">需要 runtime lesson 经 IPO 升级</div><div class="cell source"><code>runtime/runtime-lessons/</code> → <code>evolution/ipo/</code> → <code>capabilities/</code></div></div>
+  </div>
+</section>
+<section id="reports">
+  <h2>Core Reports</h2>
+  <p class="lead">Wenxin 负责“我是谁 / 我强在哪 / 我往哪走”；PSP 负责“我如何判断 / 如何表达 / 如何被 AI 运行”。</p>
+  <div class="grid">
+    <article class="card"><h3>当前分身描述</h3><p><code>identity/avatar-description/current.yml</code><br>面向产品和用户的压缩入口，不替代 Wenxin / PSP。</p></article>
+    <article class="card"><h3>InnerAtlas</h3><p><code>identity/inneratlas/current/INNERATLAS_REPORT.xml</code><br>固定输出应包含定位、时间线、人格/认知倾向、能力地图、卖点、路径和证据缺口。</p></article>
+    <article class="card"><h3>PSP</h3><p><code>identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml</code><br>固定输出应包含本体九维、内核、认知、决策、交互、语言指纹、授权边界、置信度和验证需求。</p></article>
+    <article class="card"><h3>Design / Runtime Projection</h3><p><code>DESIGN.md</code><br><code>SOUL.md</code> 当前只允许作为目标 runtime 投影，不是 LifeOS 源产物。</p></article>
+  </div>
+</section>
+<section id="runtime">
+  <h2>Runtime Flow</h2>
+  <p class="lead">真正的生命活动来自 session，不来自一本能力手册。</p>
+  <div class="grid">
+    <article class="card"><h3>材料代谢</h3><p><code>metabolism/inbox/</code> → <code>metabolism/processing/</code> → <code>metabolism/extracted/</code></p></article>
+    <article class="card"><h3>活动现场</h3><p><code>runtime/sessions/</code><br><code>runtime/runtime-skills/</code><br><code>runtime/runtime-lessons/</code></p></article>
+    <article class="card"><h3>能力沉淀</h3><p><code>evolution/ipo/</code> → <code>capabilities/</code></p></article>
+  </div>
+</section>
+<section id="os">
+  <h2>OS Layer</h2>
+  <p class="lead">系统治理、边界和机器可读入口。</p>
+  <div class="grid">
+    <article class="card"><h3>Registries</h3><p><code>artifacts/current.yml</code><br><code>identity/current.yml</code><br><code>matrix.yml</code></p></article>
+    <article class="card"><h3>Governance</h3><p><code>LIFEOS_STATUS.yml</code><br><code>security/permissions.yml</code><br><code>integrations/data-sources.yml</code></p></article>
+    <article class="card"><h3>Evidence</h3><p><code>docs/evidence-sufficiency.md</code><br>说明哪些结论能说，哪些必须继续收集材料。</p></article>
+  </div>
+</section>
+</main>
+</body>
+</html>

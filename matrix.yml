@@ -1,0 +1,84 @@
+name: openLifeOS
+owner: MetaInFlow
+positioning: 人生系统/openLifeOS - Persistent Lifelong Intelligence Kernel.
+language: zh-CN-first
+generated_languages:
+  default: zh-CN
+  supported:
+    - zh-CN
+    - en-US
+root_skill:
+  id: openlifeos
+  path: .
+  entrypoint: SKILL.md
+layers:
+  scripts:
+    path: scripts/
+    purpose: Deterministic bootstrap and validation commands for openLifeOS repos.
+  template:
+    path: assets/avatar-skill-template/
+    purpose: Default Chinese copyable skeleton for a new lifelong intelligence kernel repository.
+  template_en:
+    path: assets/avatar-skill-template-en/
+    purpose: English copyable skeleton for a new lifelong intelligence kernel repository.
+  references:
+    path: references/
+    purpose: Detailed repository blueprint and configuration order.
+  output_meta:
+    path: output/meta/
+    purpose: Local factory output area for generated LifeOS/avatar repos; generated contents are gitignored by default.
+generated_repo_layers:
+  identity:
+    path: identity/
+    purpose: Persona, public profile, public positioning output, Soul/PSP, and identity evolution.
+  skills:
+    path: skills/
+    purpose: Runtime skills, distilled meta skills, personal methodology, and self-evolution bridge skills.
+  memory:
+    path: memory/
+    purpose: Lifelong memory, wiki, second-brain entrypoints, evidence pipeline indexes, and public/private/local authority isolation.
+  security:
+    path: security/
+    purpose: Public/private boundary and banned material rules.
+  docs:
+    path: docs/
+    purpose: Human-facing visuals, public explanation assets, and expression/aesthetic documentation.
+core_self_evolution_skills:
+  psp:
+    role: Person model, judgment style, value ordering, and behavior boundary modeling.
+    contributor: "@Neil"
+  ipo_reverse:
+    path: assets/avatar-skill-template/skills/self-evolution/ipo-reverse/
+    role: Dream Loop retrospective skill for reverse-engineering evidence, cognitive tasks, middle-layer artifacts, and IPO from finished outputs.
+    contributor: "@Neil"
+skill_taxonomy:
+  runtime_skill:
+    role: Tool/workflow execution skills that produce task outputs, run logs, and lesson events.
+    example: Hermes GitHub SnapAF-skills.
+  distilled_meta_skill:
+    role: Reusable judgment, routing, methodology, review gate, and decision-pattern skills.
+    example: engineering-everything.
+  promotion_gate:
+    rule: Runtime evidence upgrades into distilled meta skill behavior only after IPO Reverse plus owner alignment.
+scripts:
+  prompt_config:
+    path: scripts/prompt_avatar_config.py
+    role: Prompt for setup values and generate replicateme.yml.
+  apply_config:
+    path: scripts/apply_avatar_config.py
+    role: Apply replicateme.yml by scaffolding the repo, checking GitHub CLI dependencies, and wiring memory/wiki plus skill recommendation files.
+  tui_config:
+    path: scripts/tui_avatar_config.py
+    role: TUI-style wizard for personal setup fields, GitHub permissions, Feishu permissions, memory repo settings, and skill domains.
+  init:
+    path: scripts/init_avatar_repo.py
+    role: Create a new openLifeOS repo from assets/avatar-skill-template.
+  validate:
+    path: scripts/validate_avatar_repo.py
+    role: Check required files, unresolved template tokens, and common secret patterns.
+  doctor:
+    path: scripts/doctor_avatar_repo.py
+    role: Report phase-by-phase expected outputs and completion progress for a target avatar repo.
+  progress:
+    path: scripts/openlifeos_progress.py
+    role: Agent-facing progress gate for openLifeOS initialization, wrapping the doctor checks.

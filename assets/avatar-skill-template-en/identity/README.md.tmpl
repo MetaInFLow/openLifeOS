@@ -1,0 +1,25 @@
+# Identity Layer
+
+This layer answers: "Who is {{DISPLAY_NAME}}?"
+
+It contains four kinds of material:
+
+- `public-profile/`: public, owner-confirmed objective identity configuration.
+- `avatar-description/`: the structured current Avatar description that products and UI should read first.
+- `inneratlas/`: InnerAtlas/Wenxin XML source of truth that primarily answers identity: who I am, where I stand, how far I am, and where I should go. It also supports capability maps, public positioning, and candidate Skill recommendations.
+- `wenxin/`: compatibility ledger, public derived summaries, Skill recommendations, and Skill summaries.
+- `psp/`: PSP/person-model XML source artifacts for ontology map, value ordering, judgment models, operating axes, delegation boundary, behavior boundaries, and confidence. `SOUL.md` is currently paused as a LifeOS source artifact.
+
+Passwords, tokens, API keys, private IDs, contracts, chat logs, and raw meeting transcripts do not belong in this layer and must not enter a public repo.
+
+## Current Active Registry
+
+- `current.yml` is the machine-readable active pointer for the Identity layer.
+- `../artifacts/current.yml` is the unified latest registry for all core process artifacts.
+- `avatar-description/current.yml` is the default current-avatar-description read model for products, UI, and runtime handbooks.
+- `inneratlas/current/INNERATLAS_REPORT.xml` is the InnerAtlas source of truth; `psp/{{PERSON_ID}}/current/PSP_REPORT.xml` is the PSP source of truth.
+- `psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml` is the PSP evidence maturity source of truth.
+- `inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml`, `psp/{{PERSON_ID}}/versions/PSP_REPORT.<timestamp>.xml`, and `psp/{{PERSON_ID}}/versions/EVIDENCE_MATURITY.<timestamp>.xml` are versioned artifacts.
+- `versions.yml` records artifact lineage; `changelog.md` records why a new version became active.
+
+Update rule: generate a new timestamped artifact from the current active artifact first, then update the current entrypoint, versions ledger, changelog, `identity/current.yml`, and `artifacts/current.yml`. If the change affects what a user should see as the current digital avatar description, also refresh `avatar-description/current.yml`. Do not overwrite current files without leaving a version record.

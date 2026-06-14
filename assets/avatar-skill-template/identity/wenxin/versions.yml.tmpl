@@ -1,0 +1,24 @@
+schema: openlifeos.artifact-versions.v1
+artifact_type: inneratlas
+owner: "{{OWNER_NAME}}"
+active_artifact: inneratlas-{{ARTIFACT_TIMESTAMP}}
+current_entrypoint: ../inneratlas/current/INNERATLAS_REPORT.xml
+activation_policy:
+  write_path: "../inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml"
+  current_entrypoint_policy: "Keep ../inneratlas/current/INNERATLAS_REPORT.xml as the canonical source-of-truth; human-readable reports are derived artifacts only."
+  activation_requires:
+    - owner-approved evidence summary
+    - inneratlas doctor completion when claiming 100%
+    - changelog entry
+    - identity/current.yml update
+versions:
+  - artifact_id: inneratlas-{{ARTIFACT_TIMESTAMP}}
+    path: ../inneratlas/versions/INNERATLAS_REPORT.{{ARTIFACT_TIMESTAMP}}.xml
+    current_entrypoint: ../inneratlas/current/INNERATLAS_REPORT.xml
+    status: source-scope-needed
+    created_at: "{{CREATED_AT}}"
+    evidence_sufficiency: insufficient
+    based_on:
+      - ../public-profile/profile.yml
+    changes:
+      - "Created fresh InnerAtlas XML draft with no inherited Wenxin conclusions."

@@ -1,0 +1,34 @@
+id: psp-to-soul
+source:
+  object_type: identity.psp
+  path: identity/psp/{person_id}/latest-or-newest-PSP.md
+
+target:
+  openclaw:
+    path: SOUL.md
+  hermes:
+    path: SOUL.md
+
+transform:
+  mode: semantic_reduction
+  include:
+    - scope
+    - current_model
+    - behavior_rules
+    - memory_skill_boundary
+    - validation
+  exclude:
+    - raw_materials
+    - private_quotes
+    - unsupported_inferences
+    - evidence_body
+
+guards:
+  require_provenance: true
+  require_evidence_sufficiency: true
+  forbid_secrets: true
+  forbid_raw_private_body: true
+  forbid_unreviewed_working_lessons: true
+
+coverage:
+  expected_status: supported

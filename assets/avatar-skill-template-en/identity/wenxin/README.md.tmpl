@@ -1,0 +1,29 @@
+# InnerAtlas/Wenxin Compatibility Layer
+
+InnerAtlas is the global English name; Wenxin is the Chinese name. New source-of-truth artifacts are written to `identity/inneratlas/current/INNERATLAS_REPORT.xml`; this directory keeps the compatibility ledger, changelog, public derived summaries, and candidate Skill recommendations.
+
+InnerAtlas should answer:
+
+- Who am I: not title or company labels, but the throughline formed by concrete behavior and judgment.
+- Where do I stand now: field, capability level, metacognitive density, and current stage.
+- How far am I from the full version of my field: capability map, coverage, gaps, and evidence strength.
+- Where should I go next: future paths, risks, validation methods, and next sampling questions.
+- What should be distilled into Skills: strong capabilities, supporting projects, workflows, counterexamples, and acceptance criteria.
+
+Expected outputs:
+
+- `../inneratlas/current/INNERATLAS_REPORT.xml`: current active XML source of truth.
+- `../inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml`: versioned XML for the same logical artifact.
+- `versions.yml`: InnerAtlas active version ledger.
+- `changelog.md`: InnerAtlas active-change log.
+- `public-positioning.md`: public-safe positioning, bio, README narrative, or BP-style summary.
+- `skill-recommendations.yml`: candidate personal Skills to distill and the evidence each one needs.
+
+Rules:
+
+- Use only public or approved source material for committed outputs.
+- Mark uncertainty explicitly.
+- Do not turn private weaknesses, customer details, or raw transcripts into public claims.
+- Internal self-understanding may be candid, but committed repo content must still respect the security boundary.
+- New InnerAtlas outputs must build on the current active XML, write `../inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml`, then update `../inneratlas/current/INNERATLAS_REPORT.xml`, `versions.yml`, `changelog.md`, `../current.yml`, and `../../artifacts/current.yml`.
+- A new avatar must not read the local openLifeOS factory's `output/meta/`, other avatar repos, historical `identity/wenxin/` / `identity/inneratlas/` reports, or prior Wenxin conclusions by default.

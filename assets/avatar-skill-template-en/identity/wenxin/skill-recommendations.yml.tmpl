@@ -1,0 +1,28 @@
+schema: openlifeos.wenxin-skill-recommendations.v1
+language: en-US
+generated_from: identity/inneratlas/current/INNERATLAS_REPORT.xml
+status: source-scope-needed
+rule: This is a Wenxin artifact, not the Skills implementation layer. A recommended Skill must be backed by owner-approved evidence and satisfy one of two gates: 1) the person has a highly possible top-5-percent or high-percentile capability in this area; 2) the person repeatedly performs this kind of work and the stable inputs, process, outputs, and acceptance criteria can be abstracted. System tools, self-evolution tools, generic interests, and one-off projects must not become recommended Skills by default.
+eligibility_gate:
+  allowed_types:
+    - top_5_percent_capability_hypothesis
+    - repeated_workflow
+recommendations:
+  - machine_name: professional-core-skill
+    alias: null
+    user_named: false
+    skill_type: distilled-meta-skill
+    eligibility_type: repeated_workflow
+    evidence_strength: missing
+    implemented: false
+    summarized: false
+    summary_artifact: null
+    implementation_artifact: null
+    usage_scenarios:
+      - Use when owner-approved evidence shows a stable repeated core workflow that can become the person's core professional operating system.
+    evidence_needed:
+      - 2-5 key projects or scenes that support this capability.
+      - Judgment principles, tradeoffs, and counterexamples.
+      - Reusable workflow, inputs, outputs, and acceptance criteria.
+    promotion_gate: IPO Reverse + owner alignment
+watchlist: []

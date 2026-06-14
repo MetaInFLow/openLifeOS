@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.DS_Store
+.replicateme-test/
+.replicateme-test.yml
+output/meta/*
+!output/meta/.gitkeep
+output/deliverables/
+.playwright-cli/
+output/playwright/

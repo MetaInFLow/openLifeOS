@@ -1,0 +1,22 @@
+# Cognition Object Layer
+
+This layer defines how {{DISPLAY_NAME}}'s LifeOS separates facts, procedures, identity, policy, and external data sources.
+
+Core rule:
+
+> Memory answers what is true. Skill answers how to do it. If one source contains both, split it before writing durable objects.
+
+## Files
+
+- `object-taxonomy.yml`: cognition object types, default paths, and write routing.
+- `data-contracts.yml`: external data sources, authority, visibility, sync, and export boundaries.
+
+## Write routing
+
+- Temporary task state does not become long-term memory.
+- Stable facts go to `identity/memories/long-term/` or the private memory wiki.
+- Candidate lessons go to `runtime/memory/working-lessons/` for review and promotion.
+- Multi-source claims go to `capabilities/memory/distilled-knowledge/`.
+- Reusable steps go to `docs/skill-system/runtime-skill-candidates.md` or an external runtime skill repo.
+- Reusable judgment goes to `identity/wenxin/skill-summaries/`.
+- Facts and data sources required by a skill go to `identity/cognition/skill-bindings/`, not into `SKILL.md`.

@@ -1,0 +1,76 @@
+version: 1
+owner: {{OWNER_NAME}}
+default_visibility: {{VISIBILITY}}
+authoritative_sources:
+  owner_approved_material:
+    authority: owner
+    allowed_exports:
+      - approved facts
+      - redacted summaries
+      - abstracted patterns
+    forbidden_exports:
+      - secrets
+      - raw private bodies
+      - customer data without approval
+  memory_wiki:
+    config: identity/memories/wiki-repo.yml
+    authority: configured per identity/memories/wiki-repo.yml
+    allowed_exports:
+      - private collaboration notes
+      - area indexes
+      - approved public mirrors
+  hermes:
+    config: integrations/hermes.yml
+    authority: imported evidence only
+    allowed_exports:
+      - session summaries
+      - skill evidence
+      - memory candidates
+  feishu:
+    config: integrations/feishu.yml
+    authority: external app source
+    allowed_exports:
+      - owner-approved extracts
+      - redacted summaries
+  github:
+    config: integrations/github.yml
+    authority: repository state
+    allowed_exports:
+      - public issues and PRs
+      - private repo summaries when authorized
+write_order:
+  - capture pointer or event
+  - classify object type
+  - split declarative and procedural content
+  - apply visibility and authority policy
+  - write to target path
+  - update skill binding if procedure depends on facts
+  - review before public export
+avatar_description_claim_approval:
+  schema: openlifeos.avatar-description-synthesis.v1
+  purpose: "Allows tools to update visible claim text in identity/avatar-description/current.yml; default synthesis may only refresh refs/evidence/changelog, not rewrite claim text."
+  current_entrypoint: identity/avatar-description/current.yml
+  approved_manifest_shape:
+    approval:
+      required_fields:
+        - reviewer
+        - approved_at
+        - approval_ref
+    approved_claims:
+      allowed_fields:
+        - one_line
+        - current_role
+        - operating_mode
+        - strengths
+        - boundaries
+      required_fields_per_claim:
+        - value
+        - evidence
+  evidence_rules:
+    - evidence refs must be repo-relative paths that exist in this LifeOS repo
+    - evidence refs must not use private: or secret: pseudo-schemes
+    - approval_ref is appended to claim_evidence as approval:<approval_ref> when claim text changes
+  failure_rules:
+    - missing approval metadata fails synthesis
+    - missing or disallowed evidence refs fail synthesis
+    - unknown claim fields are ignored by synthesis and should be rejected by review

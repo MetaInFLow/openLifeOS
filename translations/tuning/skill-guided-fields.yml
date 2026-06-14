@@ -1,0 +1,49 @@
+mutable_by_review_proposal:
+  SOUL.md:
+    - runtime_voice
+    - section_order
+    - boundary_wording
+    - confidence_note_wording
+  AGENTS.md:
+    - behavior_rule_grouping
+    - runtime_operator_wording
+    - adapter_backlog_notes
+  PROFILE.md:
+    - profile_narrative_order
+    - profile_level_guidance_wording
+    - meta_skill_summary_order
+  USER.md:
+    - stable_fact_ordering
+    - preference_grouping
+    - claim_summary_readability
+  memories/seed.md:
+    - stable_fact_ordering
+    - preference_grouping
+    - claim_summary_readability
+  TOOLS.md:
+    - connector_note_wording
+    - unsupported_connector_notes
+  config.yaml:
+    - comments
+    - non_secret_connector_hints
+    - policy_note_wording
+
+immutable_script_generated_fields:
+  - profile.manifest.yml
+  - coverage-report.yml
+  - source_paths
+  - translation_rules
+  - validation_results
+  - secret_scan_results
+  - private_body_scan_results
+  - generated_at
+  - tuning_policy
+  - manual_confirmation_required
+
+never_include_in_review_patch:
+  - raw_private_body
+  - raw_materials
+  - unreviewed_working_lessons_in_prompt
+  - secrets
+  - unsupported_personality_claims
+  - canonical_lifeos_file_mutations

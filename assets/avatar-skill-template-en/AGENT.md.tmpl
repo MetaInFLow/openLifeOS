@@ -1,0 +1,162 @@
+# {{DISPLAY_NAME}} AGENT.md
+
+This is the agent entrypoint for {{DISPLAY_NAME}}'s openLifeOS avatar.
+
+This file is not an installable Codex Skill, has no skill frontmatter, and does not store reusable execution procedures. It tells an agent how to read this avatar, how to enter real Skills, and how to judge the current LifeOS structure state, content maturity, and owner alignment.
+
+Respond like an engineering partner working from the available materials: find evidence first, then make judgments. If the evidence is insufficient, state the limitation directly.
+
+## Formal Startup Template
+
+When the user first starts this LifeOS or asks to begin the flow, introduce the current state with this template:
+
+```text
+Current stage: one of Target / Boundary / Kernel Scaffold / Evidence Intake / Synthesis / Progress / Output.
+
+What we are doing now:
+- Checking the LifeOS scaffold, permission boundaries, complete PSP/Wenxin/Taste Generator skill repos, and default bridge skills.
+- Before Evidence Intake, I will explain what each material type will be used for.
+- For a new avatar, do not read this local openLifeOS factory's `output/meta/`, other avatar repos, historical `identity/wenxin/` / `identity/inneratlas/` reports, or prior Wenxin conclusions. Use only material directly provided in this run, or explicitly approved external source entrances and scopes.
+
+Next steps:
+1. Target Gate: confirm named/anonymous identity, repo name, display name, PSP pseudonym, and person_id.
+2. Boundary Gate: confirm local-only/private/public, banned materials, secret policy, and memory permissions.
+3. Kernel Scaffold: generate folders, root AGENT.md, matrix, cognition taxonomy, identity, memory, security, integrations, install complete PSP/Wenxin/Taste Generator skill repos, and keep default bridge skills.
+4. Evidence Intake: accept only owner-approved evidence; a new avatar must not inherit material from local `output/meta/` or historical Wenxin/InnerAtlas artifacts.
+5. Synthesis: generate or update Wenxin, PSP XML, design, IPO Reverse outputs, Skill recommendations, and memory index.
+6. Progress Gate: output structure readiness, content maturity, evidence gaps, and the next action.
+
+Self-evolution Skills:
+- Wenxin / InnerAtlas: answers who I am, where I stand, how far I am from the full version of my field, and where I should go. The source artifact lives at `identity/inneratlas/current/INNERATLAS_REPORT.xml`; `identity/wenxin/` keeps ledgers, public derived summaries, and Skill recommendations.
+- PSP: turns approved evidence into a person model, behavior boundaries, confidence, and validation examples. Outputs go to identity/psp/<person_id>/.
+- IPO Reverse: reconstructs evidence, hidden cognitive tasks, middle-layer assets, and reusable IPO from completed outputs for Skill/SOP upgrades.
+- Taste Generator: generates a design preference selector, summarizes owner choices, updates `DESIGN_TASTE.xml` first, then generates `DESIGN.md`.
+```
+
+## Stage Notice Protocol
+
+Before each initialization, update, or evidence-intake pass, state:
+
+- Current stage: Target Gate, Boundary Gate, Kernel Scaffold, Evidence Intake, Synthesis Pass, Progress Gate, or Output Gate.
+- What we are doing: which files this stage will write or update.
+- Why input is needed: whether it feeds the public profile, Wenxin, PSP, memory, Skill recommendations, or security boundary.
+- What is not needed this round: never ask for secrets, raw private bodies, or unapproved material.
+
+Anonymous identity rule: if `identity/public-profile/profile.yml` has `identity_mode=anonymous`, use `psp_display_name` as the PSP/person-model name; do not ask for a real name or infer a real-world identity from external personal Skills, local private memory, or unapproved materials.
+
+## Source Order
+
+Read only the minimum sources needed for the task.
+
+1. **Root agent reading and routing rules**: this `AGENT.md`.
+1.5. **v3 governed repo catalog**: read `CATALOG.md` for the whole repo map; read `sources/CATALOG.md` and `sources/authority.yml` for source authority, raw material, processed material, tag/index, and organ input packet boundaries; read `taste/current.yml` for text, image, interface, and brand taste entrypoints; read `meta-skills/current.yml` to distinguish stable Meta Skills from candidates; read `publication/current.yml` and `publication/public-claims.yml` for public expression and public-claim evidence; read `governance/` for instance schemas, policies, and decisions.
+2. **Artifact latest registry**: `artifacts/current.yml`; use it first to find the latest entrypoints for Avatar Description, Wenxin, PSP XML, design, Skill Recommendations, and maturity.
+3. **Identity active registry**: `identity/current.yml`; resolve the active InnerAtlas/Wenxin and PSP identity artifacts from this registry. `INNERATLAS_REPORT.xml` and `PSP_REPORT.xml` are sources of truth; timestamped artifacts are the version records.
+4. **Current digital avatar description**: `identity/avatar-description/current.yml`. This is the product, UI, and Runtime Handbook read model that first answers "what is this avatar currently like?" It is a structured summary, not a replacement for Wenxin/PSP XML/Design evidence.
+5. **Public identity facts**: `identity/public-profile/profile.yml`.
+6. **InnerAtlas/Wenxin self-discovery / public positioning**: the active InnerAtlas artifact; default source entrypoint is `identity/inneratlas/current/INNERATLAS_REPORT.xml`, with `identity/wenxin/versions.yml` as the ledger. InnerAtlas primarily handles identity.
+7. **Person model / PSP artifacts**: the active PSP XML artifact; default entrypoint is `identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml`, with `identity/psp/{{PERSON_ID}}/versions.yml` as the ledger. PSP XML is the person-model source.
+8. **SOUL pause rule**: LifeOS initialization does not generate `SOUL.md` as a source artifact. If a runtime adapter needs `SOUL.md`, it is only a target runtime projection read from PSP XML and must not become PSP evidence.
+9. **Global design / aesthetics**: source entrypoint is `identity/design/current/DESIGN_TASTE.xml`; human-readable entrypoint is root `DESIGN.md`, with `identity/design/versions.yml` as the ledger. XML records reference choices, design variables, colors, fonts, spacing, grid, shapes, motion, media, accessibility, anti-preferences, and iteration gaps; Markdown is generated from XML.
+9. **Cognition objects and write routing**: for identity/memories/skill/identity/policy/data-source boundaries, read `identity/cognition/object-taxonomy.yml` and `identity/cognition/data-contracts.yml`.
+10. **Work, life, and knowledge memory**: start with `identity/memories/START-HERE.md`, then enter `runtime/memory/working-lessons/`, `identity/memories/long-term/`, `capabilities/memory/distilled-knowledge/`, the GitHub wiki, or the server wiki.
+11. **Self-evolution Skills**: `evolution/organ-systems/wenxin/`, `evolution/organ-systems/psp/`, `evolution/organ-systems/ipo-reverse/`, `evolution/organ-systems/taste-generator/`. All four must be complete GitHub skill repos; default-skills must not contain same-name copies.
+12. **Capability Skills and data bindings**: choose the right user Skill from `capabilities/README.md`, `identity/wenxin/skill-recommendations.yml`, `identity/cognition/skill-bindings/data-sources.yml`, and `matrix.yml`.
+13. **External integration permissions**: for GitHub, Feishu/Lark, Hermes, or other system access, read `integrations/`, `integrations/data-sources.yml`, and `security/permissions.yml`.
+14. **Security boundary**: for publication, commits, copying, quoting, and redaction, read `security/README.md`.
+15. **Evidence sufficiency / maturity**: when asked whether the LifeOS is complete, whether it can represent {{DISPLAY_NAME}}, or whether evidence is sufficient, read `docs/evidence-sufficiency.md`.
+16. **Wenxin / PSP XML / Design / IPO standard artifacts**: when generating or validating Wenxin, PSP XML, Design, or IPO Reverse artifacts, read `docs/self-evolution-output-standards.md`; if evidence is insufficient, output `missing_information` and targeted follow-up prompts instead of pretending the artifact passed.
+
+## How To Call Skills
+
+`AGENT.md` only handles reading, routing, and status judgment. When a production workflow needs to run, enter the relevant Skill's `SKILL.md`:
+
+- **InnerAtlas / Wenxin**: read `evolution/organ-systems/wenxin/SKILL.md` for self-discovery, identity positioning, capability maps, gaps, Skill candidates, and follow-up interaction.
+- **PSP**: read `evolution/organ-systems/psp/SKILL.md` for PSP XML, EVIDENCE_MATURITY.xml, person models, behavior boundaries, and language/judgment models.
+- **IPO Reverse**: read `evolution/organ-systems/ipo-reverse/SKILL.md` to reconstruct evidence, hidden tasks, intermediate assets, and reusable IPO from completed outputs.
+- **Taste Generator**: read `evolution/organ-systems/taste-generator/SKILL.md` to create an aesthetics selector, summarize owner choices, and generate or update global `DESIGN_TASTE.xml` and `DESIGN.md`.
+- **Owner-grown capabilities**: read `capabilities/README.md` and `matrix.yml` first, then enter `capabilities/<capability-id>/SKILL.md`. A capability is callable as a Skill only when a real `SKILL.md` exists there or in an independent skill repo.
+- **Candidate Skills**: `identity/wenxin/skill-recommendations.yml`, `identity/wenxin/skill-summaries/`, and `docs/skill-system/runtime-skill-candidates.md` are candidates or instance-local capability layers; do not call them as global Codex Skills until promoted.
+- **Data and fact dependencies**: when a Skill needs facts, read `identity/cognition/skill-bindings/data-sources.yml` before reading the authorized data source; do not hard-code facts into Skill files.
+
+## Status And Alignment
+
+Do not judge whether the avatar is aligned only by checking that folders exist. Judge five layers together:
+
+1. **Structure gate**: from the openLifeOS factory, run `python scripts/doctor_avatar_repo.py <this-lifeos-repo> --json`; read `required_completion`, `overall_completion`, `life_stage`, `required_failed`, and `next_actions`. 100% only means the structure/protocol gate passed.
+2. **Content maturity**: read `content_maturity` and `skill_content_maturity` in the doctor JSON, especially the field completeness, evidence coverage, and gaps for InnerAtlas, PSP, skill_recommendations, avatar_description, and Design.
+3. **Owner alignment**: read `evolution/alignment/current.yml`, `docs/lifeos-content-review.md`, and any artifact markers such as `pending-owner-response`, `interaction_needed`, or `owner_confirmation_required`. If confirmation is pending, ask self-contained questions in the current conversation; do not only generate a questionnaire or tell the owner to answer "based on the report."
+4. **Evidence maturity**: read `docs/evidence-sufficiency.md` and `identity/psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml`; distinguish scaffold, evidence-limited-v0, public-v0, research-grade, and avatar-grade.
+5. **Runtime activity**: read `runtime/sessions/`, `runtime/runtime-skills/`, `runtime/runtime-lessons/`, `evolution/ipo/`, and `capabilities/` to tell whether the LifeOS is only scaffolded or has real sessions, lessons, IPO, and capability distillation.
+
+When reporting status, include structure completion, content maturity, whether owner alignment is pending, evidence maturity, the current lifecycle stage, and the next smallest action.
+
+## Routing Rules
+
+- **Introduce {{DISPLAY_NAME}} / view the current digital avatar description**: read `identity/avatar-description/current.yml` first; for objective public facts, read `identity/public-profile/profile.yml`; for fuller narrative or evidence, read `identity/inneratlas/current/INNERATLAS_REPORT.xml`, `identity/wenxin/skill-recommendations.yml`, PSP XML, and Design.
+- **Help {{DISPLAY_NAME}} understand themselves**: use `evolution/organ-systems/wenxin/`; output should cover "who I am, where I stand, how far I am from the full version of my field, and where I should go", then write source XML to `identity/inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml` and sync `identity/inneratlas/current/INNERATLAS_REPORT.xml`; `identity/wenxin/` keeps ledgers, public derived summaries, and Skill recommendations.
+- **InnerAtlas/Wenxin source boundary for a new avatar**: do not read this local openLifeOS factory's `output/meta/`, other avatar repos, historical `identity/wenxin/` / `identity/inneratlas/` reports, or prior Wenxin conclusions. Use only material directly provided in this run, or explicitly approved external source entrances and scopes.
+- **Validate Wenxin / PSP / IPO artifacts**: check `standard_output_gate` using `docs/self-evolution-output-standards.md`. If the evidence fills the key fields, it passes; if not, mark `evidence_sufficiency: insufficient` and ask for the missing material.
+- **Update InnerAtlas/Wenxin / PSP XML / Design versions**: read `artifacts/current.yml`, `identity/current.yml`, and the relevant `versions.yml` first. InnerAtlas writes `identity/inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml` and syncs `identity/inneratlas/current/INNERATLAS_REPORT.xml`; PSP writes `identity/psp/{{PERSON_ID}}/versions/PSP_REPORT.<timestamp>.xml` and syncs `identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml`; evidence maturity writes `versions/EVIDENCE_MATURITY.<timestamp>.xml` and syncs `current/EVIDENCE_MATURITY.xml`; Design first writes `identity/design/DESIGN_TASTE-<timestamp>.xml` and syncs `identity/design/current/DESIGN_TASTE.xml`, then generates `identity/design/DESIGN-<timestamp>.md` and root `DESIGN.md` from XML, then updates `versions.yml`, `changelog.md`, `identity/current.yml` for identity-related artifacts, and `artifacts/current.yml`. Do not silently overwrite current entrypoints.
+- **Update public positioning, resume, or narrative**: derive it from Wenxin's public layer and write only confirmed, public-safe, evidence-backed content.
+- **Discover Skills to distill**: read `identity/wenxin/skill-recommendations.yml`; proactively ask for projects, judgments, workflows, counterexamples, and acceptance criteria behind strong capabilities.
+- **Distinguish Skill types**: runtime skills execute concrete tasks and produce evidence; distilled meta skills encode reusable judgment. Runtime lessons may upgrade into meta skills only after IPO Reverse and owner alignment.
+- **Distinguish instance-local candidate Skills from installable Codex Skills**: `docs/skill-system/runtime-skill-candidates.md` and `identity/wenxin/skill-summaries/` are local capability layers for this LifeOS instance by default; they are not globally discoverable Codex Skills unless promoted into a standalone skill package or installed into the Codex skills directory and routed from `AGENT.md` and `matrix.yml`.
+- **Distinguish memory and Skill**: memory stores facts, preferences, decisions, claims, and evidence pointers; Skill stores procedure, validation, and recovery steps. Mixed material must be split into a memory object and a Skill proposal, then connected through `identity/cognition/skill-bindings/data-sources.yml`.
+- **Update PSP/person model, judgment patterns, or behavior boundaries**: use `evolution/organ-systems/psp/`; commit only abstracted conclusions, not raw private material.
+- **Need SOUL / runtime operating-method projection**: do not generate or update `SOUL.md` in the LifeOS source repo. If a target runtime requires it, use Runtime Translation to project evidence-backed judgment models, boundaries, best-state behavior, and delegation rules from PSP XML into the target runtime output directory.
+- **Update aesthetics / DESIGN.md**: use `evolution/organ-systems/taste-generator/`. First select taste options from owner-approved work samples, preference notes, counterexamples, and output retrospectives; for personal identity taste collection, default to the `personal-website` scenario and render whole-page iframe previews for owner like/maybe/avoid choices instead of abstract style cards; also capture font, color, text color, spacing, grid, radius, motion, media, navigation, accessibility, and evidence variables; summarize those choices into `DESIGN_TASTE.xml`, then generate `DESIGN.md` from XML. Project-level design requirements are local overrides and do not automatically become long-term preferences.
+- **v3 sources / taste / meta-skills / publication / governance boundary**: raw material and tags enter only `sources/` or an external tag database; organ systems read `sources/packets/` and then generate InnerAtlas, PSP, Taste, or IPO artifacts; stable Meta Skills enter `meta-skills/skills/`, while candidates stay in `meta-skills/candidates/`; public expression enters `publication/`, and every public claim must be traceable through `publication/public-claims.yml`; instance policies and decisions enter `governance/`.
+- **Run a retrospective, Dream Loop pass, or reverse-engineer methodology/SOP/Skill blueprint from a finished output**: use `evolution/organ-systems/ipo-reverse/`; recover evidence, hidden cognitive tasks, middle-layer artifacts, and final IPO from the finished output.
+- **Work context, projects, life, knowledge, and history**: read `identity/memories/START-HERE.md`, then follow the memory entrypoint. Candidate lessons go to `runtime/memory/working-lessons/`, stable facts go to `identity/memories/long-term/`, and multi-source claims go to `capabilities/memory/distilled-knowledge/`.
+- **Engineering, project, architecture, process, or execution tasks**: choose the relevant work or cognitive Skill from `capabilities/README.md`.
+- **Hermes incremental updates**: read `integrations/hermes.yml`, route new evidence into Wenxin, PSP XML, design, skill recommendations, memory index, or `AGENT.md` routing, and collaborate through GitHub updates.
+- **Update self-evolution Skills**: read `integrations/skill-sources/default-skills/skill-updates.yml`, run `legacy/scripts/update_default_skills.py` to generate an update plan, fetch GitHub latest release/archive for complete repos, diff first, then require owner confirmation.
+- **External system access**: read `integrations/data-sources.yml`, `integrations/github.yml`, `integrations/feishu.yml`, `integrations/hermes.yml`, and `security/permissions.yml` first; do not ask the user to paste secrets into the repo.
+- **Whether material may be public, committed, or copied**: read `security/README.md` first.
+
+## Runtime Translation Tuning Protocol
+
+When the user asks to translate this LifeOS into an OpenClaw agent or Hermes profile, run the deterministic script first, then produce an `AGENT.md`-guided review proposal:
+
+1. Run the factory `scripts/translate_lifeos.py <this-lifeos> --runtime openclaw|hermes --emit-review` to generate the baseline runtime profile.
+2. Read only the target profile's `profile.manifest.yml`, `coverage-report.yml`, `translation.review.md`, and runtime target files.
+3. Use this `AGENT.md`, PSP/Wenxin, identity/memories/Skill boundaries, and security rules to propose review changes.
+4. The review proposal may suggest edits only to runtime projection files; it must not automatically overwrite canonical LifeOS files.
+5. Apply the proposal only after explicit owner confirmation or an explicit apply command.
+
+Allowed tuning proposal areas:
+
+- Runtime voice, section order, boundary wording, and confidence notes in runtime-projected `SOUL.md`.
+- OpenClaw readability and agent-workspace voice in `AGENTS.md`, `USER.md`, and `TOOLS.md`.
+- Hermes profile consumability in `PROFILE.md`, `config.yaml`, and `memories/seed.md`.
+- Adapter backlog suggestions for partial or unsupported items in `coverage-report.yml`.
+
+Do not tune or overwrite:
+
+- Source paths, translation rules, validation results, or timestamps in `profile.manifest.yml`.
+- Coverage statuses in `coverage-report.yml`.
+- Secret scan or private body scan results.
+- Canonical LifeOS identity, memory, skills, security, or integration files.
+- Unreviewed working lessons, raw materials, private evidence, or secrets.
+
+## Boundaries
+
+- Do not invent {{DISPLAY_NAME}}'s biography, private facts, customers, project outcomes, linguistic fingerprint, relationship posture, or stable psychological traits.
+- `identity/psp/{{PERSON_ID}}/versions/PSP_REPORT.<timestamp>.xml` is an iterative person model, not a complete human replica.
+- `identity/psp/{{PERSON_ID}}/INITIALIZATION.md` only describes agent framework adapters; it does not store person facts.
+- Raw meeting transcripts, chat logs, customer data, contracts, financial data, IDs, passwords, tokens, and private wiki bodies must not be written to a public repo.
+- Memory isolation has three tiers: the public surface stores only owner-approved derived content, the private identity/memories/wiki is the trusted collaboration layer, and local/server authority keeps raw private bodies.
+- Skills must not hard-code user facts, project facts, or private preferences into `SKILL.md`; bind to the current source of truth through `identity/cognition/skill-bindings/data-sources.yml`.
+- If `identity/memories/wiki-repo.yml` configures a server as the authoritative source, factual updates should treat the server wiki as the single source of truth and GitHub as a collaboration or publishing mirror.
+- When evidence is insufficient, say "the current material is insufficient" instead of producing confident fiction.
+- Progress Gate passing only means structure and protocol passed, not full LifeOS maturity. Output Gate must report the evidence maturity from `docs/evidence-sufficiency.md`, plus doctor JSON `skill_content_maturity`, evidence gaps, failed sources, and incomplete areas.
+- Do not describe `openlifeos_progress.py` 100% as "complete LifeOS"; call it "structure gate passed" and separately state content maturity.
+- The doctor returns machine-readable content maturity from the fixed artifact structures for InnerAtlas, PSP, Skill recommendations, avatar-description, and Design. This Skill must still review factual reliability, owner alignment, and next-step strategy: read doctor JSON `skill_review_surface` / `skill_content_maturity`, then read Wenxin, PSP XML, Design, skill recommendations, `docs/evidence-sufficiency.md`, and `docs/self-evolution-output-standards.md`, then write `docs/lifeos-content-review.md`.
+- If memory and the local PSP conflict, use the newer memory source for factual work context and mention the conflict.
+
+## Output Style
+
+Use English by default unless the user asks otherwise. Be direct, source-grounded, and engineering-oriented.
+
+When using {{DISPLAY_NAME}}-specific context, briefly cite the information surface, such as `artifacts/current.yml`, `identity/public-profile`, `identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml`, `DESIGN.md`, `memory`, or a specific Skill name.

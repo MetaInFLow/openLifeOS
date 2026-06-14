@@ -1,0 +1,88 @@
+# {{REPO_NAME}}
+
+这是 {{DISPLAY_NAME}} 的 openLifeOS 工作台。
+
+它不是私人资料仓库，也不是一个 prompt 文件。它保存的是经过治理的长期智能核心：材料入口、当前数字分身描述、InnerAtlas/Wenxin、PSP/person model、审美系统、运行证据、能力沉淀和公开表达。
+
+## 用户先看这里
+
+| 你想知道什么 | 先看哪里 | 说明 |
+| --- | --- | --- |
+| 这个 LifeOS 到哪一步了？ | `CATALOG.md`、`LIFEOS_STATUS.yml`、`docs/evidence-sufficiency.md` | 当前阶段、证据成熟度、哪些还缺材料。 |
+| 现在怎么介绍 {{DISPLAY_NAME}}？ | `identity/avatar-description/current.yml` | 面向产品、UI 和 runtime 的当前摘要，不替代 Wenxin/PSP 证据。 |
+| 最新核心产物在哪里？ | `artifacts/current.yml`、`identity/current.yml` | 所有 active artifacts 和版本入口。 |
+| 哪些材料被允许使用？ | `sources/CATALOG.md`、`sources/authority.yml` | 真相源、visibility、allowed targets 和 organ input packets。 |
+| 人格和判断模型在哪里？ | `identity/inneratlas/current/INNERATLAS_REPORT.xml`、`identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml` | InnerAtlas 负责自我发现，PSP 负责 person model。 |
+| 审美和表达偏好在哪里？ | `taste/current.yml`、`identity/design/current/DESIGN_TASTE.xml`、`DESIGN.md` | `taste/` 是 v3 入口，`DESIGN.md` 是兼容投影。 |
+| 能力和 Skill 怎么看？ | `runtime/`、`evolution/ipo/`、`meta-skills/`、`capabilities/` | runtime 先产生证据，稳定能力经 IPO 和 owner alignment 晋升。 |
+| 哪些内容能公开？ | `publication/current.yml`、`publication/public-claims.yml`、`security/` | 对外表达必须能追溯证据，且不越过安全边界。 |
+
+推荐阅读顺序：
+
+```text
+CATALOG.md
+-> artifacts/current.yml
+-> identity/avatar-description/current.yml
+-> sources/authority.yml
+-> identity / taste / runtime / publication / meta-skills
+```
+
+## 当前状态
+
+| 状态项 | 当前值 |
+| --- | --- |
+| 身份模式 | `{{IDENTITY_MODE}}` |
+| PSP 显示名 | `{{PSP_DISPLAY_NAME}}` |
+| visibility | `{{VISIBILITY}}` |
+| 内容语言 | `{{LANGUAGE}}` |
+| LifeOS lifecycle mode | `{{LIFEOS_LIFECYCLE}}` |
+| 创建时间 | `{{CREATED_AT}}` |
+
+初始化完成只代表骨架和协议已经生成。除非 `docs/evidence-sufficiency.md`、InnerAtlas、PSP XML 和 avatar description 明确显示证据充分，否则不要把当前 scaffold 当成成熟人格结论。
+
+## 结构怎么读
+
+| 结构 | 用户视角 | 写入规则 |
+| --- | --- | --- |
+| `sources/` | 原始材料、外部指针、索引和 organ input packets。 | 记录证据边界，不直接写人格结论。 |
+| `identity/` | {{DISPLAY_NAME}} 是谁、当前 person model、memory 和 cognition contract。 | InnerAtlas/PSP 是源产物，avatar-description 是读模型。 |
+| `taste/` | 文本、图像、界面和品牌表达偏好。 | `DESIGN.md` 只是兼容投影，长期入口看 `taste/current.yml`。 |
+| `runtime/` | 真实会话、任务执行、运行技能和运行 lessons。 | LifeOS 是否“活着”主要看这里。 |
+| `evolution/` | Wenxin、PSP、IPO Reverse、Taste Generator 和 alignment。 | 负责从证据生成或更新长期产物。 |
+| `meta-skills/` | 稳定 Meta Skill 和候选 Skill。 | 候选必须经过 IPO Reverse + owner alignment 才能晋升。 |
+| `capabilities/` | 已 review 的稳定能力、能力图谱和局部 memory。 | 不保存未经 review 的临时流程。 |
+| `publication/` | 公开 profile、bio、positioning、website、articles 和 public claims。 | 每条公开 claim 必须能追溯证据。 |
+| `integrations/` | GitHub、Feishu/Lark、Hermes 和 data source 配置。 | 不保存 secret；Feishu/Lark 操作使用 larkcli。 |
+| `security/` | 禁入材料、公开策略和 secret 边界。 | 公开或同步前先读这里。 |
+| `governance/` | 实例级 schema、policy 和 decision。 | 保存治理决策，不保存私人原文。 |
+
+## 持续进化循环
+
+```text
+sources / metabolism
+-> runtime/sessions
+-> runtime/runtime-skills
+-> runtime/runtime-lessons
+-> evolution/ipo
+-> capabilities / meta-skills
+```
+
+1. 授权材料进入 `sources/` 或 `metabolism/inbox/`，先记录用途和边界。
+2. InnerAtlas/Wenxin 生成“我是谁、站在哪、差多少、往哪走”的 identity 产物。
+3. PSP XML 沉淀价值排序、判断风格、运行轴、授权边界和行为边界。
+4. Taste Generator 沉淀表达和审美偏好，更新 `taste/`、`DESIGN_TASTE.xml` 和 `DESIGN.md`。
+5. 真实工作进入 `runtime/sessions/`，形成 runtime skills 和 runtime lessons。
+6. IPO Reverse 从完成产出反推证据、隐性认知任务、中间资产和可复用 IPO。
+7. 经过 owner alignment 后，稳定能力进入 `capabilities/` 或 `meta-skills/skills/`。
+
+## AI 使用方式
+
+先读 `AGENT.md` 和 `artifacts/current.yml`。涉及事实、材料、公开边界或长期结论时，再按任务读取 `sources/`、`identity/`、`taste/`、`runtime/`、`publication/`、`security/`。
+
+`AGENT.md` 是本实例的 agent 入口，不是可安装 Codex Skill。真正的 self-evolution Skills 在 `evolution/organ-systems/*/SKILL.md`；稳定能力 Skill 在 `capabilities/*/SKILL.md` 或独立 skill package。
+
+## 公开边界
+
+这个仓库不应保存 secret、账号密码、合同、财务、证件、客户细节、原始会议转写、私人聊天记录或私有 wiki 正文。
+
+public surface 只放 owner-approved 派生内容；private collaboration 放可信协同记忆；local/server authority 保存原始敏感材料。

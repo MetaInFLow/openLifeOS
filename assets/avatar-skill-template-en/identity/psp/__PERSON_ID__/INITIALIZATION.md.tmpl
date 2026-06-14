@@ -1,0 +1,125 @@
+# PSP to Agent Framework Initialization Runbook · {{PSP_DISPLAY_NAME}}
+
+Generated At: {{CREATED_AT}}
+Person ID: `{{PERSON_ID}}`
+Current PSP Registry: `current.yml`
+Current PSP Artifact: `current/PSP_REPORT.xml`
+Current PSP Version: `versions/PSP_REPORT.{{ARTIFACT_TIMESTAMP}}.xml`
+Current Evidence Maturity: `current/EVIDENCE_MATURITY.xml`
+Current Update Log: `update-log-{{ARTIFACT_TIMESTAMP}}.md`
+
+## Role
+
+This file has one job: convert current openLifeOS artifacts into initialization files for a target agent framework.
+
+It is not the person model itself, does not store raw private material, and does not write workflows into memory. The operator should extract from `current/PSP_REPORT.xml`, `current/EVIDENCE_MATURITY.xml`, `identity/memories/`, `capabilities/`, `identity/`, and `security/`, then write into the target framework files.
+
+## Core Boundary
+
+- Memory answers what is true: stable facts, preferences, identity, long-term context, and evidence provenance.
+- Skill answers how to do something: steps, triggers, verification gates, and failure handling.
+- The PSP artifact stores owner-approved person model, behavior boundaries, confidence, and evidence summaries.
+- If source material contains both facts and procedures, split it into a memory fact and a skill procedure, then record the relation in the update log.
+
+## Preflight
+
+1. Read `identity/current.yml` and local `current.yml` first to confirm the active PSP artifact; initialization uses `current/PSP_REPORT.xml` and `versions/PSP_REPORT.{{ARTIFACT_TIMESTAMP}}.xml`.
+2. Read `identity/public-profile/profile.yml`, using only owner-approved public identity fields.
+3. Read `identity/memories/long-term/` and `capabilities/memory/distilled-knowledge/`, extracting only stable facts, preferences, long-term context, and evidence summaries.
+4. Read `docs/skill-system/runtime-skill-candidates.md`, `identity/wenxin/skill-summaries/`, and `integrations/skill-sources/default-skills/`, extracting only reusable procedures, triggers, verification gates, and failure handling.
+5. Read `security/README.md` and `security/permissions.yml`, extracting hard boundaries, banned material, approval rules, and tool permissions.
+6. Classify every candidate: facts go to identity/memories/identity/persona, procedures go to Skill/agent instructions, and hybrid content must be split before writing.
+
+## Generic Conversion Flow
+
+1. Select the target framework: Hermes, OpenClaw, OpenAI/Codex, or another compatible framework.
+2. Create the output directory; do not overwrite human-maintained files. If a target file already exists, generate `*.candidate.md` for review.
+3. Extract the persona layer from PSP: identity stance, value ordering, behavior boundaries, best-state alignment, and anti-blunting constraints.
+4. Extract the declarative layer from memory: stable facts, preferences, long-term context, evidence sources, and confidence.
+5. Extract the procedural layer from skills: operating rules, task steps, routing rules, verification gates, and failure handling.
+6. Extract the governance layer from security: permissions, banned actions, external sharing boundaries, and approval requirements.
+7. Write the target framework files.
+8. Validate: memory files contain no procedures, Skill/agent instruction files contain no private facts, and persona files contain no raw material.
+9. Record the conversion in `update-log-{{ARTIFACT_TIMESTAMP}}.md`: target framework, input files, output files, and review status.
+
+## Hermes Conversion Steps
+
+Target outputs:
+
+- `SOUL.md` (runtime projection, not a LifeOS source artifact)
+- `MEMORY.md`
+- `USER.md`
+- `capabilities/<capability-id>/SKILL.md`
+- Optional: `.hermes.md` or project rule file
+
+Steps:
+
+1. Extract persona, identity stance, ontology map, behavior boundaries, best-state profile, delegation boundary, and anti-blunting constraints from `current/PSP_REPORT.xml`; write them to the target runtime `SOUL.md` projection.
+2. Extract user identity fields and naming preferences from `identity/public-profile/profile.yml`; write them to `USER.md`.
+3. Extract stable facts, preferences, long-term project context, and evidence summaries from `identity/memories/long-term/`; write them to `MEMORY.md`.
+4. Extract reusable procedures from `docs/skill-system/runtime-skill-candidates.md` and `identity/wenxin/skill-summaries/`; split them by topic into `capabilities/<capability-id>/SKILL.md`.
+5. If project-level constraints exist, write repo operation rules, approval boundaries, and tool restrictions to `.hermes.md`, not to `MEMORY.md`.
+6. Validate `MEMORY.md`: remove steps, SOPs, workflows, and temporary task state.
+7. Validate target runtime `SOUL.md`: keep only persona, behavior boundaries, delegation boundaries, and expression constraints; do not copy raw evidence and do not write it back into the LifeOS source repo.
+8. Validate Skills: keep only when to use, how to execute, and how to verify; do not embed concrete private facts.
+
+## OpenClaw Conversion Steps
+
+Target outputs:
+
+- `SOUL.md` (runtime projection, not a LifeOS source artifact)
+- `IDENTITY.md`
+- `USER.md`
+- `AGENTS.md`
+- `TOOLS.md`
+- `MEMORY.md`
+- `identity/memories/YYYY-MM-DD.md`
+- `capabilities/<capability-id>/SKILL.md`
+
+Steps:
+
+1. Extract persona slot, identity stance, ontology map, behavior boundaries, best-state profile, and delegation boundary from `current/PSP_REPORT.xml`; write them to the target runtime `SOUL.md` projection.
+2. Extract self/user/org/alias fields from `identity/public-profile/profile.yml` and PSP identity fields; write them to `IDENTITY.md` and `USER.md`.
+3. Extract agent operating rules, routing rules, collaboration rules, and project boundaries from `security/` and root `AGENT.md`; write them to `AGENTS.md`.
+4. Extract tool permissions, data-source boundaries, and banned actions from `security/permissions.yml`, `integrations/`, and `identity/cognition/skill-bindings/data-sources.yml`; write them to `TOOLS.md`.
+5. Extract stable facts and long-term preferences from `identity/memories/long-term/`; write them to `MEMORY.md`.
+6. Extract candidate lessons from `runtime/memory/working-lessons/`; write them by date to `identity/memories/YYYY-MM-DD.md`. Unverified content must be marked candidate/review-needed.
+7. Copy or rewrite `docs/skill-system/runtime-skill-candidates.md`, `identity/wenxin/skill-summaries/`, and `integrations/skill-sources/default-skills/` into OpenClaw-compatible `capabilities/<capability-id>/SKILL.md`.
+8. Validate `AGENTS.md`: operating rules and routing only, no long-term person facts.
+9. Validate `MEMORY.md`: declarative facts only, no procedures.
+10. Validate `identity/memories/YYYY-MM-DD.md`: every candidate lesson keeps date, source, confidence, and review status.
+
+## OpenAI / Codex-style Agent Conversion Steps
+
+Target outputs:
+
+- system prompt / developer prompt
+- agent instruction file
+- Skill files or tool instructions
+- identity/memories/knowledge store imports
+
+Steps:
+
+1. Extract persona, behavior boundaries, output contract, delegation boundary, and anti-blunting constraints from `current/PSP_REPORT.xml`; write them to the system prompt.
+2. Extract non-negotiable rules, approval boundaries, and external sharing boundaries from `security/`; write them to the developer prompt or agent instructions.
+3. Extract reusable procedures from `capabilities/`; write them as Skill files, tool instructions, or agent instructions.
+4. Extract stable facts and knowledge claims from `identity/memories/long-term/` and `capabilities/memory/distilled-knowledge/`; import them into the identity/memories/knowledge store.
+5. Preserve source, confidence, visibility, and freshness for every imported memory item.
+6. Validate system/developer prompts: no raw material, no transcripts, and no large long-term knowledge dumps.
+7. Validate Skills: do not write private user facts into procedures; retrieve required facts through bindings or memory.
+
+## Output Audit Checklist
+
+- Target runtime `SOUL.md` / system prompt contains only persona, policy, boundaries, and expression constraints.
+- `MEMORY.md` / memory store contains only stable facts, preferences, long-term context, and evidence summaries.
+- `AGENTS.md` / Skill / agent instructions contain only operating rules, steps, triggers, and verification gates.
+- `TOOLS.md` / permissions contain only tool permissions, data-source boundaries, and approval rules.
+- All raw private material stays in authorized external systems and does not enter target framework files.
+- Every target file traces back to `current/PSP_REPORT.xml`, `current/EVIDENCE_MATURITY.xml`, `identity/memories/`, `capabilities/`, or `security/`.
+- This conversion is recorded in `update-log-{{ARTIFACT_TIMESTAMP}}.md`.
+
+## Initialization State
+
+The current PSP is an intake-only routing model. It only contains initialization fields, identity mode, PSP name, visibility, language, and evidence boundary.
+
+Until more owner-approved evidence is ingested, do not treat it as a high-fidelity avatar, and do not infer biography, long-term preferences, language fingerprint, or capability claims from it.

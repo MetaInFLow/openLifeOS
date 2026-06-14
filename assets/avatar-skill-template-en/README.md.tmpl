@@ -1,0 +1,88 @@
+# {{REPO_NAME}}
+
+This is {{DISPLAY_NAME}}'s openLifeOS workspace.
+
+It is not a private data dump and it is not a prompt file. It stores a governed long-term intelligence core: source boundaries, the current avatar description, InnerAtlas/Wenxin, PSP/person model, taste, runtime evidence, capability growth, and public expression.
+
+## Start Here
+
+| Question | Read first | Notes |
+| --- | --- | --- |
+| What stage is this LifeOS in? | `CATALOG.md`, `LIFEOS_STATUS.yml`, `docs/evidence-sufficiency.md` | Current stage, evidence maturity, and missing material. |
+| How should {{DISPLAY_NAME}} be introduced right now? | `identity/avatar-description/current.yml` | Product/UI/runtime summary; it does not replace Wenxin or PSP evidence. |
+| Where are the latest artifacts? | `artifacts/current.yml`, `identity/current.yml` | Active artifacts and version pointers. |
+| Which material is allowed to be used? | `sources/CATALOG.md`, `sources/authority.yml` | Source authority, visibility, allowed targets, and organ input packets. |
+| Where is the identity/person model? | `identity/inneratlas/current/INNERATLAS_REPORT.xml`, `identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml` | InnerAtlas owns self-discovery; PSP owns the person model. |
+| Where are taste and expression preferences? | `taste/current.yml`, `identity/design/current/DESIGN_TASTE.xml`, `DESIGN.md` | `taste/` is the v3 entrypoint; `DESIGN.md` remains a compatibility projection. |
+| How do capabilities and Skills grow? | `runtime/`, `evolution/ipo/`, `meta-skills/`, `capabilities/` | Runtime evidence appears first; stable capabilities require IPO and owner alignment. |
+| What can be public? | `publication/current.yml`, `publication/public-claims.yml`, `security/` | Public claims must trace back to approved evidence. |
+
+Recommended read order:
+
+```text
+CATALOG.md
+-> artifacts/current.yml
+-> identity/avatar-description/current.yml
+-> sources/authority.yml
+-> identity / taste / runtime / publication / meta-skills
+```
+
+## Current State
+
+| Field | Value |
+| --- | --- |
+| Identity mode | `{{IDENTITY_MODE}}` |
+| PSP display name | `{{PSP_DISPLAY_NAME}}` |
+| Visibility | `{{VISIBILITY}}` |
+| Content language | `{{LANGUAGE}}` |
+| LifeOS lifecycle mode | `{{LIFEOS_LIFECYCLE}}` |
+| Created at | `{{CREATED_AT}}` |
+
+Initialization means the skeleton and protocol exist. Unless `docs/evidence-sufficiency.md`, InnerAtlas, PSP XML, and avatar description show sufficient evidence, treat scaffold claims as immature.
+
+## How To Read The Structure
+
+| Structure | User meaning | Write rule |
+| --- | --- | --- |
+| `sources/` | Raw material pointers, indexes, and organ input packets. | Records evidence boundaries; does not write identity conclusions. |
+| `identity/` | Who {{DISPLAY_NAME}} is, current person model, memory, and cognition contracts. | InnerAtlas/PSP are source artifacts; avatar-description is a read model. |
+| `taste/` | Text, image, interface, and brand expression preferences. | `DESIGN.md` is a compatibility projection; long-term entrypoint is `taste/current.yml`. |
+| `runtime/` | Real sessions, task execution, runtime skills, and runtime lessons. | This is the primary evidence that the LifeOS is alive. |
+| `evolution/` | Wenxin, PSP, IPO Reverse, Taste Generator, and alignment. | Generates and updates long-term artifacts from approved evidence. |
+| `meta-skills/` | Stable Meta Skills and candidates. | Candidates require IPO Reverse plus owner alignment before promotion. |
+| `capabilities/` | Reviewed durable capabilities, capability maps, and local memory. | Do not store unreviewed temporary workflows here. |
+| `publication/` | Public profile, bio, positioning, website, articles, and public claims. | Every public claim must trace back to evidence. |
+| `integrations/` | GitHub, Feishu/Lark, Hermes, and data source config. | Do not store secrets; use larkcli for Feishu/Lark operations. |
+| `security/` | Banned material, publication policy, and secret boundaries. | Read before publishing or syncing. |
+| `governance/` | Instance-level schemas, policies, and decisions. | Stores governance decisions, not private source bodies. |
+
+## Continuous Evolution Loop
+
+```text
+sources / metabolism
+-> runtime/sessions
+-> runtime/runtime-skills
+-> runtime/runtime-lessons
+-> evolution/ipo
+-> capabilities / meta-skills
+```
+
+1. Approved material enters `sources/` or `metabolism/inbox/` with purpose and boundaries.
+2. InnerAtlas/Wenxin produces identity artifacts: who I am, where I stand, what is missing, and where I may go.
+3. PSP XML distills value ordering, judgment style, operating axes, delegation boundary, and behavior boundaries.
+4. Taste Generator updates `taste/`, `DESIGN_TASTE.xml`, and `DESIGN.md`.
+5. Real work enters `runtime/sessions/` and creates runtime skills and lessons.
+6. IPO Reverse reconstructs evidence, hidden cognitive tasks, middle artifacts, and reusable IPO from finished outputs.
+7. After owner alignment, stable capabilities move into `capabilities/` or `meta-skills/skills/`.
+
+## AI Usage
+
+Read `AGENT.md` and `artifacts/current.yml` first. For facts, source material, publication boundaries, or long-term claims, route into `sources/`, `identity/`, `taste/`, `runtime/`, `publication/`, and `security/` as needed.
+
+`AGENT.md` is this instance's agent entrypoint, not an installable Codex Skill. Real self-evolution Skills live under `evolution/organ-systems/*/SKILL.md`; stable capability Skills live under `capabilities/*/SKILL.md` or an external skill package.
+
+## Public Boundary
+
+This repo must not store secrets, passwords, contracts, financial data, IDs, customer details, raw meeting transcripts, private chat logs, or private wiki bodies.
+
+The public surface contains only owner-approved derived content; private collaboration contains trusted shared memory; local/server authority keeps raw sensitive material.

@@ -1,0 +1,27 @@
+id: evidence-sufficiency-to-profile-readme
+source:
+  object_type: maturity
+  path: docs/evidence-sufficiency.md
+
+target:
+  openclaw:
+    path: README.md
+  hermes:
+    path: README.md
+
+transform:
+  mode: maturity_summary
+  include:
+    - maturity_level
+    - evidence_gaps
+    - failed_sources
+    - incomplete_regions
+  exclude:
+    - raw_private_evidence
+
+guards:
+  require_provenance: true
+  forbid_secrets: true
+
+coverage:
+  expected_status: partial

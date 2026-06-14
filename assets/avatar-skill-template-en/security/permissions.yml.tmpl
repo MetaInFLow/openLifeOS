@@ -1,0 +1,16 @@
+public_material_policy: private-by-default
+raw_material_policy: never-commit
+secret_storage: environment-or-password-manager-only
+memory:
+  source_policy: private-by-default
+  public_mirror: index-only
+  collaboration_policy: private-pr-or-owner-approved-extract
+  allowed_public_exports: approved-facts, redacted-summaries, abstracted-patterns
+  raw_material_policy: never-copy-raw-private-bodies
+github:
+  config: integrations/github.yml
+  token_policy: do-not-store
+feishu:
+  config: integrations/feishu.yml
+  token_policy: do-not-store
+rule: Do not commit tokens, app secrets, cookies, refresh tokens, private keys, or raw private material.

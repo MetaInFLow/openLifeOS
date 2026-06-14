@@ -1,0 +1,95 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sideLeft" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f4f8ff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#f4f8ff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="sideRight" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#06183f" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#06183f" stop-opacity="0.34"/>
+    </linearGradient>
+    <linearGradient id="bottomGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.74"/>
+      <stop offset="100%" stop-color="#dce8ff" stop-opacity="0.58"/>
+    </linearGradient>
+    <linearGradient id="darkPanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#16346f" stop-opacity="0.82"/>
+      <stop offset="100%" stop-color="#071a49" stop-opacity="0.86"/>
+    </linearGradient>
+    <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff2b8" stop-opacity="1"/>
+      <stop offset="42%" stop-color="#77a8ff" stop-opacity="0.76"/>
+      <stop offset="100%" stop-color="#77a8ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0c245d" flood-opacity="0.20"/>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .label { font: 700 18px Inter, Arial, sans-serif; letter-spacing: 7px; fill: #617196; }
+      .panelTitle { font: 800 23px Inter, Arial, sans-serif; letter-spacing: 4px; fill: #13234f; }
+      .panelSub { font: 650 20px "PingFang SC", "Microsoft YaHei", Arial, sans-serif; fill: #183360; }
+      .body { font: 520 16px "PingFang SC", "Microsoft YaHei", Arial, sans-serif; fill: #445d83; }
+      .darkTitle { font: 800 23px Inter, Arial, sans-serif; letter-spacing: 4px; fill: #eef5ff; }
+      .darkSub { font: 650 20px "PingFang SC", "Microsoft YaHei", Arial, sans-serif; fill: #dceaff; }
+      .darkBody { font: 520 16px "PingFang SC", "Microsoft YaHei", Arial, sans-serif; fill: #bdd1f4; }
+      .flowText { font: 700 18px Inter, "PingFang SC", Arial, sans-serif; fill: #27436d; }
+      .tiny { font: 520 13px "PingFang SC", "Microsoft YaHei", Arial, sans-serif; fill: #65789a; }
+    </style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#edf4ff"/>
+  <image href="openlifeOS.png" x="150" y="0" width="1620" height="1080" preserveAspectRatio="xMidYMid meet"/>
+  <image href="openlifeOS.png" x="-8" y="-70" width="1940" height="1293" preserveAspectRatio="xMidYMid slice" opacity="0.10"/>
+  <rect x="0" y="0" width="330" height="1080" fill="url(#sideLeft)"/>
+  <rect x="1590" y="0" width="330" height="1080" fill="url(#sideRight)"/>
+
+  <g opacity="0.72">
+    <path d="M530 760 C680 655 820 625 960 612 C1110 598 1260 650 1392 760" fill="none" stroke="#77a8ff" stroke-width="2.2" stroke-opacity="0.50"/>
+    <path d="M960 613 L960 802" fill="none" stroke="#e8c369" stroke-width="2" stroke-opacity="0.55"/>
+    <circle cx="530" cy="760" r="8" fill="url(#nodeGlow)" filter="url(#softGlow)"/>
+    <circle cx="960" cy="613" r="8" fill="url(#nodeGlow)" filter="url(#softGlow)"/>
+    <circle cx="1392" cy="760" r="8" fill="url(#nodeGlow)" filter="url(#softGlow)"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="250" y="780" width="1420" height="220" rx="34" fill="url(#bottomGlass)" stroke="#ffffff" stroke-opacity="0.74"/>
+    <rect x="250" y="780" width="1420" height="220" rx="34" fill="#eef5ff" opacity="0.18"/>
+  </g>
+
+  <g transform="translate(300 816)">
+    <text x="0" y="0" class="label">MECHANISM LAYER</text>
+    <text x="0" y="44" class="panelTitle">MEMORY TIERS</text>
+    <text x="0" y="78" class="panelSub">Public / Private / Authority</text>
+    <text x="0" y="116" class="body">public：只放派生索引和授权摘要</text>
+    <text x="0" y="146" class="body">private：可信协同与 review</text>
+    <text x="0" y="176" class="body">local/server：保存原始敏感材料</text>
+  </g>
+
+  <g transform="translate(770 850)">
+    <text x="0" y="0" class="panelTitle">SKILL TYPES</text>
+    <text x="0" y="34" class="panelSub">Runtime vs Distilled Meta</text>
+    <text x="0" y="72" class="body">runtime：SnapAF-skills / 工具执行</text>
+    <text x="0" y="102" class="body">meta：engineering-everything / 判断系统</text>
+    <text x="0" y="132" class="body">self-evolution：复盘与更新桥接</text>
+  </g>
+
+  <g transform="translate(1215 816)">
+    <rect x="-24" y="-24" width="385" height="172" rx="28" fill="url(#darkPanel)" stroke="#7eb3ff" stroke-opacity="0.52"/>
+    <text x="0" y="20" class="darkTitle">PROMOTION GATE</text>
+    <text x="0" y="56" class="darkSub">IPO Reverse + Alignment</text>
+    <text x="0" y="94" class="darkBody">lesson-event → upgrade candidate</text>
+    <text x="0" y="124" class="darkBody">owner alignment 后才改 meta skill</text>
+  </g>
+
+  <g transform="translate(590 1018)">
+    <rect x="0" y="-25" width="740" height="44" rx="22" fill="#ffffff" fill-opacity="0.68" stroke="#dbe8ff" stroke-opacity="0.88"/>
+    <text x="370" y="4" text-anchor="middle" class="flowText">Runtime evidence → IPO Review → Alignment → Distilled Meta Skill</text>
+  </g>
+</svg>

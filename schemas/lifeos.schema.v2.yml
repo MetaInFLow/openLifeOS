@@ -1,0 +1,54 @@
+schema: openlifeos.schema.v2
+version: v2
+status: active
+description: >
+  LifeOS v2 models a digital life as a living filesystem. Top-level
+  directories must be either first-class lifecycle layers, OS/governance
+  layers, or legacy.
+
+top_level:
+  required_root_files:
+    - LIFEOS_STATUS.yml
+    - DELIVERY.md
+    - LIFEOS-CATALOG.html
+    - README.md
+    - AGENT.md
+    - matrix.yml
+    - replicateme.yml
+    - DESIGN.md
+  lifecycle_layers:
+    identity: "Who this LifeOS represents; Wenxin, PSP XML, cognition/worldview, memories, avatar description, design/aesthetics. SOUL.md is paused as a source artifact."
+    metabolism: "Material digestion system: inbox, processing, extracted."
+    runtime: "Sessions, runtime skills, runtime lessons, and runtime projections."
+    work: "Created outputs, apps, public surfaces, reports, projects, posts."
+    evolution: "IPO Reverse, alignment, self-evolution reviews, promotion evidence."
+    capabilities: "Reviewed durable capabilities, capability maps, installable skill bindings, capability-local memory."
+    identities: "Social identity projections such as founder, teacher, author, speaker."
+  governance_layers:
+    artifacts: "Latest registry and active artifact pointers."
+    integrations: "External system, agent, connector, and source policies."
+    security: "Publication, privacy, and secret boundaries."
+    docs: "Human-readable standards, evidence gates, diagrams, migration docs."
+  compatibility_layer:
+    legacy: "Historical or unclassified v1/v1.5 material kept for traceability."
+
+disallowed_top_level_dirs:
+  agents: "Move to integrations/agents."
+  apps: "Move to work/apps."
+  profiles: "Move to runtime/profiles."
+  scripts: "Move to legacy/scripts unless promoted into factory scripts."
+  design: "Move versioned design/aesthetics artifacts to identity/design; root DESIGN.md remains the current entrypoint."
+  life: "Navigation-only v1.5 layer; move to legacy/navigation-v1/life."
+  system: "Navigation-only v1.5 layer; move to legacy/navigation-v1/system."
+  skills: "Move durable capabilities to capabilities/ and capability production systems to evolution/organ-systems/."
+  memory: "Split into identity/memories, runtime/memory, and capabilities/*/memory."
+  cognition: "Move to identity/cognition."
+  intake: "Move to metabolism/inbox."
+  roles: "Move to identities."
+
+migration:
+  current_revision: "0004_root_agent_entrypoint"
+  previous_revision: "0003_lifeos_schema_v2_refine_living_fs"
+  code_migration: migrations/versions/0004_root_agent_entrypoint.py
+  cli: scripts/migrate_lifeos_schema.py
+  skill_migration: migrations/skills/lifeos-v1-to-v2-content/SKILL.md

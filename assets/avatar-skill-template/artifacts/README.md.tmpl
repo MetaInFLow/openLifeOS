@@ -1,0 +1,30 @@
+# Artifact Registry 过程产物登记
+
+这里是 {{DISPLAY_NAME}} 的 openLifeOS 过程产物总入口。
+
+## Latest Entry
+
+- `current.yml` 是机器可读的 latest registry。
+- 人类先读 `current.yml`，再进入对应 current entrypoint。
+- agent 更新任何核心产物时，必须先写 versioned artifact，再更新 current entrypoint、versions ledger、changelog 和本 registry。
+
+## Core Artifact Semantics
+
+| Artifact | 语义 | Latest entrypoint | Versioned artifacts |
+| --- | --- | --- | --- |
+| InnerAtlas（问心） | identity、自我发现、定位、能力地图、gap 和路径 | `identity/inneratlas/current/INNERATLAS_REPORT.xml` | `identity/inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml` |
+| PSP | person model 源产物：本体九维、价值排序、判断模型、运行轴、授权边界、行为边界和置信度 | `identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml` | `identity/psp/{{PERSON_ID}}/versions/PSP_REPORT.<timestamp>.xml` |
+| Design | 全局审美、表达偏好和设计判断，不是 UI 配置；XML 是源产物，Markdown 是投影 | `identity/design/current/DESIGN_TASTE.xml` + `DESIGN.md` | `identity/design/DESIGN_TASTE-<timestamp>.xml` + `identity/design/DESIGN-<timestamp>.md` |
+| Skill Recommendations | 问心产出的候选 Skill 建议 | `identity/wenxin/skill-recommendations.yml` | 版本记录写入对应 git history 或 recommendations changelog |
+| Evidence Maturity | PSP 证据成熟度、结构完成度和内容缺口 | `identity/psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml` | `identity/psp/{{PERSON_ID}}/versions/EVIDENCE_MATURITY.<timestamp>.xml` |
+
+## Update Rule
+
+不要直接覆盖 latest entrypoint。
+
+1. 读取 `artifacts/current.yml` 和目标产物的 `versions.yml`。
+2. 写入新的 timestamped artifact。
+3. 更新 latest entrypoint。
+4. 更新 `versions.yml`、`changelog.md` 和相关局部 registry。
+5. 更新 `artifacts/current.yml`。
+6. 输出时说明哪些产物被激活、证据充分性和仍缺什么。

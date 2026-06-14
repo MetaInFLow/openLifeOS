@@ -1,0 +1,11 @@
+# Runtime
+
+This layer answers: "What is {{REPO_NAME}} actually doing right now?"
+
+Runtime is the activity scene, not a long-term conclusion store. Agents start sessions here, call runtime skills, and produce outputs, observations, and lessons. Completed lessons first land in `runtime/runtime-lessons/`, then `evolution/` decides whether they should become long-term capabilities, identity updates, or work indexes.
+
+## Subdirectories
+
+- `sessions/`: public-safe indexes for a task, conversation, or execution flow.
+- `runtime-skills/`: callable or candidate runtime skill descriptions.
+- `runtime-lessons/`: lesson events, failure modes, and reviewable material observed during runtime.

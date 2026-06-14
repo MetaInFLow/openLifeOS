@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{REPO_NAME}} · LifeOS Catalog</title>
+<style>
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f7f8fa; color: #101828; line-height: 1.55; }
+header { background: #17324d; color: #fff; padding: 40px 32px 32px; }
+main, .inner { max-width: 1180px; margin: 0 auto; }
+h1 { margin: 8px 0; font-size: 34px; letter-spacing: 0; }
+.sub { color: rgba(255,255,255,.84); max-width: 850px; }
+nav { position: sticky; top: 0; z-index: 2; background: rgba(255,255,255,.96); border-bottom: 1px solid #e4e7ec; padding: 10px 32px; }
+nav .inner { display: flex; gap: 8px; overflow-x: auto; }
+nav a { color: #344054; text-decoration: none; font-weight: 700; font-size: 13px; padding: 6px 10px; border-radius: 6px; white-space: nowrap; }
+nav a:hover { background: #e7f2f8; color: #0b4a6f; }
+main { padding: 28px 32px 40px; }
+section { margin-bottom: 34px; }
+h2 { margin: 0 0 6px; font-size: 23px; }
+.lead { margin: 0 0 16px; color: #667085; font-size: 14px; }
+.panel { background: #fff; border: 1px solid #d9e1ea; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 6px 18px rgba(15,23,42,.06); }
+.snapshot { display: grid; grid-template-columns: minmax(180px, 1.15fr) minmax(160px, .9fr) minmax(180px, 1fr) minmax(220px, 1.25fr); }
+.row { display: contents; }
+.cell { border-top: 1px solid #edf1f5; padding: 12px 14px; font-size: 13.5px; }
+.head .cell { border-top: 0; background: #eef4f8; color: #344054; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .02em; }
+.field { font-weight: 800; color: #182230; }
+.value { color: #101828; }
+.source { color: #475467; }
+.status { color: #667085; }
+.status.ready { color: #067647; font-weight: 700; }
+.status.pending { color: #b54708; font-weight: 700; }
+.grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.card { background: #fff; border: 1px solid #e4e7ec; border-radius: 8px; padding: 17px 18px; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 4px 14px rgba(15,23,42,.05); }
+.card h3 { margin: 0 0 7px; font-size: 16px; }
+.card p { margin: 0; color: #344054; font-size: 13.5px; }
+code { font-family: "SF Mono", Menlo, Consolas, monospace; background: #eef2f7; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+@media (max-width: 760px) {
+  .snapshot { display: block; }
+  .row { display: block; border-top: 1px solid #edf1f5; padding: 10px 0; }
+  .row.head { display: none; }
+  .row:first-child { border-top: 0; }
+  .cell { display: block; border-top: 0; padding: 3px 14px; }
+  .field::before { content: "Field: "; color: #667085; font-weight: 600; }
+  .value::before { content: "Value: "; color: #667085; font-weight: 600; }
+  .status::before { content: "Status: "; color: #667085; font-weight: 600; }
+  .source::before { content: "Source: "; color: #667085; font-weight: 600; }
+}
+</style>
+</head>
+<body>
+<header><div class="inner"><div>LifeOS Catalog</div><h1>{{REPO_NAME}}</h1><p class="sub">This is the user-facing avatar overview. It answers what can be known about this digital person, what is still unevaluated, and which source file owns each claim. Machine truth remains <code>artifacts/current.yml</code>, <code>identity/current.yml</code>, and <code>LIFEOS_STATUS.yml</code>.</p></div></header>
+<nav><div class="inner"><a href="#avatar">Avatar</a><a href="#reports">Reports</a><a href="#runtime">Runtime</a><a href="#os">OS</a></div></nav>
+<main>
+<section id="avatar">
+  <h2>Avatar Snapshot</h2>
+  <p class="lead">A user should first see what is known, what is not yet assessed, and where to look next.</p>
+  <div class="panel snapshot">
+    <div class="row head"><div class="cell">Field</div><div class="cell">Current Value</div><div class="cell">Status</div><div class="cell">Source / Producer</div></div>
+    <div class="row"><div class="cell field">Name / display name</div><div class="cell value">{{DISPLAY_NAME}}</div><div class="cell status ready">Set</div><div class="cell source"><code>replicateme.yml</code> / <code>identity/avatar-description/current.yml</code></div></div>
+    <div class="row"><div class="cell field">Digital-person age</div><div class="cell value">{{LIFEOS_AGE_LABEL}}</div><div class="cell status ready">Computed from creation time</div><div class="cell source"><code>LIFEOS_STATUS.yml</code> <code>created_at</code> / <code>birth_date</code></div></div>
+    <div class="row"><div class="cell field">Lifecycle stage</div><div class="cell value">Kernel Scaffold</div><div class="cell status pending">Scaffold only</div><div class="cell source"><code>doctor_avatar_repo.py</code> reads runtime / evidence / capabilities</div></div>
+    <div class="row"><div class="cell field">Content maturity</div><div class="cell value">scaffold</div><div class="cell status pending">Insufficient evidence</div><div class="cell source"><code>docs/evidence-sufficiency.md</code></div></div>
+    <div class="row"><div class="cell field">One-line positioning</div><div class="cell value">Not generated</div><div class="cell status pending">Waiting for InnerAtlas</div><div class="cell source"><code>identity/inneratlas/current/INNERATLAS_REPORT.xml</code> -> <code>identity/avatar-description/current.yml</code></div></div>
+    <div class="row"><div class="cell field">MBTI / cognition tendency</div><div class="cell value">Not assessed</div><div class="cell status pending">From InnerAtlas; not a sole identity label</div><div class="cell source"><code>identity/inneratlas/current/INNERATLAS_REPORT.xml</code> explicit_analysis output</div></div>
+    <div class="row"><div class="cell field">Resume / timeline</div><div class="cell value">Empty</div><div class="cell status pending">Waiting for approved material</div><div class="cell source"><code>metabolism/inbox/</code> -> <code>identity/inneratlas/current/INNERATLAS_REPORT.xml</code></div></div>
+    <div class="row"><div class="cell field">Capability map</div><div class="cell value">Not assessed</div><div class="cell status pending">From Wenxin</div><div class="cell source"><code>identity/wenxin/skill-recommendations.yml</code> / <code>capabilities/</code></div></div>
+    <div class="row"><div class="cell field">Judgment model / behavior boundary</div><div class="cell value">Not modeled</div><div class="cell status pending">From PSP XML</div><div class="cell source"><code>identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml</code></div></div>
+    <div class="row"><div class="cell field">Language fingerprint</div><div class="cell value">Not modeled</div><div class="cell status pending">From PSP; requires enough language samples</div><div class="cell source"><code>identity/psp/{{PERSON_ID}}/analysis/</code></div></div>
+    <div class="row"><div class="cell field">Works / outputs</div><div class="cell value">Empty</div><div class="cell status pending">Waiting for runtime or manual entry</div><div class="cell source"><code>work/</code></div></div>
+    <div class="row"><div class="cell field">Durable capabilities</div><div class="cell value">Empty</div><div class="cell status pending">Requires lessons promoted through IPO</div><div class="cell source"><code>runtime/runtime-lessons/</code> -> <code>evolution/ipo/</code> -> <code>capabilities/</code></div></div>
+  </div>
+</section>
+<section id="reports">
+  <h2>Core Reports</h2>
+  <p class="lead">Wenxin answers who this person is and where they should go. PSP answers how they judge, express, and can be operated by AI.</p>
+  <div class="grid">
+    <article class="card"><h3>Current Avatar Description</h3><p><code>identity/avatar-description/current.yml</code><br>Compact product-facing entrypoint; does not replace Wenxin or PSP.</p></article>
+    <article class="card"><h3>InnerAtlas</h3><p><code>identity/inneratlas/current/INNERATLAS_REPORT.xml</code><br>Expected fixed outputs include positioning, timeline, personality/cognition tendencies, capability map, pitch, future paths, and evidence gaps.</p></article>
+    <article class="card"><h3>PSP</h3><p><code>identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml</code><br>Expected fixed outputs include ontology map, kernel, cognition, decision, interaction, language fingerprint, delegation boundary, confidence, and validation needs.</p></article>
+    <article class="card"><h3>Design / Runtime Projection</h3><p><code>DESIGN.md</code><br><code>SOUL.md</code> is currently only allowed as a target runtime projection, not a LifeOS source artifact.</p></article>
+  </div>
+</section>
+<section id="runtime">
+  <h2>Runtime Flow</h2>
+  <p class="lead">The living source is the session stream, not a static capability manual.</p>
+  <div class="grid">
+    <article class="card"><h3>Metabolism</h3><p><code>metabolism/inbox/</code> -> <code>metabolism/processing/</code> -> <code>metabolism/extracted/</code></p></article>
+    <article class="card"><h3>Activity</h3><p><code>runtime/sessions/</code><br><code>runtime/runtime-skills/</code><br><code>runtime/runtime-lessons/</code></p></article>
+    <article class="card"><h3>Capability Promotion</h3><p><code>evolution/ipo/</code> -> <code>capabilities/</code></p></article>
+  </div>
+</section>
+<section id="os">
+  <h2>OS Layer</h2>
+  <p class="lead">Governance, boundaries, and machine-readable entrypoints.</p>
+  <div class="grid">
+    <article class="card"><h3>Registries</h3><p><code>artifacts/current.yml</code><br><code>identity/current.yml</code><br><code>matrix.yml</code></p></article>
+    <article class="card"><h3>Governance</h3><p><code>LIFEOS_STATUS.yml</code><br><code>security/permissions.yml</code><br><code>integrations/data-sources.yml</code></p></article>
+    <article class="card"><h3>Evidence</h3><p><code>docs/evidence-sufficiency.md</code><br>Defines which claims are supportable and which require more material.</p></article>
+  </div>
+</section>
+</main>
+</body>
+</html>

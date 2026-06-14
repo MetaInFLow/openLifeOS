@@ -1,0 +1,28 @@
+# Memory 记忆层
+
+这一层回答：“数字分身靠什么持续进化？”
+
+记忆层不是一次性资料包，而是长期上下文入口。
+
+## Isolation model
+
+- Public surface: 只放已公开或 owner 批准的事实、脱敏摘要、不可逆抽象结论和私有源入口说明。
+- Private collaboration: 放可信协作者和 agent 可共同维护的 wiki/index/工作记忆，通过 private PR 或 owner-reviewed branch 协同。
+- Local/server authority: 保留原始私密资料、会议转写、客户文档和外部系统导出；本 repo 只记录入口和边界。
+- Banned material: secret、token、cookie、私钥、密码不属于 memory，永远不要写入 repo。
+
+## Object routes
+
+- Skill/task daily lessons: 先作为 private `lesson-event` 保存，按 `skill_id`、`skill_type`、`task_id` 和日期索引；runtime skill 可直接修 runtime，升级到 distilled meta skill 必须经过 IPO Reverse 和 owner alignment。
+- Large PDFs and source artifacts: 原文件留在 local/server/private object store；repo 只保存 pointer、hash、权限、提取状态和 owner-approved 摘要。
+- Thought fragments: 平时思考先进入 private intake，不直接当稳定事实；定期 triage 成 lesson、area index、PSP evidence 或 archive。
+
+Recommended patterns:
+
+- Configure the user's own GitHub identity/memories/wiki repo in `identity/memories/wiki-repo.yml`.
+- Private wiki as submodule.
+- Private wiki as external link with access notes.
+- Internal server wiki synced by `rsync`; if configured as authoritative, the server is the only source of truth.
+- Public-safe index that summarizes available areas without copying private content.
+
+Raw private notes, meeting transcripts, customer documents, and personal records should stay outside this repo.

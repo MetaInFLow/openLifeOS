@@ -1,0 +1,27 @@
+id: integrations-to-runtime-connectors
+source:
+  object_type: data_source
+  path: integrations/data-sources.yml
+
+target:
+  openclaw:
+    path: TOOLS.md
+  hermes:
+    path: config.yaml
+
+transform:
+  mode: connector_hint_projection
+  include:
+    - authority
+    - visibility
+    - allowed_targets
+    - token_policy
+  exclude:
+    - token_values
+    - raw_private_body
+
+guards:
+  forbid_secrets: true
+
+coverage:
+  expected_status: partial

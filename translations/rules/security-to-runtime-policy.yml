@@ -1,0 +1,26 @@
+id: security-to-runtime-policy
+source:
+  object_type: policy
+  path: security/permissions.yml
+
+target:
+  openclaw:
+    path: AGENTS.md
+  hermes:
+    path: config.yaml
+
+transform:
+  mode: policy_projection
+  include:
+    - visibility
+    - banned_material
+    - allowed_exports
+    - approval_rules
+  exclude:
+    - secrets
+
+guards:
+  forbid_secrets: true
+
+coverage:
+  expected_status: partial

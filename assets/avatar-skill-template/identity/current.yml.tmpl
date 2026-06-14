@@ -1,0 +1,66 @@
+schema: openlifeos.identity-current.v2
+owner: "{{OWNER_NAME}}"
+repo: "{{REPO_NAME}}"
+updated_at: "{{CREATED_AT}}"
+policy:
+  canonical_rule: "Runtime profiles read active identity artifacts from this registry; the full latest-artifact view lives in artifacts/current.yml."
+  update_rule: "New Wenxin, PSP XML, or design output must be written as a timestamped artifact first, then activated by updating artifacts/current.yml, this registry when identity-related, and the per-artifact versions.yml ledger. SOUL is paused."
+  raw_material_rule: "Raw private materials remain outside the public repo."
+active:
+  avatar_description:
+    artifact_id: avatar-description-{{ARTIFACT_TIMESTAMP}}
+    current_entrypoint: identity/avatar-description/current.yml
+    versions_ledger: identity/avatar-description/versions.yml
+    changelog: identity/avatar-description/changelog.md
+    status: scaffold
+    evidence_sufficiency: insufficient
+    derived_from:
+      - active.wenxin.current_entrypoint
+      - active.psp.current_entrypoint
+  wenxin:
+    artifact_id: inneratlas-{{ARTIFACT_TIMESTAMP}}
+    current_entrypoint: identity/inneratlas/current/INNERATLAS_REPORT.xml
+    versioned_artifact: identity/inneratlas/versions/INNERATLAS_REPORT.{{ARTIFACT_TIMESTAMP}}.xml
+    versions_ledger: identity/wenxin/versions.yml
+    changelog: identity/wenxin/changelog.md
+    status: source-scope-needed
+    evidence_sufficiency: insufficient
+    based_on:
+      - identity/public-profile/profile.yml
+  psp:
+    artifact_id: psp-{{ARTIFACT_TIMESTAMP}}
+    current_entrypoint: identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml
+    versioned_artifact: identity/psp/{{PERSON_ID}}/versions/PSP_REPORT.{{ARTIFACT_TIMESTAMP}}.xml
+    versions_ledger: identity/psp/{{PERSON_ID}}/versions.yml
+    changelog: identity/psp/{{PERSON_ID}}/changelog.md
+    status: v0.1-intake-only-routing-model
+    evidence_sufficiency: insufficient
+    based_on:
+      - identity/public-profile/profile.yml
+  design:
+    artifact_id: design-{{ARTIFACT_TIMESTAMP}}
+    current_entrypoint: DESIGN.md
+    versioned_artifact: identity/design/DESIGN-{{ARTIFACT_TIMESTAMP}}.md
+    canonical_xml_entrypoint: identity/design/current/DESIGN_TASTE.xml
+    versioned_xml_artifact: identity/design/DESIGN_TASTE-{{ARTIFACT_TIMESTAMP}}.xml
+    versions_ledger: identity/design/versions.yml
+    changelog: identity/design/changelog.md
+    status: v0.1-intake-only-aesthetic-boundary
+    evidence_sufficiency: insufficient
+    based_on:
+      - identity/design/current/DESIGN_TASTE.xml
+runtime_projection_inputs:
+  openclaw:
+    profile: profiles/openclaw/{{PERSON_ID}}/
+    uses:
+      - active.wenxin.current_entrypoint
+      - active.psp.versioned_artifact
+      - active.design.current_entrypoint
+      - identity/psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml
+  hermes:
+    profile: profiles/hermes/{{PERSON_ID}}/
+    uses:
+      - active.wenxin.current_entrypoint
+      - active.psp.versioned_artifact
+      - active.design.current_entrypoint
+      - identity/psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml

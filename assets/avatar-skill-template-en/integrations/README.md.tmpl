@@ -1,0 +1,11 @@
+# Integrations
+
+This layer records external system access intent, permission scope, and token storage policy.
+
+Rules:
+
+- Do not commit tokens, app secrets, cookies, refresh tokens, or private keys.
+- GitHub permissions are recorded in `integrations/github.yml`.
+- Feishu/Lark permissions are recorded in `integrations/feishu.yml`.
+- Hermes incremental sync is recorded in `integrations/hermes.yml`.
+- Real secrets belong in local environment variables, a password manager, or platform secret storage.

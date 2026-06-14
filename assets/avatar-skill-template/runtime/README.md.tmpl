@@ -1,0 +1,11 @@
+# Runtime 运行现场
+
+这一层回答：“{{REPO_NAME}} 现在实际在做什么？”
+
+Runtime 是活动现场，不是长期结论库。agent 在这里启动 sessions、调用 runtime skills、产生 outputs、observations 和 lessons。完成后的经验先进入 `runtime/runtime-lessons/`，再由 `evolution/` 判断是否需要沉淀为长期能力、身份更新或工作索引。
+
+## 子目录
+
+- `sessions/`：一次任务、一次对话、一次执行流的公开安全索引。
+- `runtime-skills/`：执行期可调用或候选的 runtime skill 说明。
+- `runtime-lessons/`：运行中观察到的 lesson-event、失败模式和可复盘材料。

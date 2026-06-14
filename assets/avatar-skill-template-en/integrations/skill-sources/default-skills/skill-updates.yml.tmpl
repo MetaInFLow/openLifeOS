@@ -1,0 +1,29 @@
+status: configured
+update_policy: owner-reviewed
+rule: Complete self-evolution skills are installed under evolution/organ-systems/; by default they are pulled from GitHub latest release archives as normal directories, not submodules. Updates must produce a diff and require owner confirmation before replacing local Skills.
+default_source:
+  provider: github
+  repo: "{{DEFAULT_SKILLS_REPO}}"
+  ref: "{{DEFAULT_SKILLS_REF}}"
+  path: integrations/skill-sources/default-skills
+skills:
+  wenxin:
+    local_path: evolution/organ-systems/wenxin
+    github_repo: "{{WENXIN_SKILL_REPO}}"
+    ref: latest
+    update_mode: owner-reviewed-release-archive
+  psp:
+    local_path: evolution/organ-systems/psp
+    github_repo: "{{PSP_SKILL_REPO}}"
+    ref: latest
+    update_mode: owner-reviewed-release-archive
+  ipo-reverse:
+    local_path: evolution/organ-systems/ipo-reverse
+    github_repo: "{{IPO_REVERSE_SKILL_REPO}}"
+    ref: latest
+    update_mode: owner-reviewed-release-archive
+  taste-generator:
+    local_path: evolution/organ-systems/taste-generator
+    github_repo: "{{TASTE_GENERATOR_SKILL_REPO}}"
+    ref: latest
+    update_mode: owner-reviewed-release-archive

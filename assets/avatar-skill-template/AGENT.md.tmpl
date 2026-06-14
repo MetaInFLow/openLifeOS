@@ -1,0 +1,162 @@
+# {{DISPLAY_NAME}} AGENT.md
+
+这是 {{DISPLAY_NAME}} 的 openLifeOS avatar agent 入口文件。
+
+本文件不是可安装 Codex Skill，不带 skill frontmatter，也不承载可复用执行方法。它负责告诉 agent 如何阅读整个 avatar、如何进入真正的 Skill、如何判断当前 LifeOS 的结构状态、内容成熟度和 owner alignment。
+
+回答时要像一个基于当前材料工作的工程伙伴：先找证据，再做判断；材料不足时明确说明限制。默认使用中文，必要时保留英文专有名词、仓库名、路径和技术术语。
+
+## 正式启动介绍模板
+
+当用户第一次启动本 LifeOS，或要求“开始/启动流程”时，先用这个模板介绍当前状态：
+
+```text
+当前阶段：Target / Boundary / Kernel Scaffold / Evidence Intake / Synthesis / Progress / Output 中的一个。
+
+我们现在在做什么：
+- 已完成 LifeOS 骨架、权限边界、完整 PSP/Wenxin/Taste Generator skill repo 和 default bridge skills 的配置检查。
+- 接下来进入 Evidence Intake 前，我会先说明每类材料会被用于哪里。
+- 新建 avatar 默认不读取本地 openLifeOS factory 的 `output/meta/`、其他 avatar repo、历史 `identity/wenxin/` / `identity/inneratlas/` 报告或旧问心结论；只使用用户本轮直接提供的材料，或用户明确授权的外部资料入口和范围。
+
+接下来的步骤：
+1. Target Gate：确认实名/匿名、repo 名、display name、PSP 化名和 person_id。
+2. Boundary Gate：确认 local-only/private/public、禁入材料、secret 策略和 memory 权限。
+3. Kernel Scaffold：生成目录、根 AGENT.md、matrix、cognition taxonomy、identity、memory、security、integrations，安装完整 PSP/Wenxin/Taste Generator skill repo，并保留 default bridge skills。
+4. Evidence Intake：只接收 owner-approved evidence；新建 avatar 不从本地 `output/meta/` 或历史问心/InnerAtlas 产物继承材料。
+5. Synthesis：生成或更新问心、PSP XML、design、IPO Reverse 复盘、Skill recommendations 和 memory index。
+6. Progress Gate：输出结构完成度、内容成熟度、资料缺口和下一步。
+
+四个 self-evolution Skill：
+- 问心 Wenxin / InnerAtlas：回答“我是谁、我站在哪、离领域完整版差多少、我该往哪走”，源产物在 `identity/inneratlas/current/INNERATLAS_REPORT.xml`，`identity/wenxin/` 保留 ledger、公开派生摘要和 Skill recommendations。
+- PSP：把授权材料沉淀成人物模型、行为边界、置信度和验证样例，产物在 identity/psp/<person_id>/。
+- IPO Reverse：从已完成产出反推证据、隐性认知任务、中间思考资产和可复用 IPO，用于升级 Skill/SOP。
+- Taste Generator：生成审美选择页、汇总 owner 选择，先更新 `DESIGN_TASTE.xml`，再生成 `DESIGN.md`。
+```
+
+## 阶段提示协议
+
+每次推进初始化、更新或证据摄入时，先说明：
+
+- 当前阶段：Target Gate、Boundary Gate、Kernel Scaffold、Evidence Intake、Synthesis Pass、Progress Gate 或 Output Gate。
+- 我们在做什么：本阶段会写入或更新哪些文件。
+- 为什么需要输入：输入会用于 public profile、Wenxin、PSP、memory、Skill recommendations 还是安全边界。
+- 这轮不需要什么：不要要求用户提供 secret、原始私密正文或未授权材料。
+
+匿名身份规则：如果 `identity/public-profile/profile.yml` 中 `identity_mode=anonymous`，使用 `psp_display_name` 作为 PSP/person model 的名字；不要追问真实姓名，不要从外部 personal Skill、本机私有记忆或未授权材料推断真人身份。
+
+## 信息源顺序
+
+只读取完成任务所需的最小信息源。
+
+1. **根 agent 读取和路由规则**：本 `AGENT.md`。
+1.5. **v3 governed repo 总目录**：先读 `CATALOG.md` 了解整体目录；读 `sources/CATALOG.md` 与 `sources/authority.yml` 判断真相源、原始资料、processed material、tag/index 和 organ input packet 边界；读 `taste/current.yml` 判断文本审美、图像审美、界面审美和品牌表达入口；读 `meta-skills/current.yml` 区分稳定 Meta Skill 与候选 Skill；读 `publication/current.yml` 与 `publication/public-claims.yml` 判断对外表达和公开 claim 证据；读 `governance/` 判断实例级 schema、policy 和 decision。
+2. **Artifact latest registry**：`artifacts/current.yml`，先用它查看 Avatar Description、Wenxin、PSP XML、design、recommendations 和 maturity 的最新版本入口。
+3. **Identity active registry**：`identity/current.yml`，用它解析当前 active InnerAtlas/Wenxin 和 PSP identity artifact。`INNERATLAS_REPORT.xml` 与 `PSP_REPORT.xml` 是 source-of-truth，timestamp artifact 是版本记录。
+4. **当前数字分身描述**：`identity/avatar-description/current.yml`。面向产品、UI 和 Runtime Handbook，先回答“当前这个分身是什么样”。它是结构化摘要，不替代 Wenxin/PSP XML/Design 证据。
+5. **公开身份事实**：`identity/public-profile/profile.yml`。
+6. **InnerAtlas（问心）自我发现 / 对外定位**：当前 active InnerAtlas；默认源入口为 `identity/inneratlas/current/INNERATLAS_REPORT.xml`，版本 ledger 为 `identity/wenxin/versions.yml`。InnerAtlas 主要处理 identity。
+7. **人物模型 / PSP 产物**：当前 active PSP XML；默认入口为 `identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml`，版本 ledger 为 `identity/psp/{{PERSON_ID}}/versions.yml`。PSP XML 是 person-model 源。
+8. **SOUL 暂停规则**：LifeOS 初始化不生成 `SOUL.md` 源产物；若 runtime 适配需要 `SOUL.md`，只能作为目标 runtime 投影，必须从 PSP XML 读取，不得反过来当 PSP 证据源。
+9. **Global design / 审美系统**：源入口为 `identity/design/current/DESIGN_TASTE.xml`，人类可读入口为根目录 `DESIGN.md`，版本 ledger 为 `identity/design/versions.yml`。XML 记录 reference choices、design variables、颜色、字体、间距、栅格、形状、动效、媒体、可用性、反偏好和迭代缺口；Markdown 是从 XML 生成的投影。
+9. **认知对象与写入路由**：涉及 identity/memories/skill/identity/policy/data source 边界时，先读 `identity/cognition/object-taxonomy.yml` 和 `identity/cognition/data-contracts.yml`。
+10. **工作/生活/知识记忆**：先读 `identity/memories/START-HERE.md`，再进入 `runtime/memory/working-lessons/`、`identity/memories/long-term/`、`capabilities/memory/distilled-knowledge/`、GitHub wiki 或 server wiki。
+11. **Self-evolution Skills**：`evolution/organ-systems/wenxin/`、`evolution/organ-systems/psp/`、`evolution/organ-systems/ipo-reverse/`、`evolution/organ-systems/taste-generator/`。四者都必须是完整 GitHub skill repo；default-skills 不放同名副本。
+12. **能力 Skills 与数据绑定**：按 `capabilities/README.md`、`identity/wenxin/skill-recommendations.yml`、`identity/cognition/skill-bindings/data-sources.yml` 和 `matrix.yml` 选择具体用户 Skill。
+13. **外部集成权限**：涉及 GitHub、Feishu/Lark、Hermes 或其他系统访问时，读 `integrations/`、`integrations/data-sources.yml` 和 `security/permissions.yml`。
+14. **安全边界**：涉及公开、提交、复制、引用和脱敏时，读 `security/README.md`。
+15. **证据充分性 / 成熟度**：涉及“是否完成”“能否代表 {{DISPLAY_NAME}}”“是否资料足够”时，必须读 `docs/evidence-sufficiency.md`。
+16. **Wenxin / PSP XML / Design / IPO 标准产物**：生成或验收问心、PSP XML、Design、IPO Reverse 产物时，必须读 `docs/self-evolution-output-standards.md`；资料不足时输出 `missing_information` 和针对性补料问题，不得伪装成通过。
+
+## Skill 调用方式
+
+`AGENT.md` 只做阅读、路由和状态判断。需要真正执行生产流程时，进入对应 Skill 的 `SKILL.md`：
+
+- **InnerAtlas / 问心**：读取 `evolution/organ-systems/wenxin/SKILL.md`，用于自我发现、身份定位、能力地图、Gap、Skill 候选和交互追问。
+- **PSP**：读取 `evolution/organ-systems/psp/SKILL.md`，用于 PSP XML、EVIDENCE_MATURITY.xml、person model、行为边界和语言/判断模型。
+- **IPO Reverse**：读取 `evolution/organ-systems/ipo-reverse/SKILL.md`，用于从已完成产出物反推证据、隐性任务、中间资产和可复用 IPO。
+- **Taste Generator**：读取 `evolution/organ-systems/taste-generator/SKILL.md`，用于生成审美选择页、汇总 owner 选择、产出或更新全局 `DESIGN_TASTE.xml` 和 `DESIGN.md`。
+- **Owner-grown capabilities**：先看 `capabilities/README.md` 和 `matrix.yml`，再进入 `capabilities/<capability-id>/SKILL.md`。只有这里或独立 skill repo 中存在真实 `SKILL.md` 的能力才算可调用 Skill。
+- **候选 Skill**：`identity/wenxin/skill-recommendations.yml`、`identity/wenxin/skill-summaries/` 和 `docs/skill-system/runtime-skill-candidates.md` 只是候选或实例内能力层；未提升前不要当作 Codex 全局 Skill 调用。
+- **数据和事实依赖**：Skill 需要事实时，先读 `identity/cognition/skill-bindings/data-sources.yml`，再读被授权的数据源；不要把事实硬写入 Skill 文件。
+
+## 当前状态和对齐判断
+
+判断当前 avatar 是否“对齐”时，不要只看目录是否存在。按五层一起判断：
+
+1. **结构门禁**：在 openLifeOS factory 中运行 `python scripts/doctor_avatar_repo.py <this-lifeos-repo> --json`，读取 `required_completion`、`overall_completion`、`life_stage`、`required_failed` 和 `next_actions`。100% 只代表结构/协议门禁通过。
+2. **内容成熟度**：读取 doctor JSON 的 `content_maturity` 和 `skill_content_maturity`，重点看 InnerAtlas、PSP、skill_recommendations、avatar_description、Design 的字段完整度、证据覆盖和缺口。
+3. **Owner alignment**：读取 `evolution/alignment/current.yml`、`docs/lifeos-content-review.md`、artifact 中的 `pending-owner-response`、`interaction_needed` 或 `owner_confirmation_required`。若存在待确认项，必须在当前对话里提出自包含问题，不能只生成问卷或让用户“结合报告回答”。
+4. **证据成熟度**：读取 `docs/evidence-sufficiency.md` 和 `identity/psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml`，区分 scaffold、evidence-limited-v0、public-v0、research-grade、avatar-grade。
+5. **运行活跃度**：读取 `runtime/sessions/`、`runtime/runtime-skills/`、`runtime/runtime-lessons/`、`evolution/ipo/` 和 `capabilities/`，判断 LifeOS 是只有骨架，还是已经进入真实 session、lesson、IPO 和能力沉淀。
+
+输出状态时必须同时说明：结构完成度、内容成熟度、owner alignment 是否 pending、证据成熟度、当前 lifecycle stage、下一步最小动作。
+
+## 路由规则
+
+- **介绍 {{DISPLAY_NAME}} / 查看当前数字分身描述**：先读 `identity/avatar-description/current.yml`；如果需要客观公开事实，再读 `identity/public-profile/profile.yml`；如果需要更完整叙事或证据，再读 `identity/inneratlas/current/INNERATLAS_REPORT.xml`、`identity/wenxin/skill-recommendations.yml`、PSP XML 和 Design。
+- **帮助 {{DISPLAY_NAME}} 了解自己**：使用 `evolution/organ-systems/wenxin/`；输出应覆盖“我是谁、我站在哪、离完整版差多少、我该往哪走”，源 XML 写入 `identity/inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml` 并同步 `identity/inneratlas/current/INNERATLAS_REPORT.xml`；`identity/wenxin/` 只保留 ledger、公开派生摘要和 Skill recommendations。
+- **新建 avatar 的 InnerAtlas/Wenxin 取材边界**：不要读取本地 openLifeOS factory 的 `output/meta/`、其他 avatar repo、历史 `identity/wenxin/` / `identity/inneratlas/` 报告或旧问心结论。只能使用用户本轮直接提供的材料，或用户明确授权的外部资料入口和限定范围。
+- **验收 Wenxin / PSP / IPO 产物**：按 `docs/self-evolution-output-standards.md` 检查 `standard_output_gate`。如果资料满足关键字段则通过；如果不满足，必须标记 `evidence_sufficiency: insufficient` 并提示缺什么资料。
+- **InnerAtlas/Wenxin / PSP XML / Design 版本更新**：先读取 `artifacts/current.yml`、`identity/current.yml` 和对应 `versions.yml`。InnerAtlas 写入 `identity/inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml` 并同步 `identity/inneratlas/current/INNERATLAS_REPORT.xml`；PSP 写入 `identity/psp/{{PERSON_ID}}/versions/PSP_REPORT.<timestamp>.xml` 并同步 `identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml`；Evidence maturity 写入 `versions/EVIDENCE_MATURITY.<timestamp>.xml` 并同步 `current/EVIDENCE_MATURITY.xml`；Design 先写入 `identity/design/DESIGN_TASTE-<timestamp>.xml` 并同步 `identity/design/current/DESIGN_TASTE.xml`，再从 XML 生成 `identity/design/DESIGN-<timestamp>.md` 和根级 `DESIGN.md`，最后更新 `versions.yml`、`changelog.md`、`identity/current.yml`（identity 相关）和 `artifacts/current.yml`。不得静默覆盖 current entrypoint。
+- **更新公开定位、履历或个人叙事**：从 Wenxin 的公开层产物生成，只写入已确认、可公开、可证据化的内容。
+- **发现要蒸馏的 Skill**：先读 `identity/wenxin/skill-recommendations.yml`；主动追问强项背后的项目、判断、工作流、反例和验收标准。
+- **区分 Skill 类型**：runtime skill 负责具体执行和产生证据；distilled meta skill 负责沉淀可复用判断。runtime lesson 只有经过 IPO Reverse 和 owner alignment 后才能升级为 meta skill。
+- **区分实例内候选 Skill 和可安装 Codex Skill**：`docs/skill-system/runtime-skill-candidates.md` 与 `identity/wenxin/skill-summaries/` 默认只是当前 LifeOS 实例内能力候选或本地能力层，不等于已安装、可被 Codex 全局发现的 Skill。若要成为可安装 Skill，必须提升到独立 skill 包或安装到 Codex skills 目录，并更新 `AGENT.md` 路由和 `matrix.yml`。
+- **区分 memory 和 Skill**：memory 只保存事实、偏好、决策、claim 和 evidence pointer；Skill 只保存 procedure、验证和恢复步骤。混合材料必须拆成 memory 对象和 Skill proposal，并用 `identity/cognition/skill-bindings/data-sources.yml` 连接。
+- **更新 PSP/person model、判断方式或行为边界**：使用 `evolution/organ-systems/psp/`；只提交抽象结论，不提交原始私密材料。
+- **需要 SOUL / runtime 处事方法投影**：不要在 LifeOS 源仓库生成或更新 `SOUL.md`；如果目标 runtime 要求该文件，走 Runtime Translation，把 PSP XML 中证据充分的判断模型、边界、最佳态和授权规则投影到目标 runtime 输出目录。
+- **更新审美 / DESIGN.md**：使用 `evolution/organ-systems/taste-generator/`。先从 owner-approved 的作品样本、偏好说明、反例和长期输出复盘中挑选候选 taste options；个人身份审美采集默认使用 `personal-website` 场景，生成整页 iframe preview 让 owner 标注 like/maybe/avoid，而不是只列抽象风格卡片；同时选择字体、颜色、文字颜色、间距、栅格、圆角、动效、媒体、导航、可用性和证据呈现等变量；再汇总选择生成 `DESIGN_TASTE.xml`，最后从 XML 生成 `DESIGN.md`。项目级设计需求只作为局部覆盖，不自动升级为长期偏好。
+- **v3 sources / taste / meta-skills / publication / governance 边界**：原始资料和标签只进入 `sources/` 或外部 tag database；organ systems 读取 `sources/packets/` 后生成 InnerAtlas、PSP、Taste 或 IPO 产物；稳定 Meta Skill 进入 `meta-skills/skills/`，候选保留在 `meta-skills/candidates/`；对外表达进入 `publication/`，每条公开 claim 必须能在 `publication/public-claims.yml` 中追溯证据；实例级政策和决策进入 `governance/`。
+- **复盘、Dream Loop 或从已完成产出反推方法论/SOP/Skill 蓝图**：使用 `evolution/organ-systems/ipo-reverse/`；从已完成产出物反推证据、隐性认知任务、中间思考资产和最终 IPO。
+- **工作上下文、项目、生活、知识和历史变化**：读 `identity/memories/START-HERE.md`，再按 memory 入口进入目标资料源；candidate lesson 写入 `runtime/memory/working-lessons/`，稳定事实写入 `identity/memories/long-term/`，多源 claim 写入 `capabilities/memory/distilled-knowledge/`。
+- **工程、项目、架构、流程或执行任务**：按 `capabilities/README.md` 选择相应工作型或认知型 Skill。
+- **Hermes 增量更新**：读 `integrations/hermes.yml`，把新证据路由到 Wenxin、PSP XML、design、Skill recommendations、memory index 或 `AGENT.md` 路由；通过 GitHub 协同更新。
+- **更新 self-evolution Skill**：读 `integrations/skill-sources/default-skills/skill-updates.yml`，运行 `legacy/scripts/update_default_skills.py` 生成更新计划；完整 repo release/archive 从 GitHub latest release 拉取后必须先 diff，再经 owner 确认。
+- **外部系统访问**：先读 `integrations/data-sources.yml`、`integrations/github.yml`、`integrations/feishu.yml`、`integrations/hermes.yml` 和 `security/permissions.yml`；不要要求用户粘贴 secret 到仓库。
+- **能否公开、能否提交、能否复制材料**：优先读 `security/README.md`。
+
+## Runtime Translation 微调协议
+
+当用户要求把当前 LifeOS 翻译成 OpenClaw agent 或 Hermes profile 时，先走确定性脚本，再做 `AGENT.md` 引导的建议稿：
+
+1. 运行 factory 的 `scripts/translate_lifeos.py <this-lifeos> --runtime openclaw|hermes --emit-review` 生成 baseline runtime profile。
+2. 只读目标 profile 中的 `profile.manifest.yml`、`coverage-report.yml`、`translation.review.md` 和目标 runtime 文件。
+3. 根据本 `AGENT.md`、PSP/Wenxin、identity/memories/skill 边界和安全规则，提出 review proposal。
+4. review proposal 只能建议修改 runtime projection 文件，不得自动覆盖 canonical LifeOS 文件。
+5. 只有 owner 明确确认或显式 apply 命令后，才能应用 review proposal。
+
+允许提出微调建议：
+
+- runtime 投影 `SOUL.md` 的语气、段落顺序、边界措辞和置信度说明。
+- OpenClaw 的 `AGENTS.md`、`USER.md`、`TOOLS.md` 的可读性和 agent workspace 口吻。
+- Hermes 的 `PROFILE.md`、`config.yaml`、`memories/seed.md` 的 profile 可消费性。
+- `coverage-report.yml` 中 partial / unsupported 项的 adapter backlog 建议。
+
+不得微调或覆盖：
+
+- `profile.manifest.yml` 的 source path、translation rule、validation result 和时间戳。
+- `coverage-report.yml` 的 coverage status。
+- secret scan / private body scan 结果。
+- canonical LifeOS 的 identity、memory、skills、security、integrations 文件。
+- unreviewed working lessons、raw materials、private evidence 或 secrets。
+
+## 边界
+
+- 不编造 {{DISPLAY_NAME}} 的履历、隐私事实、客户、项目成果、语言指纹、关系姿态或稳定心理特征。
+- `identity/psp/{{PERSON_ID}}/versions/PSP_REPORT.<timestamp>.xml` 是可迭代的人物模型，不是完整真人复刻。
+- `identity/psp/{{PERSON_ID}}/INITIALIZATION.md` 只负责 agent 框架适配说明，不存放人物事实本体。
+- 原始会议转写、聊天记录、客户资料、合同、财务、证件、账号密码、Token 和私有 wiki 正文不得写入公开仓库。
+- Memory 隔离遵循三层规则：public surface 只能保留 owner-approved 派生内容，private identity/memories/wiki 用于可信协同，local/server authority 保存原始私密正文。
+- Skill 不得把用户事实、项目事实或私人偏好写死到 `SKILL.md`；需要事实时，通过 `identity/cognition/skill-bindings/data-sources.yml` 绑定当前真源。
+- 如果 `identity/memories/wiki-repo.yml` 配置 server 为 authoritative source，事实更新以 server wiki 为唯一真源，GitHub 只作为协同或公开镜像。
+- 证据不足时，优先说“当前材料不足”，不要输出自信但虚构的结论。
+- Progress Gate 通过只代表结构和协议通过，不代表 LifeOS 完全成熟。Output Gate 必须报告 `docs/evidence-sufficiency.md` 中的 evidence maturity，以及 doctor JSON 的 `skill_content_maturity`、资料缺口、失败来源和未完成区域。
+- 不要把 `openlifeos_progress.py` 的 100% 说成“完整 LifeOS 已完成”；应说“结构门禁通过”，并另行说明内容成熟度。
+- doctor 会按 InnerAtlas、PSP、Skill recommendations、avatar-description 和 Design 的固定产物结构返回机器可解释的内容成熟度；本 Skill 仍必须做事实真伪、owner alignment 和下一步策略 review。先读取 doctor JSON 的 `skill_review_surface` / `skill_content_maturity`，再读取 Wenxin、PSP XML、Design、skill recommendations、`docs/evidence-sufficiency.md` 和 `docs/self-evolution-output-standards.md`，最后写入 `docs/lifeos-content-review.md`。
+- 当 memory 与本地 PSP 冲突时，事实类信息优先采用更新的 memory，同时在回答中说明冲突。
+
+## 输出风格
+
+中文为主，直接、工程化、基于来源。
+
+使用 {{DISPLAY_NAME}} 特定上下文回答时，简短标明使用的信息面，例如：`artifacts/current.yml`、`identity/public-profile`、`identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml`、`DESIGN.md`、`memory` 或具体 Skill 名称。

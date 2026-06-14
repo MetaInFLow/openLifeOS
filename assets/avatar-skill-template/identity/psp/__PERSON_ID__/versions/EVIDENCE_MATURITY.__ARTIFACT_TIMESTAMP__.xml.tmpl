@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<evidence_maturity_report schema="psp.evidence-maturity.v1" person_id="{{PERSON_ID}}" generated_at="{{CREATED_AT}}" artifact_timestamp="{{ARTIFACT_TIMESTAMP}}" language="{{LANGUAGE}}">
+  <language_contract status="configured" confidence="high">
+    <output_language>{{LANGUAGE}}</output_language>
+    <content_language_policy>所有 evidence maturity 正文、未完成区域说明、失败来源说明和最终披露都必须使用 output_language。</content_language_policy>
+    <mixed_language_policy>原始引用、文件路径、XML 标签名、schema 名、产品名和协议固定术语保持原样。</mixed_language_policy>
+    <failure_policy>如果生成内容出现其他语言，必须先重新生成或翻译，再把 evidence maturity 标记为完成。</failure_policy>
+  </language_contract>
+  <metadata status="scaffold" confidence="insufficient">
+    <person_id>{{PERSON_ID}}</person_id>
+    <display_name>{{PSP_DISPLAY_NAME}}</display_name>
+    <output_language>{{LANGUAGE}}</output_language>
+    <current_entrypoint>current/EVIDENCE_MATURITY.xml</current_entrypoint>
+    <versioned_artifact>versions/EVIDENCE_MATURITY.{{ARTIFACT_TIMESTAMP}}.xml</versioned_artifact>
+  </metadata>
+  <maturity level="scaffold" confidence="insufficient">
+    <structure_readiness>schema-complete</structure_readiness>
+    <content_maturity>scaffold</content_maturity>
+    <meaning>结构已存在，但尚未分析 owner-approved evidence。</meaning>
+  </maturity>
+  <evidence_sources status="empty" confidence="insufficient">
+    <source_count>0</source_count>
+    <source_types />
+    <time_span>unknown</time_span>
+    <coverage />
+  </evidence_sources>
+  <unavailable_sources status="unassessed" confidence="insufficient" />
+  <incomplete_areas status="scaffold" confidence="insufficient">
+    <area module="kernel">需要冲突故事和高风险决策。</area>
+    <area module="ontology_map">需要世界观、人生观、价值与底线、角色与使命、方法与事实、决策与取舍、看人、业务/客户、表达/组织维度的证据。</area>
+    <area module="cognition">需要重复推理轨迹和归因例子。</area>
+    <area module="decision_model">需要包含背景、选项、行动和结果的决策案例。</area>
+    <area module="interaction_model">需要关系姿态和分歧样本。</area>
+    <area module="business_domain_model">需要领域特定操作模型和重复领域案例。</area>
+    <area module="language_fingerprint">需要正式、非正式和口语语言样本。</area>
+    <area module="delegation_boundary">需要授权边界、内部/外部表达边界和升级规则。</area>
+    <area module="confirmation_checklist">需要 owner 回答高影响确认问题。</area>
+    <area module="validation_plan">需要 holdout 案例和评估样本。</area>
+  </incomplete_areas>
+  <failed_sources status="empty" confidence="insufficient" />
+  <final_disclosure required="true">不要把 schema 完成等同于内容成熟。必须报告成熟度、缺失证据、失败来源和未完成模块。</final_disclosure>
+  <iteration_log status="append-only" confidence="high">
+    <entry timestamp="{{CREATED_AT}}" actor="init_person.sh" change="初始化 evidence maturity XML 结构。" />
+  </iteration_log>
+</evidence_maturity_report>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evidence_maturity_report schema="psp.evidence-maturity.v1" person_id="{{PERSON_ID}}" generated_at="{{CREATED_AT}}" artifact_timestamp="{{ARTIFACT_TIMESTAMP}}" language="{{LANGUAGE}}">
+  <language_contract status="configured" confidence="high">
+    <output_language>{{LANGUAGE}}</output_language>
+    <content_language_policy>All evidence maturity prose, incomplete-area descriptions, failed-source notes, and final disclosures must use output_language.</content_language_policy>
+    <mixed_language_policy>Preserve source quotes, file paths, XML tag names, schema names, product names, and canonical protocol terms as-is.</mixed_language_policy>
+    <failure_policy>If generated content appears in another language, regenerate or translate before marking evidence maturity complete.</failure_policy>
+  </language_contract>
+
+  <metadata status="scaffold" confidence="insufficient">
+    <person_id>{{PERSON_ID}}</person_id>
+    <display_name>{{PSP_DISPLAY_NAME}}</display_name>
+    <output_language>{{LANGUAGE}}</output_language>
+    <current_entrypoint>current/EVIDENCE_MATURITY.xml</current_entrypoint>
+    <versioned_artifact>versions/EVIDENCE_MATURITY.{{ARTIFACT_TIMESTAMP}}.xml</versioned_artifact>
+  </metadata>
+  <maturity level="scaffold" confidence="insufficient">
+    <structure_readiness>schema-complete</structure_readiness>
+    <content_maturity>scaffold</content_maturity>
+    <meaning>Structure exists; no owner-approved evidence has been analyzed yet.</meaning>
+  </maturity>
+  <evidence_sources status="empty" confidence="insufficient">
+    <source_count>0</source_count>
+    <source_types/>
+    <time_span>unknown</time_span>
+    <coverage/>
+  </evidence_sources>
+  <unavailable_sources status="unassessed" confidence="insufficient"/>
+  <incomplete_areas status="scaffold" confidence="insufficient">
+    <area module="kernel">Need conflict stories and high-stakes decisions.</area>
+    <area module="ontology_map">Need evidence for worldview, lifeview, values and bottom lines, role and mission, methodology and facts, decision and tradeoff, people, business/customer, and expression/organization dimensions.</area>
+    <area module="cognition">Need repeated reasoning traces and attribution examples.</area>
+    <area module="decision_model">Need decision cases with context, options, action, and outcome.</area>
+    <area module="interaction_model">Need relationship and disagreement samples.</area>
+    <area module="business_domain_model">Need domain-specific operating models and repeated domain cases.</area>
+    <area module="language_fingerprint">Need formal, informal, and spoken language samples.</area>
+    <area module="delegation_boundary">Need authorization boundary, internal/external expression boundary, and escalation rules.</area>
+    <area module="confirmation_checklist">Need owner answers to high-impact confirmation questions.</area>
+    <area module="validation_plan">Need holdout cases and evaluation samples.</area>
+  </incomplete_areas>
+  <failed_sources status="empty" confidence="insufficient"/>
+  <final_disclosure required="true">Do not equate schema completion with content maturity. Report maturity level, missing evidence, failed sources, and incomplete modules.</final_disclosure>
+  <iteration_log status="append-only" confidence="high">
+    <entry timestamp="{{CREATED_AT}}" actor="init_person.sh" change="Initialized evidence maturity XML scaffold."/>
+  </iteration_log>
+</evidence_maturity_report>

@@ -1,0 +1,28 @@
+# Skills
+
+This layer contains real Skill packages only.
+
+Root scenario map: `SKILLS-CATALOG.html`. It explains when each pluggable meta skill should be used. Do not write fixed counts such as "there are N skills"; the skill set can change whenever skills are added or removed.
+
+Rule: `capabilities/` may contain container directories, but every branch must eventually end at a `SKILL.md`. Recommendations, summaries, data bindings, source metadata, candidate notes, and runtime projections do not belong here.
+
+## Base Skills
+
+- `self-evolution/wenxin/SKILL.md`: Wenxin Skill.
+- `self-evolution/psp/SKILL.md`: PSP Skill.
+- `self-evolution/ipo-reverse/SKILL.md`: IPO Reverse Skill.
+
+## Non-Skill Artifact Placement
+
+- Skill recommendations: `identity/wenxin/skill-recommendations.yml`.
+- Skill summaries and capability notes: `identity/wenxin/skill-summaries/`.
+- Skill-to-identity/memories/wiki/source bindings: `identity/cognition/skill-bindings/`.
+- Factory bridge and source update metadata: `integrations/skill-sources/`.
+- Runtime Skill candidate notes: `docs/skill-system/`.
+
+## Placement Policy
+
+- A new capability enters `capabilities/<skill-id>/` only after it has a runnable or routable `SKILL.md`.
+- A new Meta Skill entering `capabilities/<skill-id>/` must also include `SKILLS-CATALOG.html`, describing usage scenarios, inputs, outputs, boundaries, and composition with other meta skills.
+- Facts, preferences, and long-term context stay out of Skill files; read them through `identity/memories/`, the configured memory wiki, or `identity/cognition/skill-bindings/`.
+- Recommendations, summaries, and evidence gates stay in the Wenxin layer until IPO Reverse, owner alignment, and privacy review promote them into a real Skill.

@@ -1,0 +1,9 @@
+required_fields:
+  - id
+  - source_lifeos
+  - target_runtime
+  - identity
+  - memory
+  - skills
+  - policies
+  - maturity

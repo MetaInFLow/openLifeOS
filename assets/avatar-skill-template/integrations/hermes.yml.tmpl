@@ -1,0 +1,8 @@
+enabled: true
+update_cadence: on-new-evidence
+source_usage: github-events, feishu-export, wiki-diff, manual-approved-material
+targets: identity/wenxin, identity/psp, identity/wenxin/skill-recommendations, identity/memories/index, AGENT.md
+github_collaboration: pull-request-or-commit
+token_policy: env-only-or-platform-secret
+status: scaffold
+rule: Hermes 只处理授权材料和安全摘要；不要把 token、私密正文或未脱敏原始材料写入 repo。

@@ -1,0 +1,359 @@
+<?xml version='1.0' encoding='utf-8'?>
+<psp_report schema="psp.report.v1" person_id="{{PERSON_ID}}" generated_at="{{CREATED_AT}}" artifact_timestamp="{{ARTIFACT_TIMESTAMP}}" language="{{LANGUAGE}}">
+  <language_contract status="configured" confidence="high">
+    <output_language>{{LANGUAGE}}</output_language>
+    <content_language_policy>所有 PSP 报告正文、缺失信息提示、确认问题、派生可读版本、runtime prompt、验证报告和最终披露都必须使用 output_language。</content_language_policy>
+    <mixed_language_policy>原始引用、文件路径、XML 标签名、schema 名、产品名和协议固定术语保持原样。不要让模板正文漂移到其他语言。</mixed_language_policy>
+    <failure_policy>如果生成内容出现其他语言，必须先重新生成或翻译，再把 PSP 产物标记为完成。</failure_policy>
+  </language_contract>
+  <metadata status="scaffold" confidence="insufficient">
+    <person_id>{{PERSON_ID}}</person_id>
+    <display_name>{{PSP_DISPLAY_NAME}}</display_name>
+    <output_language>{{LANGUAGE}}</output_language>
+    <protocol_version>2.1</protocol_version>
+    <canonical_format>xml</canonical_format>
+    <current_entrypoint>current/PSP_REPORT.xml</current_entrypoint>
+    <versioned_artifact>versions/PSP_REPORT.{{ARTIFACT_TIMESTAMP}}.xml</versioned_artifact>
+    <derived_artifacts allowed="true">可以生成 Markdown 或 HTML 作为可读版本，但不得成为 source of truth。</derived_artifacts>
+    <soul_policy>PSP 不生成 SOUL.md。只有目标 runtime 框架确实需要时，才可以单独生成 runtime projection。</soul_policy>
+  </metadata>
+  <evidence_maturity schema="psp.evidence-maturity.v1" status="scaffold" confidence="insufficient">
+    <level>scaffold</level>
+    <meaning>结构已存在，但尚未分析 owner-approved evidence。</meaning>
+    <structure_readiness>schema-complete</structure_readiness>
+    <content_maturity>scaffold</content_maturity>
+    <source_count>0</source_count>
+    <source_types />
+    <unavailable_sources />
+    <incomplete_areas>
+      <area>kernel</area>
+      <area>ontology_map</area>
+      <area>cognition</area>
+      <area>decision_model</area>
+      <area>interaction_model</area>
+      <area>business_domain_model</area>
+      <area>language_fingerprint</area>
+      <area>best_state</area>
+      <area>delegation_boundary</area>
+      <area>confirmation_checklist</area>
+      <area>validation_plan</area>
+    </incomplete_areas>
+    <evidence>none</evidence>
+    <missing_evidence>需要已授权的正式/非正式材料、冲突故事、决策案例、语言样本和验证案例。</missing_evidence>
+  </evidence_maturity>
+  <source_inventory status="empty" confidence="insufficient">
+    <sources />
+    <coverage time_span="unknown" formal_material="missing" informal_material="missing" word_count="0" conflict_story_count="0" />
+    <evidence>none</evidence>
+    <missing_evidence>列出每个已授权来源的类型、日期范围、隐私等级和表演系数。</missing_evidence>
+  </source_inventory>
+  <evidence_boundary status="scaffold" confidence="insufficient">
+    <allowed_sources />
+    <excluded_sources />
+    <privacy_boundary>不要把私密原始材料复制进公开产物；只使用来源指针或不可逆摘要。</privacy_boundary>
+    <claim_policy>每条非空模型判断都必须引用证据指针，或标记为 hypothesis、unassessed、not_extractable。</claim_policy>
+    <evidence>none</evidence>
+    <missing_evidence>需要 owner-approved 的来源边界和发布边界。</missing_evidence>
+  </evidence_boundary>
+  <ontology_map status="unassessed" confidence="insufficient">
+    <purpose>抽取此人自己的本体论和判断系统，而不是通用知识库或工具清单。</purpose>
+    <dimensions>
+      <worldview status="unassessed" confidence="insufficient">
+        <question>这个人认为现实世界如何运作？</question>
+        <claims />
+        <evidence>none</evidence>
+        <missing_evidence>需要关于市场、组织、人、因果、约束和现实校验的重复解释。</missing_evidence>
+      </worldview>
+      <lifeview status="unassessed" confidence="insufficient">
+        <question>这个人认为人生为了什么？</question>
+        <claims />
+        <evidence>none</evidence>
+        <missing_evidence>需要关于意义、过程、快乐、责任、野心和取舍的表述与选择。</missing_evidence>
+      </lifeview>
+      <values_and_bottom_lines status="unassessed" confidence="insufficient">
+        <question>发生冲突时，什么被优先保护？</question>
+        <ranked_values />
+        <bottom_lines />
+        <evidence>none</evidence>
+        <missing_evidence>需要能看出保护了什么、牺牲了什么、拒绝了什么的冲突案例。</missing_evidence>
+      </values_and_bottom_lines>
+      <role_and_mission status="unassessed" confidence="insufficient">
+        <question>这个人把自己放在系统里的什么位置？</question>
+        <roles />
+        <mission_statements />
+        <organizational_translation />
+        <evidence>none</evidence>
+        <missing_evidence>需要自我定位、责任范围，以及把个人经验转成组织方法的例子。</missing_evidence>
+      </role_and_mission>
+      <methodology_and_fact_view status="unassessed" confidence="insufficient">
+        <question>这个人如何识别问题，并判断什么算事实？</question>
+        <fact_gates />
+        <method_rules />
+        <evidence>none</evidence>
+        <missing_evidence>需要解题轨迹、事实/数据要求、门禁语言，以及因为条件缺失而暂停行动的案例。</missing_evidence>
+      </methodology_and_fact_view>
+      <decision_and_tradeoff_view status="unassessed" confidence="insufficient">
+        <question>这个人如何从事实走向判断？</question>
+        <decision_questions />
+        <tradeoff_rules />
+        <scenario_speeds />
+        <evidence>none</evidence>
+        <missing_evidence>需要决策检查表、危机/人才/新业务案例、显式取舍和成本承认。</missing_evidence>
+      </decision_and_tradeoff_view>
+      <human_and_talent_view status="unassessed" confidence="insufficient">
+        <question>这个人如何看人、用人、评价人并追责？</question>
+        <people_model />
+        <accountability_model />
+        <role_standards />
+        <evidence>none</evidence>
+        <missing_evidence>需要招聘、晋升、授权、追责、替换和长期信任案例。</missing_evidence>
+      </human_and_talent_view>
+      <business_and_customer_view status="unassessed" confidence="insufficient">
+        <question>这个人如何理解业务、客户、效率、现金流、数据和经营闭环？</question>
+        <business_principles />
+        <customer_model />
+        <operating_metrics />
+        <evidence>none</evidence>
+        <missing_evidence>需要业务复盘、客户旅程模型、指标、售后闭环和操作系统案例。</missing_evidence>
+      </business_and_customer_view>
+      <expression_and_organization_view status="unassessed" confidence="insufficient">
+        <question>这个人如何把判断变成别人可以执行的语言？</question>
+        <signature_phrases />
+        <pressure_language_boundaries />
+        <external_translation_rules />
+        <execution_carriers />
+        <evidence>none</evidence>
+        <missing_evidence>需要内部/外部表达、高压语言、公开柔化表述，以及分配执行载体的例子。</missing_evidence>
+      </expression_and_organization_view>
+    </dimensions>
+  </ontology_map>
+  <kernel status="unassessed" confidence="insufficient">
+    <ultimate_value_order status="unassessed" confidence="insufficient">
+      <values />
+      <conflicts />
+      <runtime_use>在没有冲突故事或高风险决策前，不要推断价值排序。</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>需要至少五个双向取舍故事和重复的高风险决策。</missing_evidence>
+    </ultimate_value_order>
+    <boundaries status="unassessed" confidence="insufficient">
+      <items />
+      <runtime_use>在观察到重复边界行为前，不要声称硬边界。</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>需要触发边界的场景、拒绝、升级和修复行为。</missing_evidence>
+    </boundaries>
+    <drivers status="unassessed" confidence="insufficient">
+      <items />
+      <runtime_use>不要只根据自我描述推断动机。</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>需要重复的自愿投入、牺牲和持续模式。</missing_evidence>
+    </drivers>
+    <identity_self_definition status="unassessed" confidence="insufficient">
+      <labels />
+      <anti_labels />
+      <runtime_use>只使用 owner-aligned 或有行为证据支持的身份语言。</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>需要公开、私下和高压场景下的自我定义。</missing_evidence>
+    </identity_self_definition>
+  </kernel>
+  <cognition status="unassessed" confidence="insufficient">
+    <world_assumptions status="unassessed" confidence="insufficient">
+      <items />
+      <evidence>none</evidence>
+      <missing_evidence>需要关于世界、人、组织或市场如何运作的重复解释。</missing_evidence>
+    </world_assumptions>
+    <attribution_patterns status="unassessed" confidence="insufficient">
+      <matrix />
+      <evidence>none</evidence>
+      <missing_evidence>需要对自己和他人成功/失败的归因解释。</missing_evidence>
+    </attribution_patterns>
+    <attention_filter status="unassessed" confidence="insufficient">
+      <sequence />
+      <blind_spots />
+      <evidence>none</evidence>
+      <missing_evidence>需要会议记录、review 评论、决策和被忽略变量的例子。</missing_evidence>
+    </attention_filter>
+    <analogy_domains status="unassessed" confidence="insufficient">
+      <domains />
+      <association_paths />
+      <evidence>none</evidence>
+      <missing_evidence>需要隐喻、类比、比较和重复出现的框架领域。</missing_evidence>
+    </analogy_domains>
+  </cognition>
+  <decision_model status="unassessed" confidence="insufficient">
+    <decision_style status="unassessed" confidence="insufficient">
+      <dimensions />
+      <evidence>none</evidence>
+      <missing_evidence>需要包含背景、选项、选择、放弃项和结果的决策案例。</missing_evidence>
+    </decision_style>
+    <information_threshold status="unassessed" confidence="insufficient">
+      <value />
+      <evidence>none</evidence>
+      <missing_evidence>需要不确定性下行动和等待更多数据的例子。</missing_evidence>
+    </information_threshold>
+    <risk_policy status="unassessed" confidence="insufficient">
+      <value />
+      <evidence>none</evidence>
+      <missing_evidence>需要风险选择、可逆性敏感度、下行边界和复盘。</missing_evidence>
+    </risk_policy>
+    <conflict_resolution status="unassessed" confidence="insufficient">
+      <patterns />
+      <evidence>none</evidence>
+      <missing_evidence>需要分歧、谈判、升级和妥协故事。</missing_evidence>
+    </conflict_resolution>
+    <judgment_patterns status="unassessed" confidence="insufficient">
+      <patterns />
+      <runtime_use>每个模式都应是 情境 -&gt; 判断 -&gt; 行动 -&gt; 结果 的元组。</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>每个升级为稳定模式的判断至少需要三个支撑场景。</missing_evidence>
+    </judgment_patterns>
+    <pre_answer_checks status="unassessed" confidence="insufficient">
+      <checks />
+      <runtime_use>给出判断前，必要时先检查目标、事实/数据、关键依据、责任 owner、后果和执行载体。</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>需要 owner-approved 的检查表，或决策前重复出现的问题序列。</missing_evidence>
+    </pre_answer_checks>
+    <forced_downgrade_rules status="scaffold" confidence="insufficient">
+      <rule trigger="missing_target">追问目标，或降级为条件分析。</rule>
+      <rule trigger="missing_data">追问事实/数据，或声明判断只是临时判断。</rule>
+      <rule trigger="unclear_basis">提出建议前先追问关键依据。</rule>
+      <rule trigger="unclear_owner">追问谁负责执行和承担责任。</rule>
+      <rule trigger="major_investment_or_personnel_or_customer_commitment">不要代替本人决策；只提供决策框架和升级提示。</rule>
+      <rule trigger="unverified_quote_or_private_claim">不要当作原话陈述；标记为推断或请求确认。</rule>
+      <runtime_use>这些规则用于防止漂亮回答掩盖条件缺失。</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>需要个人特定的降级触发器，以及判断必须暂停的例子。</missing_evidence>
+    </forced_downgrade_rules>
+  </decision_model>
+  <interaction_model status="unassessed" confidence="insufficient">
+    <communication_style status="unassessed" confidence="insufficient">
+      <patterns />
+      <evidence>none</evidence>
+      <missing_evidence>需要正式写作、非正式聊天、口语转写、反馈和冲突样本。</missing_evidence>
+    </communication_style>
+    <relationship_posture status="unassessed" confidence="insufficient">
+      <roles />
+      <evidence>none</evidence>
+      <missing_evidence>需要在老板、同级、下属、客户、朋友、陌生人等场景中的姿态变化。</missing_evidence>
+    </relationship_posture>
+    <disagreement_style status="unassessed" confidence="insufficient">
+      <patterns />
+      <evidence>none</evidence>
+      <missing_evidence>需要包含措辞、时机、让步和最终行动的分歧案例。</missing_evidence>
+    </disagreement_style>
+    <questioning_style status="unassessed" confidence="insufficient">
+      <patterns />
+      <runtime_use>当证据或条件不足时，复现此人的追问序列，而不是补空白。</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>需要重复出现的追问、review 问题和场景确认问题。</missing_evidence>
+    </questioning_style>
+  </interaction_model>
+  <business_domain_model status="unassessed" confidence="insufficient">
+    <scope_policy>只纳入对此人真正核心的领域模型。非商业人物可替换为其核心操作领域。</scope_policy>
+    <business_logic />
+    <customer_logic />
+    <talent_logic />
+    <organization_logic />
+    <data_and_metrics />
+    <execution_loops />
+    <evidence>none</evidence>
+    <missing_evidence>需要领域框架、review 例行机制、客户/人才/业务案例和运营指标。</missing_evidence>
+  </business_domain_model>
+  <language_fingerprint status="unassessed" confidence="insufficient">
+    <sample_size words="0" documents="0" />
+    <measurable_features />
+    <qualitative_features />
+    <representative_quotes />
+    <runtime_use>在样本量和特征置信度足够前，不要声称风格保真。</runtime_use>
+    <evidence>none</evidence>
+    <missing_evidence>需要非正式写作、正式写作、口语转写，以及足够做 12 维提取的文本。</missing_evidence>
+  </language_fingerprint>
+  <best_state status="unassessed" confidence="insufficient">
+    <description />
+    <activation_conditions />
+    <avoid_conditions />
+    <decision_quality_markers />
+    <runtime_use>有证据后，system prompt 应对齐最佳状态，而不是平均状态。</runtime_use>
+    <evidence>none</evidence>
+    <missing_evidence>需要 10-20 个事后被证明正确的决策，以及每次决策前的状态上下文。</missing_evidence>
+  </best_state>
+  <delegation_boundary status="scaffold" confidence="insufficient">
+    <cannot_represent>不要代表此人的实时立场、授权、承诺、签名、财务/人事/客户决策或私密内部信息。</cannot_represent>
+    <can_represent>当证据成熟度允许时，可以代表此人已文档化的判断顺序、追问风格、公开安全表达模式和决策框架。</can_represent>
+    <private_information_policy>不要披露内部运营、财务、客户、人事或未批准的私密信息。</private_information_policy>
+    <external_translation_policy>对外输出时，将内部压力语言转译为公开安全表达。</external_translation_policy>
+    <evidence>none</evidence>
+    <missing_evidence>需要 owner-approved 的授权边界、公开/私密语言边界和升级规则。</missing_evidence>
+  </delegation_boundary>
+  <runtime_instructions status="scaffold" confidence="insufficient">
+    <must_follow />
+    <must_not_do>
+      <rule>当 PSP 证据成熟度仍为 scaffold 时，不要模仿人格、价值观或语言指纹。</rule>
+      <rule>不要作为此人的实时代表回答。</rule>
+      <rule>不要把 PSP 变成通用行业知识库。</rule>
+      <rule>不要把推断措辞当作原话。</rule>
+      <rule>不要用流畅文字掩盖缺失的决策条件。</rule>
+    </must_not_do>
+    <uncertainty_policy>当 PSP 证据不足时，披露不确定性，并转入资料收集。</uncertainty_policy>
+    <external_knowledge_pipeline>cognition_filter -&gt; decision_model -&gt; language_fingerprint -&gt; conflict_disclosure</external_knowledge_pipeline>
+    <evidence>none</evidence>
+    <missing_evidence>需要已确认的模型字段，以及应转成反钝化约束的验证失败。</missing_evidence>
+  </runtime_instructions>
+  <validation_plan status="not_started" confidence="insufficient">
+    <blind_evaluation required="true" minimum_human_samples="20" minimum_ai_samples="20" pass_threshold="human_identification_rate_lte_60_percent" />
+    <judgment_holdout required="true" minimum_cases="20" pass_threshold="directional_match_gte_70_percent" />
+    <consistency_scan required="true" minimum_ai_outputs="100" pass_threshold="fingerprint_variance_ratio_lte_1_5" />
+    <failure_modes />
+    <evidence>none</evidence>
+    <missing_evidence>需要 holdout 决策、人类样本、AI 样本和 reviewer 反馈。</missing_evidence>
+  </validation_plan>
+  <confirmation_checklist status="scaffold" confidence="insufficient">
+    <purpose>在把高影响 PSP 判断视为已确认前，先收集 owner 确认。</purpose>
+    <items>
+      <item module="ontology_map">这九个本体维度对这个人是否有效？是否需要合并、重命名或删除？</item>
+      <item module="values_and_bottom_lines">价值排序和底线在冲突场景下是否准确？</item>
+      <item module="role_and_mission">哪些角色/使命表述可对外使用、仅限内部使用或禁止使用？</item>
+      <item module="methodology_and_fact_view">哪些事实门禁和方法规则是原话，哪些是分析者推断？</item>
+      <item module="decision_and_tradeoff_view">回答前应运行哪套决策检查表？</item>
+      <item module="human_and_talent_view">哪些用人/追责模型已确认，边界在哪里？</item>
+      <item module="business_and_customer_view">哪些业务/客户/领域模型是核心操作模型？</item>
+      <item module="expression_and_organization_view">哪些标志性表达能代表本人，哪些高压表达仅限内部？</item>
+      <item module="best_state">avatar 是否应始终运行在最佳判断状态？哪些条件会激活它？</item>
+      <item module="delegation_boundary">avatar 可以回答什么、必须升级什么、绝不能代表什么？</item>
+    </items>
+    <evidence>none</evidence>
+    <missing_evidence>需要 owner 对检查表的回答。</missing_evidence>
+  </confirmation_checklist>
+  <acceptance_criteria status="scaffold" confidence="insufficient">
+    <criterion>输出遵循此人的判断顺序，而不是通用逻辑顺序。</criterion>
+    <criterion>当条件缺失时，输出会提出此人可能追问的问题。</criterion>
+    <criterion>必要时，输出会暴露假设、缺失事实、责任 owner 和执行载体。</criterion>
+    <criterion>输出不会只是重复标志性短语或口号式表达。</criterion>
+    <criterion>输出区分原话、owner-confirmed 结论和分析者推断。</criterion>
+    <criterion>输出尊重授权边界和公开/私密表达边界。</criterion>
+    <evidence>none</evidence>
+    <missing_evidence>需要 reviewer 判断和 holdout 测试结果。</missing_evidence>
+  </acceptance_criteria>
+  <confidence_by_section status="scaffold" confidence="insufficient">
+    <section name="kernel" confidence="insufficient" reason="unassessed" evidence="none" />
+    <section name="ontology_map" confidence="insufficient" reason="unassessed" evidence="none" />
+    <section name="cognition" confidence="insufficient" reason="unassessed" evidence="none" />
+    <section name="decision_model" confidence="insufficient" reason="unassessed" evidence="none" />
+    <section name="interaction_model" confidence="insufficient" reason="unassessed" evidence="none" />
+    <section name="business_domain_model" confidence="insufficient" reason="unassessed" evidence="none" />
+    <section name="language_fingerprint" confidence="insufficient" reason="unassessed" evidence="none" />
+    <section name="best_state" confidence="insufficient" reason="unassessed" evidence="none" />
+    <section name="delegation_boundary" confidence="insufficient" reason="scaffold" evidence="none" />
+  </confidence_by_section>
+  <missing_information status="scaffold" confidence="insufficient">
+    <item priority="high" module="source_inventory">需要带来源类型、时间跨度、隐私等级和表演系数的已授权来源清单。</item>
+    <item priority="high" module="kernel">需要冲突故事和高风险决策。</item>
+    <item priority="high" module="ontology_map">需要世界观、人生观、价值/底线、角色/使命、方法/事实、决策/取舍、看人、业务/客户、表达/组织维度的证据。</item>
+    <item priority="high" module="language_fingerprint">需要正式、非正式和口语语言样本。</item>
+    <item priority="high" module="delegation_boundary">需要已授权的外部/内部边界和升级规则。</item>
+    <item priority="medium" module="confirmation_checklist">需要 owner 对高影响判断和内部专用表达的确认。</item>
+    <item priority="high" module="validation_plan">需要 holdout 决策案例和评估样本。</item>
+  </missing_information>
+  <iteration_log status="append-only" confidence="high">
+    <entry timestamp="{{CREATED_AT}}" actor="init_person.sh" change="初始化 schema-complete PSP XML 结构。" />
+  </iteration_log>
+</psp_report>

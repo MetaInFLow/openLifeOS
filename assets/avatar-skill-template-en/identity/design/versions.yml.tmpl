@@ -1,0 +1,31 @@
+schema: openlifeos.artifact-versions.v1
+artifact_type: design
+owner: "{{OWNER_NAME}}"
+active_artifact: design-{{ARTIFACT_TIMESTAMP}}
+current_entrypoint: ../../DESIGN.md
+canonical_xml_entrypoint: current/DESIGN_TASTE.xml
+active_xml_artifact: DESIGN_TASTE-{{ARTIFACT_TIMESTAMP}}.xml
+activation_policy:
+  write_path: "DESIGN-<timestamp>.md"
+  xml_write_path: "DESIGN_TASTE-<timestamp>.xml"
+  current_entrypoint_policy: "Keep ../../DESIGN.md as the active human-readable projection generated from the active XML artifact."
+  canonical_source_policy: "Keep current/DESIGN_TASTE.xml as the canonical machine-readable design taste source; DESIGN.md is generated from XML."
+  activation_requires:
+    - approved aesthetic evidence summary
+    - canonical DESIGN_TASTE.xml or explicit scaffold/insufficiency marker
+    - standard_output_gate
+    - changelog entry
+    - artifacts/current.yml update
+versions:
+  - artifact_id: design-{{ARTIFACT_TIMESTAMP}}
+    path: DESIGN-{{ARTIFACT_TIMESTAMP}}.md
+    xml_path: DESIGN_TASTE-{{ARTIFACT_TIMESTAMP}}.xml
+    current_entrypoint: ../../DESIGN.md
+    canonical_xml_entrypoint: current/DESIGN_TASTE.xml
+    status: active
+    created_at: "{{CREATED_AT}}"
+    evidence_sufficiency: insufficient
+    based_on:
+      - ../public-profile/profile.yml
+    changes:
+      - "Created intake-only global aesthetics boundary with DESIGN_TASTE.xml as canonical source and DESIGN.md as projection."

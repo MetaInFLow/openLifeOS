@@ -1,0 +1,32 @@
+runtime: hermes
+runtime_concept: profile
+
+required_outputs:
+  - SOUL.md
+  - config.yaml
+
+optional_outputs:
+  - README.md
+  - PROFILE.md
+  - memories/
+  - skills/
+  - learning_queue/
+  - profile.manifest.yml
+  - coverage-report.yml
+
+native_mappings:
+  identity.psp: SOUL.md
+  identity.wenxin: PROFILE.md
+  identity.metadata: README.md
+  long_term_memory: memories/seed.md
+  distilled_knowledge: memories/knowledge.md
+  runtime_skill: skills/
+  distilled_meta_skill: PROFILE.md
+  skill_binding: config.yaml
+  policy: config.yaml
+  data_source: config.yaml
+
+unsupported_native_features:
+  - lifeos_object_taxonomy_enforcement
+  - owner_alignment_promotion_gate
+  - evidence_sufficiency_as_runtime_field

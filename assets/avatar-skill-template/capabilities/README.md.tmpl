@@ -1,0 +1,9 @@
+# Capabilities 能力层
+
+这一层回答：“{{REPO_NAME}} 当前能做什么，哪些能力正在形成？”
+
+Capabilities 描述可调用能力、候选能力、已验证能力和待提升能力。它可以指向 `capabilities/`、`runtime/runtime-skills/`、`identity/wenxin/skill-recommendations.yml` 和 `docs/skill-system/runtime-skill-candidates.md`。
+
+不要把个人事实、客户信息、私密上下文硬写进能力说明；需要事实时通过 memory 或 data source binding 读取。
+
+新能力只有形成稳定边界、证据、输入输出、验收标准和可路由入口后，才进入 `capabilities/<capability-id>/`。如果该能力需要可执行 Skill，可以在能力目录中提供 `SKILL.md`，但 top-level 不再使用 `skills/`。

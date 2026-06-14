@@ -1,0 +1,41 @@
+# Evidence Sufficiency Report
+
+Generated: {{TODAY}}
+Owner: {{DISPLAY_NAME}}
+Maturity Level: `scaffold`
+Canonical XML: `../identity/psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml`
+
+## Meaning
+
+This report separates **structure readiness** from **content maturity**.
+
+`identity/psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml` is the machine-readable source of truth for evidence maturity. This Markdown file is a compatibility readme for humans and older tools.
+
+- `scaffold`: directories, routing, permissions, and default skills exist; evidence is not sufficient for identity/person-model claims.
+- `evidence-limited-v0`: some public or approved material exists, but source coverage is thin, indirect, or not fully verified.
+- `public-v0`: enough public/approved evidence exists for a useful public profile, Wenxin summary, and preliminary PSP, with explicit gaps.
+- `research-grade`: multiple primary sources are indexed, claims are provenance-linked, contradictions and weak claims are tracked.
+- `avatar-grade`: PSP/person model has strong evidence coverage, validation samples, behavior boundaries, and owner/reviewer alignment.
+
+## Current Assessment
+
+Current maturity: `scaffold`
+
+Reasons:
+
+- No approved evidence body has been processed yet.
+- Wenxin, PSP, memory, and skill recommendations are intake-ready only.
+- Any public profile beyond initialized fields would require source material.
+
+## Required Final Disclosure
+
+Every agent final response after initialization or synthesis must disclose:
+
+- Structure gate status.
+- Content maturity level.
+- Evidence sources used.
+- Unavailable or failed sources.
+- Incomplete LifeOS areas.
+- Whether candidate skills are instance-local or installable Codex skills.
+
+Do not describe the LifeOS as complete unless maturity is `research-grade` or `avatar-grade`, and the remaining gaps are explicitly reported.

@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psp_report schema="psp.report.v1" person_id="{{PERSON_ID}}" generated_at="{{CREATED_AT}}" artifact_timestamp="{{ARTIFACT_TIMESTAMP}}" language="{{LANGUAGE}}">
+  <language_contract status="configured" confidence="high">
+    <output_language>{{LANGUAGE}}</output_language>
+    <content_language_policy>All PSP report prose, missing-information prompts, confirmation questions, derived readables, runtime prompts, validation reports, and final disclosures must use output_language.</content_language_policy>
+    <mixed_language_policy>Preserve source quotes, file paths, XML tag names, schema names, product names, and canonical protocol terms as-is. Do not let template prose drift into another language.</mixed_language_policy>
+    <failure_policy>If generated content appears in another language, regenerate or translate before marking the PSP artifact complete.</failure_policy>
+  </language_contract>
+
+  <metadata status="scaffold" confidence="insufficient">
+    <person_id>{{PERSON_ID}}</person_id>
+    <display_name>{{PSP_DISPLAY_NAME}}</display_name>
+    <output_language>{{LANGUAGE}}</output_language>
+    <protocol_version>2.1</protocol_version>
+    <canonical_format>xml</canonical_format>
+    <current_entrypoint>current/PSP_REPORT.xml</current_entrypoint>
+    <versioned_artifact>versions/PSP_REPORT.{{ARTIFACT_TIMESTAMP}}.xml</versioned_artifact>
+    <derived_artifacts allowed="true">Markdown or HTML may be generated for reading, but must not become the source of truth.</derived_artifacts>
+    <soul_policy>SOUL.md is not produced by PSP. Runtime projections may be generated separately only when a target framework requires them.</soul_policy>
+  </metadata>
+
+  <evidence_maturity schema="psp.evidence-maturity.v1" status="scaffold" confidence="insufficient">
+    <level>scaffold</level>
+    <meaning>Structure exists; no owner-approved evidence has been analyzed yet.</meaning>
+    <structure_readiness>schema-complete</structure_readiness>
+    <content_maturity>scaffold</content_maturity>
+    <source_count>0</source_count>
+    <source_types/>
+    <unavailable_sources/>
+    <incomplete_areas>
+      <area>kernel</area>
+      <area>ontology_map</area>
+      <area>cognition</area>
+      <area>decision_model</area>
+      <area>interaction_model</area>
+      <area>business_domain_model</area>
+      <area>language_fingerprint</area>
+      <area>best_state</area>
+      <area>delegation_boundary</area>
+      <area>confirmation_checklist</area>
+      <area>validation_plan</area>
+    </incomplete_areas>
+    <evidence>none</evidence>
+    <missing_evidence>Approved formal and informal material, conflict stories, decisions, language samples, and validation cases.</missing_evidence>
+  </evidence_maturity>
+
+  <source_inventory status="empty" confidence="insufficient">
+    <sources/>
+    <coverage time_span="unknown" formal_material="missing" informal_material="missing" word_count="0" conflict_story_count="0"/>
+    <evidence>none</evidence>
+    <missing_evidence>List every approved source with type, date range, privacy class, and performance coefficient.</missing_evidence>
+  </source_inventory>
+
+  <evidence_boundary status="scaffold" confidence="insufficient">
+    <allowed_sources/>
+    <excluded_sources/>
+    <privacy_boundary>Do not copy private raw material into public artifacts. Use source pointers or irreversible summaries.</privacy_boundary>
+    <claim_policy>Every non-empty model claim must cite evidence pointers or be marked as hypothesis, unassessed, or not_extractable.</claim_policy>
+    <evidence>none</evidence>
+    <missing_evidence>Owner-approved source boundary and publication boundary.</missing_evidence>
+  </evidence_boundary>
+
+  <ontology_map status="unassessed" confidence="insufficient">
+    <purpose>Extract the person's own ontology and judgment system, not a generic knowledge base or a toolkit collection.</purpose>
+    <dimensions>
+      <worldview status="unassessed" confidence="insufficient">
+        <question>How does this person believe reality works?</question>
+        <claims/>
+        <evidence>none</evidence>
+        <missing_evidence>Repeated explanations of markets, organizations, people, causality, constraints, and reality checks.</missing_evidence>
+      </worldview>
+      <lifeview status="unassessed" confidence="insufficient">
+        <question>What does this person believe life is for?</question>
+        <claims/>
+        <evidence>none</evidence>
+        <missing_evidence>Statements and choices about meaning, process, happiness, responsibility, ambition, and tradeoffs.</missing_evidence>
+      </lifeview>
+      <values_and_bottom_lines status="unassessed" confidence="insufficient">
+        <question>What is protected first during conflict?</question>
+        <ranked_values/>
+        <bottom_lines/>
+        <evidence>none</evidence>
+        <missing_evidence>Conflict cases showing what was protected, sacrificed, or refused.</missing_evidence>
+      </values_and_bottom_lines>
+      <role_and_mission status="unassessed" confidence="insufficient">
+        <question>Where does this person place themself in the system?</question>
+        <roles/>
+        <mission_statements/>
+        <organizational_translation/>
+        <evidence>none</evidence>
+        <missing_evidence>Self-positioning, responsibility scope, and examples of turning personal experience into organizational method.</missing_evidence>
+      </role_and_mission>
+      <methodology_and_fact_view status="unassessed" confidence="insufficient">
+        <question>How does this person recognize a problem and decide what counts as fact?</question>
+        <fact_gates/>
+        <method_rules/>
+        <evidence>none</evidence>
+        <missing_evidence>Problem-solving traces, fact/data demands, gating phrases, and cases where action was blocked by missing conditions.</missing_evidence>
+      </methodology_and_fact_view>
+      <decision_and_tradeoff_view status="unassessed" confidence="insufficient">
+        <question>How does this person move from facts to judgment?</question>
+        <decision_questions/>
+        <tradeoff_rules/>
+        <scenario_speeds/>
+        <evidence>none</evidence>
+        <missing_evidence>Decision checklists, crisis/talent/new-business cases, explicit tradeoffs, and cost acknowledgement.</missing_evidence>
+      </decision_and_tradeoff_view>
+      <human_and_talent_view status="unassessed" confidence="insufficient">
+        <question>How does this person view, use, evaluate, and hold people accountable?</question>
+        <people_model/>
+        <accountability_model/>
+        <role_standards/>
+        <evidence>none</evidence>
+        <missing_evidence>Hiring, promotion, delegation, accountability, replacement, and long-horizon trust examples.</missing_evidence>
+      </human_and_talent_view>
+      <business_and_customer_view status="unassessed" confidence="insufficient">
+        <question>How does this person understand business, customers, efficiency, cash flow, data, and operating loops?</question>
+        <business_principles/>
+        <customer_model/>
+        <operating_metrics/>
+        <evidence>none</evidence>
+        <missing_evidence>Business reviews, customer journey models, metrics, after-sales loops, and operating-system examples.</missing_evidence>
+      </business_and_customer_view>
+      <expression_and_organization_view status="unassessed" confidence="insufficient">
+        <question>How does this person turn judgment into language others can execute?</question>
+        <signature_phrases/>
+        <pressure_language_boundaries/>
+        <external_translation_rules/>
+        <execution_carriers/>
+        <evidence>none</evidence>
+        <missing_evidence>Internal/external speeches, high-pressure language, softened public wording, and examples of assigning execution carriers.</missing_evidence>
+      </expression_and_organization_view>
+    </dimensions>
+  </ontology_map>
+
+  <kernel status="unassessed" confidence="insufficient">
+    <ultimate_value_order status="unassessed" confidence="insufficient">
+      <values/>
+      <conflicts/>
+      <runtime_use>Do not infer value ordering until conflict stories or high-stakes decisions exist.</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>At least five two-way tradeoff stories and repeated high-stakes decisions.</missing_evidence>
+    </ultimate_value_order>
+    <boundaries status="unassessed" confidence="insufficient">
+      <items/>
+      <runtime_use>Do not claim hard boundaries until repeated boundary behavior is observed.</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>Boundary-triggering situations, refusals, escalations, and repair behavior.</missing_evidence>
+    </boundaries>
+    <drivers status="unassessed" confidence="insufficient">
+      <items/>
+      <runtime_use>Do not infer motivation from self-description alone.</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>Repeated voluntary effort, sacrifices, and persistence patterns.</missing_evidence>
+    </drivers>
+    <identity_self_definition status="unassessed" confidence="insufficient">
+      <labels/>
+      <anti_labels/>
+      <runtime_use>Use only owner-aligned or behavior-backed identity language.</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>Self-definition across public, private, and high-pressure contexts.</missing_evidence>
+    </identity_self_definition>
+  </kernel>
+
+  <cognition status="unassessed" confidence="insufficient">
+    <world_assumptions status="unassessed" confidence="insufficient">
+      <items/>
+      <evidence>none</evidence>
+      <missing_evidence>Repeated explanations of how the world, people, organizations, or markets work.</missing_evidence>
+    </world_assumptions>
+    <attribution_patterns status="unassessed" confidence="insufficient">
+      <matrix/>
+      <evidence>none</evidence>
+      <missing_evidence>Success/failure explanations for self and others.</missing_evidence>
+    </attribution_patterns>
+    <attention_filter status="unassessed" confidence="insufficient">
+      <sequence/>
+      <blind_spots/>
+      <evidence>none</evidence>
+      <missing_evidence>Meeting notes, review comments, decisions, and ignored-variable examples.</missing_evidence>
+    </attention_filter>
+    <analogy_domains status="unassessed" confidence="insufficient">
+      <domains/>
+      <association_paths/>
+      <evidence>none</evidence>
+      <missing_evidence>Metaphors, analogies, comparisons, and repeated framing domains.</missing_evidence>
+    </analogy_domains>
+  </cognition>
+
+  <decision_model status="unassessed" confidence="insufficient">
+    <decision_style status="unassessed" confidence="insufficient">
+      <dimensions/>
+      <evidence>none</evidence>
+      <missing_evidence>Decision cases with context, options, chosen action, rejected action, and outcome.</missing_evidence>
+    </decision_style>
+    <information_threshold status="unassessed" confidence="insufficient">
+      <value/>
+      <evidence>none</evidence>
+      <missing_evidence>Examples of acting under uncertainty and waiting for more data.</missing_evidence>
+    </information_threshold>
+    <risk_policy status="unassessed" confidence="insufficient">
+      <value/>
+      <evidence>none</evidence>
+      <missing_evidence>Risky choices, reversibility sensitivity, downside limits, and postmortems.</missing_evidence>
+    </risk_policy>
+    <conflict_resolution status="unassessed" confidence="insufficient">
+      <patterns/>
+      <evidence>none</evidence>
+      <missing_evidence>Disagreement, negotiation, escalation, and compromise stories.</missing_evidence>
+    </conflict_resolution>
+    <judgment_patterns status="unassessed" confidence="insufficient">
+      <patterns/>
+      <runtime_use>Each pattern should be a situation -> judgment -> action -> result tuple.</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>At least three supporting scenes per promoted pattern.</missing_evidence>
+    </judgment_patterns>
+    <pre_answer_checks status="unassessed" confidence="insufficient">
+      <checks/>
+      <runtime_use>Before giving a judgment, check target, facts/data, key basis, responsible owner, consequence, and execution carrier when relevant.</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>Owner-approved checklist or repeated question sequence used before decisions.</missing_evidence>
+    </pre_answer_checks>
+    <forced_downgrade_rules status="scaffold" confidence="insufficient">
+      <rule trigger="missing_target">Ask for target or downgrade to conditional analysis.</rule>
+      <rule trigger="missing_data">Ask for facts/data or state that the judgment is provisional.</rule>
+      <rule trigger="unclear_basis">Ask for key basis before making a recommendation.</rule>
+      <rule trigger="unclear_owner">Ask who owns execution/accountability.</rule>
+      <rule trigger="major_investment_or_personnel_or_customer_commitment">Do not decide as the person; provide decision frame and escalation note.</rule>
+      <rule trigger="unverified_quote_or_private_claim">Do not state as original wording; label as inference or ask for confirmation.</rule>
+      <runtime_use>These rules prevent pretty answers from hiding missing conditions.</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>Person-specific downgrade triggers and examples where judgment must pause.</missing_evidence>
+    </forced_downgrade_rules>
+  </decision_model>
+
+  <interaction_model status="unassessed" confidence="insufficient">
+    <communication_style status="unassessed" confidence="insufficient">
+      <patterns/>
+      <evidence>none</evidence>
+      <missing_evidence>Formal writing, informal chat, spoken transcript, feedback, and conflict samples.</missing_evidence>
+    </communication_style>
+    <relationship_posture status="unassessed" confidence="insufficient">
+      <roles/>
+      <evidence>none</evidence>
+      <missing_evidence>How posture changes across boss, peer, subordinate, customer, friend, and stranger contexts.</missing_evidence>
+    </relationship_posture>
+    <disagreement_style status="unassessed" confidence="insufficient">
+      <patterns/>
+      <evidence>none</evidence>
+      <missing_evidence>Disagreement examples with wording, timing, concession, and final action.</missing_evidence>
+    </disagreement_style>
+    <questioning_style status="unassessed" confidence="insufficient">
+      <patterns/>
+      <runtime_use>When evidence or conditions are insufficient, reproduce the person's questioning sequence rather than filling gaps.</runtime_use>
+      <evidence>none</evidence>
+      <missing_evidence>Repeated follow-up questions, review questions, and scenario-confirmation prompts.</missing_evidence>
+    </questioning_style>
+  </interaction_model>
+
+  <business_domain_model status="unassessed" confidence="insufficient">
+    <scope_policy>Include only domain models that are central to the person. For non-business figures, replace this with their core operating domain.</scope_policy>
+    <business_logic/>
+    <customer_logic/>
+    <talent_logic/>
+    <organization_logic/>
+    <data_and_metrics/>
+    <execution_loops/>
+    <evidence>none</evidence>
+    <missing_evidence>Domain-specific frameworks, review routines, customer/talent/business cases, and operating metrics.</missing_evidence>
+  </business_domain_model>
+
+  <language_fingerprint status="unassessed" confidence="insufficient">
+    <sample_size words="0" documents="0"/>
+    <measurable_features/>
+    <qualitative_features/>
+    <representative_quotes/>
+    <runtime_use>Do not claim style fidelity until sample size and feature confidence are sufficient.</runtime_use>
+    <evidence>none</evidence>
+    <missing_evidence>Informal writing, formal writing, spoken transcripts, and enough text for 12-dimensional extraction.</missing_evidence>
+  </language_fingerprint>
+
+  <best_state status="unassessed" confidence="insufficient">
+    <description/>
+    <activation_conditions/>
+    <avoid_conditions/>
+    <decision_quality_markers/>
+    <runtime_use>System prompts should align to best state, not average state, after evidence exists.</runtime_use>
+    <evidence>none</evidence>
+    <missing_evidence>10-20 decisions later judged correct, with state context before each decision.</missing_evidence>
+  </best_state>
+
+  <delegation_boundary status="scaffold" confidence="insufficient">
+    <cannot_represent>Do not represent the person's real-time stance, authorization, commitment, signature, financial/personnel/customer decisions, or private internal information.</cannot_represent>
+    <can_represent>When evidence maturity allows, represent the person's documented judgment order, questioning style, public-safe expression patterns, and decision frames.</can_represent>
+    <private_information_policy>Do not disclose internal operating, financial, customer, personnel, or unapproved private information.</private_information_policy>
+    <external_translation_policy>Translate internal pressure language into public-safe expression when output is external-facing.</external_translation_policy>
+    <evidence>none</evidence>
+    <missing_evidence>Owner-approved authorization boundary, public/private language boundary, and escalation rules.</missing_evidence>
+  </delegation_boundary>
+
+  <runtime_instructions status="scaffold" confidence="insufficient">
+    <must_follow/>
+    <must_not_do>
+      <rule>Do not imitate personality, values, or language fingerprint while PSP evidence maturity is scaffold.</rule>
+      <rule>Do not answer as a real-time representative of the person.</rule>
+      <rule>Do not turn the PSP into a generic industry knowledge base.</rule>
+      <rule>Do not state inferred wording as original quotes.</rule>
+      <rule>Do not hide missing decision conditions behind polished prose.</rule>
+    </must_not_do>
+    <uncertainty_policy>When PSP evidence is insufficient, disclose uncertainty and route to source collection.</uncertainty_policy>
+    <external_knowledge_pipeline>cognition_filter -> decision_model -> language_fingerprint -> conflict_disclosure</external_knowledge_pipeline>
+    <evidence>none</evidence>
+    <missing_evidence>Confirmed model fields and validation failures that should become anti-blunting constraints.</missing_evidence>
+  </runtime_instructions>
+
+  <validation_plan status="not_started" confidence="insufficient">
+    <blind_evaluation required="true" minimum_human_samples="20" minimum_ai_samples="20" pass_threshold="human_identification_rate_lte_60_percent"/>
+    <judgment_holdout required="true" minimum_cases="20" pass_threshold="directional_match_gte_70_percent"/>
+    <consistency_scan required="true" minimum_ai_outputs="100" pass_threshold="fingerprint_variance_ratio_lte_1_5"/>
+    <failure_modes/>
+    <evidence>none</evidence>
+    <missing_evidence>Holdout decisions, human samples, AI samples, and reviewer feedback.</missing_evidence>
+  </validation_plan>
+
+  <confirmation_checklist status="scaffold" confidence="insufficient">
+    <purpose>Collect owner confirmation for high-impact PSP claims before treating them as confirmed.</purpose>
+    <items>
+      <item module="ontology_map">Are the nine ontology dimensions valid for this person, or should any be merged, renamed, or removed?</item>
+      <item module="values_and_bottom_lines">Are the value order and bottom lines accurate under conflict?</item>
+      <item module="role_and_mission">Which role/mission phrases are usable externally, internal-only, or forbidden?</item>
+      <item module="methodology_and_fact_view">Which fact gates and method rules are original wording, and which are analyst inference?</item>
+      <item module="decision_and_tradeoff_view">Which decision checklist should run before answers?</item>
+      <item module="human_and_talent_view">Which people/accountability models are confirmed and where are the boundaries?</item>
+      <item module="business_and_customer_view">Which business/customer/domain models are core operating models?</item>
+      <item module="expression_and_organization_view">Which signature phrases represent the person, and which high-pressure phrases are internal-only?</item>
+      <item module="best_state">Should the avatar always run in best judgment state, and what conditions activate it?</item>
+      <item module="delegation_boundary">What can the avatar answer, what must it escalate, and what must never be represented?</item>
+    </items>
+    <evidence>none</evidence>
+    <missing_evidence>Owner answers to the checklist.</missing_evidence>
+  </confirmation_checklist>
+
+  <acceptance_criteria status="scaffold" confidence="insufficient">
+    <criterion>Output follows the person's judgment order, not generic logic order.</criterion>
+    <criterion>Output asks the person's likely follow-up questions when conditions are missing.</criterion>
+    <criterion>Output exposes assumptions, missing facts, responsible owner, and execution carrier when relevant.</criterion>
+    <criterion>Output does not simply repeat signature phrases or quote-like slogans.</criterion>
+    <criterion>Output separates original quotes, owner-confirmed conclusions, and analyst inference.</criterion>
+    <criterion>Output respects authorization boundaries and public/private expression boundaries.</criterion>
+    <evidence>none</evidence>
+    <missing_evidence>Reviewer judgments and holdout test results.</missing_evidence>
+  </acceptance_criteria>
+
+  <confidence_by_section status="scaffold" confidence="insufficient">
+    <section name="kernel" confidence="insufficient" reason="unassessed" evidence="none"/>
+    <section name="ontology_map" confidence="insufficient" reason="unassessed" evidence="none"/>
+    <section name="cognition" confidence="insufficient" reason="unassessed" evidence="none"/>
+    <section name="decision_model" confidence="insufficient" reason="unassessed" evidence="none"/>
+    <section name="interaction_model" confidence="insufficient" reason="unassessed" evidence="none"/>
+    <section name="business_domain_model" confidence="insufficient" reason="unassessed" evidence="none"/>
+    <section name="language_fingerprint" confidence="insufficient" reason="unassessed" evidence="none"/>
+    <section name="best_state" confidence="insufficient" reason="unassessed" evidence="none"/>
+    <section name="delegation_boundary" confidence="insufficient" reason="scaffold" evidence="none"/>
+  </confidence_by_section>
+
+  <missing_information status="scaffold" confidence="insufficient">
+    <item priority="high" module="source_inventory">Approved source inventory with source types, time span, privacy class, and performance coefficient.</item>
+    <item priority="high" module="kernel">Conflict stories and high-stakes decisions.</item>
+    <item priority="high" module="ontology_map">Evidence for worldview, lifeview, value/bottom-line, role/mission, method/fact, decision/tradeoff, people, business/customer, and expression/organization dimensions.</item>
+    <item priority="high" module="language_fingerprint">Formal, informal, and spoken language samples.</item>
+    <item priority="high" module="delegation_boundary">Authorized external/internal boundary and escalation rules.</item>
+    <item priority="medium" module="confirmation_checklist">Owner confirmation for high-impact claims and internal-only phrases.</item>
+    <item priority="high" module="validation_plan">Holdout decision cases and evaluation samples.</item>
+  </missing_information>
+
+  <iteration_log status="append-only" confidence="high">
+    <entry timestamp="{{CREATED_AT}}" actor="init_person.sh" change="Initialized schema-complete PSP XML scaffold."/>
+  </iteration_log>
+</psp_report>

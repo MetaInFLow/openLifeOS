@@ -1,0 +1,30 @@
+id: long-term-memory-to-user-context
+source:
+  object_type: long_term_memory
+  path: memory/long-term/
+
+target:
+  openclaw:
+    path: USER.md
+  hermes:
+    path: memories/seed.md
+
+transform:
+  mode: fact_summary
+  include:
+    - stable_facts
+    - preferences
+    - durable_constraints
+    - decisions
+  exclude:
+    - procedures
+    - unreviewed_lessons
+    - private_source_text
+
+guards:
+  require_provenance: true
+  forbid_secrets: true
+  forbid_raw_private_body: true
+
+coverage:
+  expected_status: partial

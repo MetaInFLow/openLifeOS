@@ -1,0 +1,33 @@
+runtime: openclaw
+runtime_concept: agent_workspace
+
+required_outputs:
+  - SOUL.md
+  - AGENTS.md
+
+optional_outputs:
+  - USER.md
+  - IDENTITY.md
+  - TOOLS.md
+  - README.md
+  - skills/
+  - learning_queue/
+  - profile.manifest.yml
+  - coverage-report.yml
+
+native_mappings:
+  identity.psp: SOUL.md
+  identity.wenxin: IDENTITY.md
+  identity.metadata: README.md
+  long_term_memory: USER.md
+  distilled_knowledge: USER.md
+  runtime_skill: skills/
+  distilled_meta_skill: AGENTS.md
+  skill_binding: TOOLS.md
+  policy: AGENTS.md
+  data_source: TOOLS.md
+
+unsupported_native_features:
+  - evidence_sufficiency_as_runtime_field
+  - owner_alignment_promotion_gate
+  - tiered_memory_write_enforcement

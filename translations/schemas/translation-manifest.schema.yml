@@ -1,0 +1,13 @@
+required_fields:
+  - translation_id
+  - source_lifeos
+  - target_runtime
+  - target_profile
+  - generated_at
+  - tuning_policy
+  - review_mode
+  - review_file
+  - manual_confirmation_required
+  - generated_files
+  - excluded
+  - validation

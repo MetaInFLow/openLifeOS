@@ -1,0 +1,9 @@
+# Capabilities Layer
+
+This layer answers: "What can {{REPO_NAME}} currently do, and which capabilities are forming?"
+
+Capabilities describe callable, candidate, verified, and promotion-ready abilities. They may point to `capabilities/`, `runtime/runtime-skills/`, `identity/wenxin/skill-recommendations.yml`, and `docs/skill-system/runtime-skill-candidates.md`.
+
+Do not hard-code personal facts, customer information, or private context into capability descriptions; read facts through memory or data-source bindings when needed.
+
+A new capability enters `capabilities/<capability-id>/` only after it has stable boundaries, evidence, inputs, outputs, acceptance criteria, and a routable entrypoint. If the capability needs an executable Skill, place `SKILL.md` inside the capability directory; top-level `skills/` is no longer used.

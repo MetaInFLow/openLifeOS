@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">openLifeOS promotion mechanism</title>
+  <desc id="desc">A flow diagram showing capture, classification, split, review, and promotion into long-term memory, distilled knowledge, runtime skills, or meta skills.</desc>
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .band { fill: #f5f5f7; }
+      .ink { fill: #1d1d1f; }
+      .muted { fill: #6e6e73; }
+      .panel { fill: #ffffff; stroke: #e0e0e0; stroke-width: 1; }
+      .dark { fill: #242426; }
+      .blue { fill: #0066cc; }
+      .line { stroke: #0066cc; stroke-width: 2.2; fill: none; }
+      .soft { stroke: #d9d9df; stroke-width: 1.2; fill: none; }
+      .label { font: 600 24px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: 0; }
+      .body { font: 400 16px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: 0; }
+      .small { font: 500 13px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: 0; }
+      .mono { font: 600 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 0; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0066cc"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="560"/>
+  <rect x="0" y="0" width="1200" height="166" class="band"/>
+
+  <text x="72" y="72" class="label ink" font-size="34">Promotion is a gate, not a shortcut</text>
+  <text x="72" y="106" class="body muted">Every candidate is classified, split when needed, reviewed, and then written to the right durable target.</text>
+
+  <rect x="72" y="194" width="180" height="94" rx="18" class="panel"/>
+  <text x="96" y="232" class="label ink">Capture</text>
+  <text x="96" y="260" class="body muted">Events, feedback,</text>
+  <text x="96" y="282" class="body muted">tool results.</text>
+
+  <rect x="306" y="194" width="180" height="94" rx="18" class="panel"/>
+  <text x="330" y="232" class="label ink">Classify</text>
+  <text x="330" y="260" class="body muted">Fact, procedure,</text>
+  <text x="330" y="282" class="body muted">or hybrid.</text>
+
+  <rect x="540" y="194" width="180" height="94" rx="18" class="panel"/>
+  <text x="564" y="232" class="label ink">Split</text>
+  <text x="564" y="260" class="body muted">Facts to memory,</text>
+  <text x="564" y="282" class="body muted">steps to skill.</text>
+
+  <rect x="774" y="194" width="180" height="94" rx="18" class="panel"/>
+  <text x="798" y="232" class="label ink">Review</text>
+  <text x="798" y="260" class="body muted">Confidence, source,</text>
+  <text x="798" y="282" class="body muted">privacy, conflicts.</text>
+
+  <rect x="1008" y="194" width="120" height="94" rx="18" class="dark"/>
+  <text x="1032" y="232" class="label" fill="#ffffff">Write</text>
+  <text x="1032" y="260" class="body" fill="#cccccc">Durable</text>
+  <text x="1032" y="282" class="body" fill="#cccccc">target.</text>
+
+  <path d="M 252 241 L 306 241" class="line" marker-end="url(#arrow)"/>
+  <path d="M 486 241 L 540 241" class="line" marker-end="url(#arrow)"/>
+  <path d="M 720 241 L 774 241" class="line" marker-end="url(#arrow)"/>
+  <path d="M 954 241 L 1008 241" class="line" marker-end="url(#arrow)"/>
+
+  <rect x="72" y="360" width="240" height="104" rx="18" class="panel"/>
+  <text x="96" y="398" class="label ink">Long-term memory</text>
+  <text x="96" y="426" class="body muted">Stable declarative facts</text>
+  <text x="96" y="448" class="mono blue">memory/long-term/</text>
+
+  <rect x="348" y="360" width="240" height="104" rx="18" class="panel"/>
+  <text x="372" y="398" class="label ink">Distilled knowledge</text>
+  <text x="372" y="426" class="body muted">Claims with evidence</text>
+  <text x="372" y="448" class="mono blue">memory/distilled-knowledge/</text>
+
+  <rect x="624" y="360" width="240" height="104" rx="18" class="dark"/>
+  <text x="648" y="398" class="label" fill="#ffffff">Runtime skill</text>
+  <text x="648" y="426" class="body" fill="#cccccc">Repeatable procedure</text>
+  <text x="648" y="448" class="mono" fill="#8ec5ff">skills/runtime/</text>
+
+  <rect x="900" y="360" width="228" height="104" rx="18" class="dark"/>
+  <text x="924" y="398" class="label" fill="#ffffff">Meta skill</text>
+  <text x="924" y="426" class="body" fill="#cccccc">Reusable judgment</text>
+  <text x="924" y="448" class="mono" fill="#8ec5ff">skills/meta/</text>
+
+  <path d="M 1068 288 C 1038 334 1008 348 1014 360" class="soft"/>
+  <path d="M 1068 288 C 840 330 760 346 744 360" class="soft"/>
+  <path d="M 1068 288 C 640 324 500 338 468 360" class="soft"/>
+  <path d="M 1068 288 C 430 318 230 344 192 360" class="soft"/>
+
+  <rect x="72" y="500" width="1056" height="32" rx="16" fill="#f5f5f7"/>
+  <text x="96" y="521" class="small ink">Promotion protects the long-term system from transcript noise, stale facts, private raw material, and accidental workflow leakage.</text>
+</svg>

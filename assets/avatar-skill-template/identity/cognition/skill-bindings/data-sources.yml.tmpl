@@ -1,0 +1,28 @@
+version: 1
+owner: {{OWNER_NAME}}
+bindings:
+  default_memory_lookup:
+    purpose: Let skills read stable facts without embedding them.
+    allowed_sources:
+      - identity/memories/long-term/
+      - capabilities/memory/distilled-knowledge/
+      - runtime/memory/working-lessons/
+    forbidden_sources:
+      - raw private files
+      - secrets
+      - unapproved transcripts
+  runtime_skill_evidence:
+    purpose: Let runtime skills produce evidence for promotion.
+    writes_to:
+      - runtime/memory/working-lessons/
+      - identity/wenxin/skill-recommendations.yml
+    promotion_gate: IPO Reverse plus owner alignment
+  external_connector_data:
+    purpose: Let skills declare external dependencies.
+    registry: integrations/data-sources.yml
+    token_policy: never store tokens in repo
+    default_external_memory: disabled
+split_rule:
+  fact_goes_to: identity/memories/long-term/ or runtime/memory/working-lessons/
+  procedure_goes_to: identity/wenxin/skill-recommendations.yml until promoted into a real capabilities/<capability-id>/SKILL.md package
+  abstracted_judgment_goes_to: identity/wenxin/skill-summaries/ until promoted into a real capabilities/<capability-id>/SKILL.md package

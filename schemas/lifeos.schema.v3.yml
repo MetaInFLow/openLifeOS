@@ -1,0 +1,75 @@
+schema: openlifeos.schema.v3
+version: v3
+status: active
+description: >
+  LifeOS v3 models a generated LifeOS repo as a governed artifact repository.
+  It separates source authority, organ-generated semantic artifacts, taste,
+  meta skills, publication, runtime/evolution, and governance.
+
+top_level:
+  required_root_files:
+    - CATALOG.md
+    - LIFEOS_STATUS.yml
+    - DELIVERY.md
+    - LIFEOS-CATALOG.html
+    - README.md
+    - AGENT.md
+    - matrix.yml
+    - replicateme.yml
+    - DESIGN.md
+  source_authority_layers:
+    sources: "Truth-source catalog, raw/processed material pointers, indexes, and organ input packets. This layer does not produce personality conclusions."
+  organ_output_layers:
+    identity: "InnerAtlas, PSP, memories, cognition contracts, avatar description, and compatibility ledgers."
+    taste: "Text, image, interface, and brand taste system. DESIGN.md and identity/design remain compatibility entrypoints."
+  capability_layers:
+    meta-skills: "Governed owner-grown Meta Skills and candidates before promotion."
+    capabilities: "Durable capabilities, capability maps, installable bindings, and capability-local memory."
+  projection_layers:
+    publication: "Public profile, bio, positioning, website, media kit, talks, articles, and public claim evidence."
+    identities: "Social identity projections such as founder, teacher, author, speaker."
+    work: "Created outputs, apps, public surfaces, reports, projects, posts."
+  lifecycle_layers:
+    metabolism: "Compatibility ingestion lifecycle: inbox, processing, extracted."
+    runtime: "Sessions, runtime skills, runtime lessons, runtime memory, and runtime projections."
+    evolution: "Organ systems, IPO Reverse, alignment, dream loop, mutations, and promotion evidence."
+  governance_layers:
+    artifacts: "Latest registry and active artifact pointers."
+    governance: "Instance-level schemas, policies, and architecture decisions."
+    integrations: "External system, agent, connector, and source policies."
+    security: "Publication, privacy, and secret boundaries."
+    docs: "Human-readable standards, evidence gates, diagrams, and migration docs."
+  compatibility_layer:
+    legacy: "Historical or unclassified v1/v2 material kept for traceability."
+
+compatibility:
+  design:
+    canonical_v3_entrypoint: taste/current.yml
+    legacy_current_xml: identity/design/current/DESIGN_TASTE.xml
+    legacy_markdown_projection: DESIGN.md
+    rule: "Taste Generator owns taste artifacts; DESIGN.md remains a compatibility projection."
+  sources:
+    rule: "Raw private material may stay outside the repo; sources/indexes can record external pointers, hashes, visibility, and authority."
+  publication:
+    rule: "Publication artifacts are projections and cannot become identity/PSP/taste evidence unless re-ingested through sources."
+
+disallowed_top_level_dirs:
+  agents: "Move to integrations/agents."
+  apps: "Move to work/apps."
+  profiles: "Move to runtime/profiles."
+  scripts: "Move to legacy/scripts unless promoted into factory scripts."
+  design: "Move versioned design/aesthetics artifacts to taste or identity/design compatibility paths; root DESIGN.md remains the projection entrypoint."
+  life: "Navigation-only v1.5 layer; move to legacy/navigation-v1/life."
+  system: "Navigation-only v1.5 layer; move to legacy/navigation-v1/system."
+  skills: "Move stable Meta Skills to meta-skills/skills and durable capabilities to capabilities/."
+  memory: "Split into identity/memories, runtime/memory, and capabilities/*/memory."
+  cognition: "Move to identity/cognition."
+  intake: "Move to metabolism/inbox or sources/packets depending on whether it is raw intake or organ packet output."
+  roles: "Move to identities."
+
+migration:
+  current_revision: "0005_lifeos_schema_v3_governed_artifact_repo"
+  previous_revision: "0004_root_agent_entrypoint"
+  code_migration: migrations/versions/0005_lifeos_schema_v3_governed_artifact_repo.py
+  cli: scripts/migrate_lifeos_schema.py
+  design_doc: docs/architecture/lifeos-schema-v3-governed-artifact-repo.md

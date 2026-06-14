@@ -1,0 +1,161 @@
+name: {{REPO_NAME}}
+owner: {{OWNER_NAME}}
+identity_mode: {{IDENTITY_MODE}}
+psp_display_name: {{PSP_DISPLAY_NAME}}
+positioning: {{DISPLAY_NAME}} 的 openLifeOS、公开边界、能力与长期上下文入口
+language: {{LANGUAGE}}
+process_log_language: {{PROCESS_LOG_LANGUAGE}}
+visibility: {{VISIBILITY}}
+created_at: {{TODAY}}
+lifeos_status:
+  path: LIFEOS_STATUS.yml
+  lifecycle: {{LIFEOS_LIFECYCLE}}
+  upload_version: {{UPLOAD_VERSION}}
+  delivery_version: {{DELIVERY_VERSION}}
+  current_version: {{CURRENT_LIFEOS_VERSION}}
+root_agent:
+  id: {{SKILL_ID}}
+  path: .
+  entrypoint: AGENT.md
+  role: avatar reading, skill routing, status, maturity, and owner-alignment protocol
+layers:
+  intake:
+    path: metabolism/inbox/
+    purpose: 证据摄入层。只登记 owner 批准进入 LifeOS 的材料入口、边界、用途和处理状态，不存放 secret 或未脱敏私密正文。
+  runtime:
+    path: runtime/
+    purpose: 活动现场层。agent 在这里执行 sessions；sessions 产生 outputs、observations 和 lessons，再进入 evolution 做复盘和沉淀。
+    sessions: runtime/sessions/
+    runtime_skills: runtime/runtime-skills/
+    runtime_lessons: runtime/runtime-lessons/
+  evolution:
+    path: evolution/
+    purpose: 进化层。对 runtime lessons、已完成产出和新增证据做 IPO Reverse、owner alignment 和版本化更新。
+    ipo: evolution/ipo/
+  capabilities:
+    path: capabilities/
+    purpose: 能力层。描述当前 LifeOS 可调用、候选、已验证和待提升的能力，不把事实硬写进 Skill。
+  roles:
+    path: identities/
+    purpose: 角色层。定义 LifeOS 在不同协作场景中的身份、权限边界、交互姿态和禁止代言范围。
+  work:
+    path: work/
+    purpose: 工作层。承载公开安全的工作入口、项目索引、协作上下文和执行面，不复制私密工作资料。
+artifacts:
+  current_registry:
+    path: artifacts/current.yml
+    role: 所有核心过程产物的机器可读 latest 指针；agent 和 runtime projection 必须先解析这里。
+  soul_policy:
+    produced: false
+    role: SOUL.md 暂停作为 LifeOS 源产物；如目标 runtime 需要，只能由 PSP XML 生成 runtime 投影。
+  design:
+    current_entrypoint: DESIGN.md
+    canonical_xml_entrypoint: identity/design/current/DESIGN_TASTE.xml
+    versioned_artifacts: identity/design/DESIGN_TASTE-<timestamp>.xml + identity/design/DESIGN-<timestamp>.md
+    role: 全局审美、表达偏好和设计判断入口；DESIGN_TASTE.xml 是源产物，DESIGN.md 是投影。
+identity:
+  current_registry:
+    path: identity/current.yml
+    role: Wenxin 和 PSP 的机器可读 active 指针；runtime projection 必须先解析这里。
+  public_profile:
+    path: identity/public-profile/profile.yml
+    role: 公开、用户确认的客观身份配置。
+  public_positioning:
+    path: identity/inneratlas/current/INNERATLAS_REPORT.xml
+    active_registry: identity/wenxin/versions.yml
+    status: source-scope-needed
+    role: 由 InnerAtlas（问心）生成的自我发现、能力地图、公开定位和可蒸馏 Skill 候选。
+person_models:
+  - id: {{PERSON_ID}}
+    path: identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml
+    active_registry: identity/psp/{{PERSON_ID}}/current.yml
+    versions_ledger: identity/psp/{{PERSON_ID}}/versions.yml
+    evidence_maturity: identity/psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml
+    initialization: identity/psp/{{PERSON_ID}}/INITIALIZATION.md
+    display_name: {{PSP_DISPLAY_NAME}}
+    status: intake-only
+    scope: 当前 PSP 化名、材料边界、待摄入证据、本体九维、运行轴、授权边界、行为边界、置信度和验证方法。
+aesthetics:
+  current_entrypoint: DESIGN.md
+  canonical_xml_entrypoint: identity/design/current/DESIGN_TASTE.xml
+  versions_ledger: identity/design/versions.yml
+  changelog: identity/design/changelog.md
+  scope: 全局表达偏好、设计偏好、叙事节奏、视觉倾向、字体、颜色、文字颜色、间距、栅格、圆角、动效、媒体、证据呈现、可用性和好作品判断标准。DESIGN_TASTE.xml 是机器可读源产物，DESIGN.md 是人类/agent 可读投影。
+vendored_skill_sources:
+  self_evolution_skills:
+    - id: wenxin
+      path: evolution/organ-systems/wenxin
+      entrypoint: evolution/organ-systems/wenxin/SKILL.md
+      repository: https://github.com/MetaInFLow/innerAtlas-skill.git
+      install_mode: github-release-archive
+      role: 完整 InnerAtlas（问心）Skill，用于自我发现、公开定位、能力地图、gap 分析和 Skill 候选。
+    - id: psp
+      path: evolution/organ-systems/psp
+      entrypoint: evolution/organ-systems/psp/SKILL.md
+      repository: https://github.com/MetaInFLow/psp-skill.git
+      install_mode: github-release-archive
+      role: 完整 PSP Skill，用于人物模型、行为边界、语言/判断模式、置信度和验证样例。
+    - id: ipo-reverse
+      path: evolution/organ-systems/ipo-reverse
+      entrypoint: evolution/organ-systems/ipo-reverse/SKILL.md
+      repository: https://github.com/MetaInFLow/ipo-reverse-skill.git
+      install_mode: github-release-archive
+      license: PolyForm-Noncommercial-1.0.0
+      role: 完整 IPO Reverse Skill，用于从已完成产出反推证据、隐性认知任务、中间思考资产和可复用 IPO。
+    - id: taste-generator
+      path: evolution/organ-systems/taste-generator
+      entrypoint: evolution/organ-systems/taste-generator/SKILL.md
+      repository: https://github.com/MetaInFLow/taste-generator-skill.git
+      install_mode: github-release-archive
+      license: PolyForm-Noncommercial-1.0.0
+      role: 完整 Taste Generator Skill，用于生成设计偏好选择页、汇总 owner 选择，先产出 DESIGN_TASTE.xml，再生成全局 DESIGN.md。
+  runtime_skills: []
+  distilled_meta_skills: []
+  memory: []
+self_evolution:
+  purpose: 让 {{REPO_NAME}} 可以持续更新“我是谁”“runtime 能做什么”“哪些经验能升级为 distilled meta skill”和“AI 如何理解我”。
+  skills:
+    - wenxin-self-discovery
+    - psp
+    - ipo-reverse
+    - taste-generator
+    - hermes-sync
+skill_taxonomy:
+  runtime_skill:
+    role: 执行具体任务并产生 task output、run log 和 lesson-event。
+    example: Hermes GitHub SnapAF-skills
+  distilled_meta_skill:
+    role: 沉淀可复用判断、路由、方法论、review gate 和决策模式。
+    example: owner-grown-meta-skill
+  promotion_gate:
+    rule: runtime evidence 只有经过 IPO Reverse 复盘和 owner alignment 后才能升级为 distilled meta skill。
+cognition_objects:
+  taxonomy: identity/cognition/object-taxonomy.yml
+  data_contracts: identity/cognition/data-contracts.yml
+  rule: memory answers what is true; skill answers how to do it; hybrid input must be split.
+memory_taxonomy:
+  working_lessons: runtime/memory/working-lessons/
+  long_term_memory: identity/memories/long-term/
+  distilled_knowledge: capabilities/memory/distilled-knowledge/
+skill_layers:
+  runtime: docs/skill-system/runtime-skill-candidates.md
+  meta: identity/wenxin/skill-summaries/
+  bindings: identity/cognition/skill-bindings/data-sources.yml
+  placement_policy: candidate skills stay in identity/wenxin or docs/skill-system until promoted into real capabilities/<capability-id>/SKILL.md packages.
+evidence_sufficiency:
+  path: docs/evidence-sufficiency.md
+  maturity_levels: scaffold, evidence-limited-v0, public-v0, research-grade, avatar-grade
+  rule: progress gate passing means structure readiness, not content maturity.
+self_evolution_output_standards:
+  path: docs/self-evolution-output-standards.md
+  rule: Wenxin, PSP XML, Design, Taste Generator, and IPO Reverse artifacts pass only when key fields are filled; otherwise they must declare insufficient evidence and list missing_information. SOUL.md is paused as a LifeOS source artifact.
+sync:
+  hermes:
+    path: integrations/hermes.yml
+    role: 持续接收 GitHub、Feishu/Lark、wiki diff 或授权材料的新证据，驱动 Wenxin、PSP、Skill recommendations 和路由更新。
+  memory_wiki:
+    path: identity/memories/wiki-repo.yml
+    rule: public 层只放派生 index/approved-derived 内容；private wiki 用于可信协同；server-rsync 被配置为 authoritative source 时，服务器是唯一真源。
+  data_sources:
+    path: integrations/data-sources.yml
+    rule: 外部系统进入 memory、knowledge 或 skill update 前，必须先声明 authority、visibility、token policy 和 allowed targets。

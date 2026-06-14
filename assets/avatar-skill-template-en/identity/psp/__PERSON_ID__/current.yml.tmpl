@@ -1,0 +1,21 @@
+schema: openlifeos.psp-current.v1
+person_id: "{{PERSON_ID}}"
+owner: "{{OWNER_NAME}}"
+updated_at: "{{CREATED_AT}}"
+output_language: "{{LANGUAGE}}"
+active_artifact: psp-{{ARTIFACT_TIMESTAMP}}
+current_entrypoint: current/PSP_REPORT.xml
+versioned_artifact: versions/PSP_REPORT.{{ARTIFACT_TIMESTAMP}}.xml
+evidence_maturity_entrypoint: current/EVIDENCE_MATURITY.xml
+evidence_maturity_artifact: versions/EVIDENCE_MATURITY.{{ARTIFACT_TIMESTAMP}}.xml
+versions_ledger: versions.yml
+changelog: changelog.md
+status: v0.1-intake-only-routing-model
+evidence_sufficiency: insufficient
+policy:
+  language_rule: "PSP XML, evidence maturity, derived readables, runtime prompts, validation reports, and final disclosures must use {{LANGUAGE}} unless preserving source quotes, paths, XML tags, schema names, product names, or canonical protocol terms."
+  update_rule: "Write versions/PSP_REPORT.<timestamp>.xml first, then sync current/PSP_REPORT.xml, versions.yml, changelog.md, and identity/current.yml together."
+  evidence_maturity_rule: "Write versions/EVIDENCE_MATURITY.<timestamp>.xml first, then sync current/EVIDENCE_MATURITY.xml."
+  no_direct_runtime_write: "Runtime projections must not become PSP truth sources."
+  private_material_rule: "Raw private materials must remain outside this public repo."
+  soul_policy: "SOUL.md is paused; PSP_REPORT.xml carries person model, behavior boundaries, best-state profile, and runtime instructions."

@@ -1,0 +1,26 @@
+# Security 安全边界
+
+这个仓库的 visibility 是：`{{VISIBILITY}}`。
+
+永远不要提交：
+
+- 账号密码。
+- API Key、Token、cookie、私钥。
+- 身份证件、合同、财务数据。
+- 私人聊天记录和不可公开资料。
+- 原始会议转写、会议链接、客户细节和私有文档正文。
+- 私有 wiki 中不适合公开的内容副本。
+
+公开仓库只允许保留：
+
+- 已公开或已获授权的事实。
+- 抽象、脱敏、不可逆还原的 PSP/person model 结论。
+- 对私有资料源的入口说明，不包含原文。
+
+Memory 协同规则：
+
+- public 层是派生展示面，不是真相源。
+- private identity/memories/wiki 是可信协同面，可以通过 private PR 或 owner-reviewed branch 更新。
+- local/server authority 保存原始私密正文；进入 repo 前必须先抽取、脱敏或抽象。
+
+如果不确定能否公开，默认不能公开。

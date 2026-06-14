@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__DISPLAY_NAME__ Meta Skills · Usage Catalog</title>
+<style>
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --ink-1: #111827;
+  --ink-2: #374151;
+  --ink-3: #6b7280;
+  --line: #e5e7eb;
+  --brand: #1f4f7a;
+  --brand-soft: #e8f2fa;
+  --warn: #b45309;
+  --shadow: 0 1px 2px rgba(17,24,39,.04), 0 4px 14px rgba(17,24,39,.06);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; background: var(--bg); color: var(--ink-1); line-height: 1.65; font-size: 15px; }
+.hero { background: #172033; color: #fff; padding: 48px 32px 40px; }
+.hero-inner, main { max-width: 1280px; margin: 0 auto; }
+.eyebrow { font-size: 12px; letter-spacing: 1.8px; text-transform: uppercase; opacity: .72; }
+h1 { margin: 12px 0 8px; font-size: 36px; line-height: 1.18; }
+.subtitle { max-width: 880px; margin: 0; color: rgba(255,255,255,.84); font-size: 16px; }
+.meta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.16); font-size: 13px; color: rgba(255,255,255,.8); }
+main { padding: 34px 32px 72px; }
+section { margin-bottom: 44px; }
+h2 { margin: 0 0 6px; font-size: 25px; }
+.section-lead { margin: 0 0 20px; color: var(--ink-3); font-size: 14px; }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--brand); border-radius: 10px; padding: 20px 22px; box-shadow: var(--shadow); }
+.card h3 { margin: 0 0 8px; font-size: 18px; }
+.card p { margin: 0 0 12px; color: var(--ink-2); }
+.tag { display: inline-block; border-radius: 4px; padding: 3px 8px; margin: 0 5px 6px 0; font-size: 12px; font-weight: 600; background: var(--brand-soft); color: var(--brand); }
+.rows { display: grid; gap: 8px; margin-top: 12px; }
+.row { display: grid; grid-template-columns: 100px 1fr; gap: 12px; font-size: 13px; }
+.row strong { color: var(--ink-3); }
+.note { border-left: 4px solid var(--warn); background: #fffbeb; color: #78350f; padding: 12px 14px; border-radius: 6px; font-size: 13.5px; }
+code { font-family: "SF Mono", Menlo, Consolas, monospace; background: #f3f4f6; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">openLifeOS · Pluggable Meta Skill Router</div>
+    <h1>Meta Skill Usage Catalog</h1>
+    <p class="subtitle">This root catalog explains when to use each meta skill and when to compose skills. Do not write fixed skill counts; the skill set is pluggable.</p>
+    <div class="meta">
+      <span><strong>Owner:</strong> __OWNER_NAME__</span>
+      <span><strong>Repo:</strong> __REPO_NAME__</span>
+      <span><strong>Catalog Type:</strong> pluggable meta skill router</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>Maintenance Rule</h2>
+    <p class="section-lead">Each meta skill should have one routing card. Cards describe usage scenarios, inputs, outputs, boundaries, and drill-down catalogs, not the number of installed skills.</p>
+    <div class="note">When adding a meta skill, create <code>capabilities/&lt;capability-id&gt;/SKILL.md</code>, create <code>capabilities/&lt;capability-id&gt;/SKILLS-CATALOG.html</code>, and add one routing card here.</div>
+  </section>
+
+  <section>
+    <h2>Meta Skill Routing Cards</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>__META_SKILL_NAME__</h3>
+        <p>__META_SKILL_ONE_LINE_PURPOSE__</p>
+        <span class="tag">__PRIMARY_SCENARIO__</span>
+        <span class="tag">__DECISION_LAYER__</span>
+        <div class="rows">
+          <div class="row"><strong>Use When</strong><span>__WHEN_TO_USE__</span></div>
+          <div class="row"><strong>Inputs</strong><span>__TYPICAL_INPUTS__</span></div>
+          <div class="row"><strong>Outputs</strong><span>__TYPICAL_OUTPUTS__</span></div>
+          <div class="row"><strong>Boundary</strong><span>__BOUNDARIES__</span></div>
+          <div class="row"><strong>Catalog</strong><span><code>capabilities/__CAPABILITY_ID__/SKILLS-CATALOG.html</code></span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+</body>
+</html>

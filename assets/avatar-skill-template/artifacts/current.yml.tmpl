@@ -1,0 +1,66 @@
+schema: openlifeos.artifacts-current.v1
+owner: "{{OWNER_NAME}}"
+repo: "{{REPO_NAME}}"
+updated_at: "{{CREATED_AT}}"
+policy:
+  purpose: "Single machine-readable latest registry for core openLifeOS process artifacts."
+  write_rule: "Create timestamped artifacts first; activate by updating current entrypoints, versions ledgers, changelogs, and this registry together."
+  projection_rule: "Runtime profiles consume these active artifacts as inputs; runtime files are projections and must not become truth sources."
+  raw_material_rule: "Raw private materials remain outside this repo."
+artifacts:
+  avatar_description:
+    semantic_role: product_facing_current_avatar_description
+    answers: "What is this digital avatar currently like for a human user or runtime handbook?"
+    current_entrypoint: identity/avatar-description/current.yml
+    active_artifact: identity/avatar-description/current.yml
+    versions_ledger: identity/avatar-description/versions.yml
+    changelog: identity/avatar-description/changelog.md
+    status: scaffold
+    evidence_sufficiency: insufficient
+    derived_from:
+      - identity/inneratlas/current/INNERATLAS_REPORT.xml
+      - identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml
+      - DESIGN.md
+  wenxin:
+    semantic_role: inneratlas_identity_self_discovery
+    answers: "Who am I, where do I stand, how far am I from the fuller version of my field, and where should I go?"
+    current_entrypoint: identity/inneratlas/current/INNERATLAS_REPORT.xml
+    active_artifact: identity/inneratlas/versions/INNERATLAS_REPORT.{{ARTIFACT_TIMESTAMP}}.xml
+    versions_ledger: identity/wenxin/versions.yml
+    changelog: identity/wenxin/changelog.md
+    status: source-scope-needed
+    evidence_sufficiency: insufficient
+  psp:
+    semantic_role: person_model_source
+    answers: "What ontology map, judgment model, value ordering, behavior boundary, delegation boundary, and confidence model can be inferred from approved evidence?"
+    current_entrypoint: identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml
+    active_artifact: identity/psp/{{PERSON_ID}}/versions/PSP_REPORT.{{ARTIFACT_TIMESTAMP}}.xml
+    versions_ledger: identity/psp/{{PERSON_ID}}/versions.yml
+    changelog: identity/psp/{{PERSON_ID}}/changelog.md
+    status: v0.1-intake-only-routing-model
+    evidence_sufficiency: insufficient
+  design:
+    semantic_role: global_aesthetic_system
+    answers: "What expression, product, visual, narrative, and taste preferences should guide global output?"
+    current_entrypoint: DESIGN.md
+    active_artifact: identity/design/DESIGN-{{ARTIFACT_TIMESTAMP}}.md
+    canonical_xml_entrypoint: identity/design/current/DESIGN_TASTE.xml
+    active_xml_artifact: identity/design/DESIGN_TASTE-{{ARTIFACT_TIMESTAMP}}.xml
+    versions_ledger: identity/design/versions.yml
+    changelog: identity/design/changelog.md
+    status: v0.1-intake-only-aesthetic-boundary
+    evidence_sufficiency: insufficient
+    projection_rule: "DESIGN.md is generated from canonical DESIGN_TASTE.xml."
+  skill_recommendations:
+    semantic_role: wenxin_candidate_skill_recommendations
+    answers: "Which candidate runtime/meta skills are recommended from the current Wenxin and evidence surface, and what evidence maturity or next review is needed before promotion?"
+    current_entrypoint: identity/wenxin/skill-recommendations.yml
+    status: scaffold
+    evidence_sufficiency: insufficient
+  evidence_maturity:
+    semantic_role: maturity_and_gap_report
+    answers: "How mature is the current LifeOS evidence base, which artifact claims are under-supported, and what targeted material should be collected next?"
+    current_entrypoint: identity/psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml
+    active_artifact: identity/psp/{{PERSON_ID}}/versions/EVIDENCE_MATURITY.{{ARTIFACT_TIMESTAMP}}.xml
+    status: scaffold
+    evidence_sufficiency: insufficient

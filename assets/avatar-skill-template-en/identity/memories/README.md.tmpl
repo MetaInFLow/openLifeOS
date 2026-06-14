@@ -1,0 +1,28 @@
+# Memory Layer
+
+This layer answers: "What lets the digital avatar keep evolving?"
+
+The memory layer is not a one-time data package. It is the entrypoint to long-term context.
+
+## Isolation model
+
+- Public surface: only public or owner-approved facts, redacted summaries, non-reversible abstracted conclusions, and private-source entrypoint descriptions.
+- Private collaboration: trusted collaborators and agents can maintain wiki/index/working memory through private PRs or owner-reviewed branches.
+- Local/server authority: raw private material, transcripts, customer documents, and external-system exports stay outside this repo; this repo stores only entrypoints and boundaries.
+- Banned material: secrets, tokens, cookies, private keys, and passwords are not memory and must never be written to the repo.
+
+## Object routes
+
+- Skill/task daily lessons: store first as private `lesson-event` evidence indexed by `skill_id`, `skill_type`, `task_id`, and date; runtime skills may be fixed directly, but upgrades into distilled meta skills require IPO Reverse and owner alignment.
+- Large PDFs and source artifacts: keep raw files in local/server/private object storage; store only pointers, hashes, permissions, extraction state, and owner-approved summaries in the repo.
+- Thought fragments: capture daily thinking in private intake first, not as stable facts; periodically triage into lessons, area indexes, PSP evidence, or archive.
+
+Recommended patterns:
+
+- Configure the user's own GitHub identity/memories/wiki repo in `identity/memories/wiki-repo.yml`.
+- Private wiki as a submodule.
+- Private wiki as an external link with access notes.
+- Internal server wiki synced by `rsync`; if configured as authoritative, the server is the single source of truth.
+- Public-safe index that summarizes available areas without copying private content.
+
+Raw private notes, meeting transcripts, customer documents, and personal records should stay outside this repo.

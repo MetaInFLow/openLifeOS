@@ -1,0 +1,32 @@
+schema: openlifeos.lifecycle-status.v1
+repo: openLifeOS
+owner: MetaInFlow
+updated_at: "2026-05-31T00:00:00+08:00"
+lifecycle:
+  mode: development
+  meaning:
+    development: "Factory authoring state. Templates, scripts, and meta skill rules can be edited, tested, and uploaded."
+    delivery: "Factory release state. Generated LifeOS instances should use release/archive source snapshots for consumable skills."
+versions:
+  upload_version: openlifeos-upload-20260531
+  delivery_version: openlifeos-delivery-unreleased
+  current_version: openlifeos-upload-20260531
+source_policy:
+  meta_skills:
+    development:
+      install_mode: submodule-or-working-source
+      uploadable: true
+      rule: "During development, meta skills may be editable submodules or working sources so upstream versions can be uploaded."
+    delivery:
+      install_mode: github-release-archive
+      uploadable: false
+      rule: "During delivery, meta skills should be pulled from latest approved release archives and recorded as vendored source snapshots."
+  self_evolution_skills:
+    default_install_mode: github-release-archive
+    rule: "Wenxin, PSP, and IPO Reverse default to release/archive vendored copies for generated LifeOS repos."
+release_gate:
+  before_delivery:
+    - py_compile_scripts
+    - validate_generated_lifeos
+    - test_fresh_init_zh_en
+    - confirm_no_factory_hardcoded_personal_memory_wiki

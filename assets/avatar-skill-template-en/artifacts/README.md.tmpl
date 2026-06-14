@@ -1,0 +1,30 @@
+# Artifact Registry
+
+This is the process-artifact entrypoint for {{DISPLAY_NAME}}'s openLifeOS.
+
+## Latest Entry
+
+- `current.yml` is the machine-readable latest registry.
+- Humans should read `current.yml` first, then open the relevant current entrypoint.
+- Agents must create a versioned artifact before updating a current entrypoint, versions ledger, changelog, and this registry.
+
+## Core Artifact Semantics
+
+| Artifact | Meaning | Latest entrypoint | Versioned artifacts |
+| --- | --- | --- | --- |
+| InnerAtlas/Wenxin | Identity, self-discovery, positioning, capability map, gaps, and paths | `identity/inneratlas/current/INNERATLAS_REPORT.xml` | `identity/inneratlas/versions/INNERATLAS_REPORT.<timestamp>.xml` |
+| PSP | Person-model source: ontology map, value ordering, judgment model, operating axes, delegation boundary, behavior boundaries, and confidence | `identity/psp/{{PERSON_ID}}/current/PSP_REPORT.xml` | `identity/psp/{{PERSON_ID}}/versions/PSP_REPORT.<timestamp>.xml` |
+| Design | Global aesthetics, expression preferences, and design judgment; not UI config. XML is the source artifact; Markdown is the projection | `identity/design/current/DESIGN_TASTE.xml` + `DESIGN.md` | `identity/design/DESIGN_TASTE-<timestamp>.xml` + `identity/design/DESIGN-<timestamp>.md` |
+| Skill Recommendations | Wenxin-generated candidate Skill recommendations | `identity/wenxin/skill-recommendations.yml` | Versioned through git history or a recommendations changelog |
+| Evidence Maturity | PSP evidence maturity, structure readiness, and content gaps | `identity/psp/{{PERSON_ID}}/current/EVIDENCE_MATURITY.xml` | `identity/psp/{{PERSON_ID}}/versions/EVIDENCE_MATURITY.<timestamp>.xml` |
+
+## Update Rule
+
+Do not directly overwrite latest entrypoints.
+
+1. Read `artifacts/current.yml` and the target artifact's `versions.yml`.
+2. Write the new timestamped artifact.
+3. Update the latest entrypoint.
+4. Update `versions.yml`, `changelog.md`, and any local registry.
+5. Update `artifacts/current.yml`.
+6. Report which artifacts were activated, their evidence sufficiency, and remaining gaps.

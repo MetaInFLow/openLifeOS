@@ -1,0 +1,42 @@
+schema: openlifeos.lifecycle-status.v1
+lifeos_schema: v3
+schema_revision: 0005_lifeos_schema_v3_governed_artifact_repo
+repo: {{REPO_NAME}}
+owner: {{OWNER_NAME}}
+created_at: "{{CREATED_AT}}"
+birth_date: "{{CREATED_AT}}"
+updated_at: "{{CREATED_AT}}"
+lifecycle:
+  mode: {{LIFEOS_LIFECYCLE}}
+  meaning:
+    development: "Working source state. Meta skills may be connected as submodules or editable working sources so owner/agents can iterate and upload versions."
+    delivery: "Consumable delivery state. Meta skills should be resolved from latest approved release archives and recorded as vendored source snapshots."
+versions:
+  upload_version: "{{UPLOAD_VERSION}}"
+  delivery_version: "{{DELIVERY_VERSION}}"
+  current_version: "{{CURRENT_LIFEOS_VERSION}}"
+source_policy:
+  meta_skills:
+    development:
+      install_mode: submodule-or-working-source
+      uploadable: true
+      rule: "Use for authoring, owner review, and pushing meta skill changes upstream."
+    delivery:
+      install_mode: github-release-archive
+      uploadable: false
+      rule: "Use latest approved release archive; do not depend on mutable working trees."
+  self_evolution_skills:
+    default_install_mode: github-release-archive
+    rule: "Complete Wenxin, PSP, IPO Reverse, and Taste Generator skills are pulled as release/archive vendored copies unless the owner explicitly switches to development mode for a skill. PSP source artifacts are XML; SOUL.md is paused as a LifeOS source artifact; design remains a LifeOS artifact."
+runtime_projection:
+  rule: "OpenClaw and Hermes profiles are generated projections from the current LifeOS source state."
+  requires_manifest: true
+  requires_coverage_report: true
+  requires_review_proposal: true
+release_gate:
+  before_delivery:
+    - validate_avatar_repo
+    - openlifeos_progress
+    - confirm_private_material_excluded
+    - resolve_meta_skill_sources_to_release_archive
+    - regenerate_runtime_profiles

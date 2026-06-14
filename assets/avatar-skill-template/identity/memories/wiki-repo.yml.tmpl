@@ -1,0 +1,29 @@
+github_owner: {{GITHUB_OWNER}}
+repository: {{MEMORY_REPO_NAME}}
+visibility: private
+local_path: {{MEMORY_REPO_PATH}}
+create_with_gh: false
+authoritative_source: github
+sync_modes: github
+source_policy: private-by-default
+public_mirror: index-only
+allowed_public_exports: approved-facts, redacted-summaries, abstracted-patterns
+private_collaboration: private-pr-or-owner-approved-extract
+raw_material_policy: never-copy-raw-private-bodies
+rsync_enabled: false
+rsync_target: ""
+status: scaffold
+rule: 链接或摘要长期 wiki；public 层只保留 index/approved-derived 内容，不复制私密正文。如果 authoritative_source 是 server-rsync，则服务器是唯一真源，GitHub 只作为协同或公开镜像。
+intake:
+  mode: owner-approved-extract
+  raw_body_policy: external-only
+  write_targets:
+    - runtime/memory/working-lessons/
+    - identity/memories/long-term/
+    - capabilities/memory/distilled-knowledge/
+  rule: 新材料先进入 memory wiki 或本地私有来源；LifeOS public 层只接收批准后的摘要、索引、source_id 和 provenance。
+query:
+  default_entrypoint: "{{MEMORY_REPO_PATH}}/START-HERE.md"
+  area_index: "{{MEMORY_REPO_PATH}}/areas/index.md"
+  fallback_when_unavailable: use memory tiers and ask owner for approved extract
+  rule: 查询前先读本文件确认 authoritative_source、visibility、public_mirror 和 raw_material_policy。

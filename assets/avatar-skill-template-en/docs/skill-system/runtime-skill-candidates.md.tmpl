@@ -1,0 +1,23 @@
+# Runtime Skills
+
+Runtime Skills execute concrete tasks.
+
+A runtime skill may contain:
+
+- when to use;
+- procedure;
+- tool and connector requirements;
+- scripts and templates;
+- validation gates;
+- pitfalls and recovery steps.
+
+A runtime skill must not embed:
+
+- private user facts;
+- long-term preferences;
+- raw evidence;
+- project memory that belongs in `identity/memories/`.
+
+This LifeOS does not use `identity/wenxin/skill-recommendations.yml` as a real Skill directory. Candidate Skills first enter `identity/wenxin/skill-recommendations.yml`; they enter `capabilities/<skill-id>/` only after a real `SKILL.md` exists.
+
+Put fact dependencies in `identity/cognition/skill-bindings/data-sources.yml`.

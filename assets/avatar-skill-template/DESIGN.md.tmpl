@@ -1,0 +1,166 @@
+# Design · {{DISPLAY_NAME}}
+
+Generated: {{CREATED_AT}}
+Canonical source: `identity/design/current/DESIGN_TASTE.xml`
+Current projection artifact: `identity/design/DESIGN-{{ARTIFACT_TIMESTAMP}}.md`
+
+`DESIGN.md` is the human-readable projection of the canonical `DESIGN_TASTE.xml`. It records global expression preferences, design judgment, narrative rhythm, visual taste, and standards for what good output feels like. It is not a project UI config.
+
+## standard_output_gate
+
+```yaml
+artifact_type: design
+evidence_sufficiency: insufficient
+canonical_source: identity/design/current/DESIGN_TASTE.xml
+review_status: scaffold-owner-input-needed
+evidence_sources:
+  - source_id: initialization
+    source_type: setup
+    authority: scaffold
+    used_for:
+      - aesthetic-boundary scaffold
+confidence:
+  overall: low
+  notes: "Only the global design artifact boundary exists. Owner-approved aesthetic evidence has not been collected yet."
+missing_information:
+  - preferred_references
+  - disliked_patterns
+  - output_surfaces
+```
+
+## source_inventory
+
+- `initialization`: scaffold only.
+- Canonical XML source: `identity/design/current/DESIGN_TASTE.xml`.
+- Inspired by DESIGN.md patterns where agents need theme, colors, typography, spacing, grid, components, motion, media, accessibility, responsive behavior, and do/don't rules.
+
+## design_variables
+
+- `font_direction`: `system_sans_precision`
+- `type_scale`: `compact_strong`
+- `color_mode`: `dark_precision`
+- `accent_policy`: `single_accent`
+- `text_color_policy`: `high_contrast_primary_muted`
+- `surface_density`: `dense_scannable`
+- `spacing_rhythm`: `tight_system`
+- `grid_container`: `dense_grid`
+- `shape_radius`: `small_radius`
+- `motion_level`: `restrained`
+- `media_treatment`: `artifact_first`
+- `navigation_style`: `compact_index`
+- `accessibility_floor`: `high_contrast_touch_safe`
+- `evidence_style`: `artifact_screenshots`
+
+These are starter defaults from the scaffold, not owner-approved taste.
+
+## expression_preferences
+
+Missing. Use Taste Generator before making stable expression preference claims.
+
+## visual_preferences
+
+Missing. Use Taste Generator before making stable visual preference claims.
+
+## Visual Theme & Atmosphere
+
+Missing.
+
+## Color Palette & Roles
+
+Missing. Future XML must define semantic roles for canvas, surface, text, muted text, accent, hairline, and status colors, including the text color policy for body, secondary text, links, and data labels.
+
+## Typography Rules
+
+Missing. Future XML must define font direction, type scale, and hierarchy for display, headline, body, caption, label, and code/data.
+
+## Component Stylings
+
+Missing. Future XML must cover buttons, cards, forms, tables, tabs, badges, code blocks, and state behavior.
+
+## Layout Principles
+
+Missing. Future XML must define grid/container behavior and layout density.
+
+## Spacing System
+
+Missing. Future XML must define spacing rhythm and scan hierarchy.
+
+## Shape & Radius Rules
+
+Missing. Future XML must define radius rules for controls, panels, cards, and inputs.
+
+## Depth & Elevation
+
+Missing.
+
+## Motion & Interaction
+
+Missing.
+
+## Navigation & IA
+
+Missing.
+
+## Media & Imagery
+
+Missing.
+
+## Content & Evidence Presentation
+
+Missing.
+
+## Accessibility & Touch Targets
+
+Missing. Maintain readable contrast, visible focus states, touch-safe targets, and non-overlapping text as defaults.
+
+## narrative_rhythm
+
+Missing.
+
+## product_and_interface_taste
+
+Missing.
+
+## anti_preferences
+
+Missing. Future updates must capture explicit avoid rules.
+
+## reference_examples
+
+Missing. Owner-approved positive and negative examples are required.
+
+## Do's and Don'ts
+
+Do:
+
+- Run Taste Generator before making permanent design claims.
+
+Don't:
+
+- Do not treat scaffold defaults as owner-approved taste.
+
+## Responsive Behavior
+
+- Preserve hierarchy and readable line length.
+- Collapse dense grids into mobile-safe flows.
+- Avoid text overlap and card nesting.
+
+## confidence_by_section
+
+```yaml
+expression_preferences: low
+visual_preferences: low
+narrative_rhythm: low
+product_and_interface_taste: low
+anti_preferences: low
+```
+
+## missing_information
+
+- 5-10 owner-approved positive references with reasons.
+- 3-5 disliked patterns or counterexamples with reasons.
+- Target output surfaces: website, document, product UI, deck, social content, or another explicit surface.
+
+## Agent Prompt Guide
+
+Read `identity/design/current/DESIGN_TASTE.xml` first, then use this file as the human-readable projection. If design taste matters and evidence remains insufficient, run `evolution/organ-systems/taste-generator/SKILL.md`, collect owner choices, write timestamped XML, and regenerate `DESIGN.md` from XML.
